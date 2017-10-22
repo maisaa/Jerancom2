@@ -5,12 +5,15 @@ import { AppComponent } from './app.component';
 import {HttpModule} from '@angular/http'; 
 import {Http, Headers} from '@angular/http';
 import{HomeComponent} from './components/home/home';
- 
+import{signupComponent} from './components/signup/signup.component';
+import{ItemComponent} from './components/item/item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-   HomeComponent
+   HomeComponent,
+   signupComponent,
+   ItemComponent
 
   ],
   imports: [
