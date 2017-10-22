@@ -3,6 +3,7 @@ import{Http,Response,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 // import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import{HomeComponent} from './components/home/home'
 
 @Component({
   selector: 'app-root',

@@ -1,3 +1,19 @@
 
 h1{color:red};
 h2{color: blue};
+/* You can add global styles to this file, and also import other style files */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+ 
+    }
+ 
+  
+ header #branding {
+        float: left;
+    }
+ 
+    header #branding h1{
+        margin: 0;
+    }
