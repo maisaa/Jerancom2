@@ -7,6 +7,10 @@ import {Http, Headers} from '@angular/http';
 import{HomeComponent} from './components/home/home';
 import{signupComponent} from './components/signup/signup.component';
 import{ItemComponent} from './components/item/item.component';
+import{MapComponent} from './components/map/map.components';
+//import{AgmCoreModule} from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
+import{ReactiveFormsModule} from '@angular/forms';
 
 import{FileSelectDirective} from 'ng2-file-upload';
 
@@ -18,15 +22,20 @@ import{LoginComponent} from './components/login/login.component';
    HomeComponent,
    signupComponent,
    ItemComponent,
-
-   LoginComponent
+  MapComponent,
+    LoginComponent
 
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      
+      apiKey: "AIzaSyAaprvcVNVDbJGy7YTZ3OUVCl4c0KvrhTc",
+      libraries: ["places"]})
   ],
   providers: [],
   bootstrap: [AppComponent]

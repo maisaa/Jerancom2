@@ -68,6 +68,35 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+
+
+app.post('/loc',urlencodedParser,(req,res,next)=>{
+  const results=[];
+  const data={longitude:req.body.longitude,latitude:req.body.latitude};
+  pg.connect(connectionString,(err,client,done)=>{
+    if(err){
+      done();
+      console.log(err);
+      return res.status(500).json({sucsess:false,data:err});
+    }
+    client.query('INSERT INTO users(longitude,latitude) values($1, $2)',
+    [data.longitude, data.latitude]);
+
+console.log(data.longitude)
+    const query = client.query('SELECT * FROM users ');
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      
+      return res.json(results);
+    });
+  })
+})
+
 //....................................................
 app.post('/login', (req, res, next) => {
   const results = [];
@@ -133,13 +162,14 @@ app.post('/login', (req, res, next) => {
 //   res.send("get login");
 // })
 
+
 //....................................................
 
 app.post('/user', urlencodedParser,(req, res, next) => {
     //console.log(req.body)
    const results = [];
    // Grab data from http request
-   const data = {username: req.body.username, password: req.body.password,phone:req.body.phone};
+   const data = {username: req.body.username, password: req.body.password,phone:req.body.phone,longitude:req.body.longitude,latitude:req.body.latitude};
    // Get a Postgres client from the connection pool
    pg.connect(connectionString, (err, client, done) => {
      // Handle connection errors
@@ -151,9 +181,9 @@ app.post('/user', urlencodedParser,(req, res, next) => {
      // SQL Query > Insert Data
     //  bcrypt.hash( data.password, saltRounds, function(err, hash) {
       // Store hash in your password DB.
-      client.query('INSERT INTO users(username, password,phone) values($1, $2,$3)',
 
-      [data.username,data.password ,data.phone]);
+      client.query('INSERT INTO users(username, password,phone,longitude,latitude) values($1,$2,$3,$4,$5)',
+      [data.username, data.password,data.phone,data.longitude,data.latitude]);
 
       // SQL Query > Select Data
       const query = client.query('SELECT * FROM users ');
