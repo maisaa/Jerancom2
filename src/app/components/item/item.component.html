@@ -7,6 +7,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="../node_modules/systemjs/dist/system.src.js"></script>
+  <script src="../node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
+  <script src="../node_modules/angular2/bundles/http.dev.js"></script>
+  <script>
+      System.config({
+          packages: {'app': {defaultExtension: 'js'}}
+      });
+      System.import('app/app');
+  </script>
   <style type="text/css">
   </style>
 </head>
@@ -19,7 +30,8 @@
   <div class="page-header " class="col-sm-offset-4">
     <h1><small>Contact Us!</small></h1>
   </div>
-  <form class="form-horizontal" >
+  <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
+  <form class="form-horizontal" enctype="multipart/form-data" >
       <div class="form-group">
         <label for="Firstname" class="control-label col-md-2 col-sm-offset-2" >Item Name</label>
         <div class=" col-sm-5"> 
@@ -58,6 +70,13 @@
                   </div>
                 </div>
                 </div>
+          <!-- <div class="form-group"> -->
+                <!-- <label class="control-label col-lg-2  col-sm-offset-2">picture: </label>
+                <div class=" col-sm-5">
+                <div class="input-group">
+                <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div> -->
+                <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+                <button type="button" name="file" (click)="upload()">Upload</button>
       <div class="form-group">
         <div class=" col-sm-5 col-lg-offset-4 text-center">
           <button type="submit" class="btn btn-danger btn-lg" (click)="submit()">Submit</button>
