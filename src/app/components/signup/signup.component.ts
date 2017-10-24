@@ -1,0 +1,144 @@
+import { OnInit, Component } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+// import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+// import{Component} from '@angular/core';
+import { ElementRef, NgZone, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
+// import{Http,Response,Headers} from '@angular/http';
+// import { HttpHeaders } from '@angular/common/http';
+
+@Component({
+  selector: 'signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
+
+
+})
+export class signupComponent implements OnInit {
+  name: String;
+  password: String;
+  phone: Number;
+
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
+
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
+    public http: Http
+  ) { }
+
+  // constructor(public http: Http) {
+
+  //     }
+
+
+
+  /************** */
+  ngOnInit() {
+    //set google maps defaults
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
+
+    //create search FormControl
+    this.searchControl = new FormControl();
+
+    //set current position
+    this.setCurrentPosition();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 4;
+
+        });
+      });
+    });
+
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 4;
+        console.log(this.longitude);
+      });
+    }
+  }
+
+
+
+
+
+  /*********** */
+
+  submit() {
+    const that = this;
+    console.log(that)
+    this.http.post('http://localhost:4500/user', {
+      username: that.name,
+      password: that.password,
+      phone: that.phone,
+      longitude: that.longitude,
+      latitude: that.latitude
+
+
+    })
+      // JSON.stringify({
+      //   username: that.name,
+      //   password: that.password
+      // })
+      .subscribe(
+      data => {
+        alert('SingUp correctly');
+        console.log(data)
+      },
+      error => {
+        console.log(error, "erooooooooooooooooooe");
+      }
+      )
+
+  }
+  //   send() {
+  //     console.log(this.password)
+  //  this.http.get('http://localhost:3000/user')
+  // .map(res => res.json())
+  // .subscribe(
+  //   data =>{
+  //     console.log(data)
+  //   },
+  //   err => console.log(err),
+  //   () => console.log("khawa" )
+  // );
+
+  //     }
+
+}
