@@ -1,11 +1,11 @@
 
 
-import{Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-import{Http,Response,Headers} from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 
 
@@ -49,7 +49,7 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public http: Http
-  ) {}
+  ) { }
 
   ngOnInit() {
     //set google maps defaults
@@ -82,11 +82,11 @@ export class MapComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 4;
-         
+
         });
       });
     });
- 
+
   }
 
   private setCurrentPosition() {
@@ -94,7 +94,7 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-      this.zoom = 4;
+        this.zoom = 4;
         console.log(this.longitude);
       });
     }
@@ -102,24 +102,24 @@ export class MapComponent implements OnInit {
 
 
 
-     sendloc(){
-      const that = this;
-      console.log(that)
-       this.http.post('http://localhost:4500/loc',{
-         longitude: that.longitude,
-         latitude: that.latitude
-         
-       })
-     .subscribe(
-       data => {
-         alert('location saved');
-         console.log(data)
-       },
-       error => {
-         console.log(error , "erooooooooooooooooooe");
-       }
-       )
+  sendloc() {
+    const that = this;
+    console.log(that)
+    this.http.post('http://localhost:4500/loc', {
+      longitude: that.longitude,
+      latitude: that.latitude
 
-     } 
+    })
+      .subscribe(
+      data => {
+        alert('location saved');
+        console.log(data)
+      },
+      error => {
+        console.log(error, "erooooooooooooooooooe");
+      }
+      )
+
+  }
 }
 
