@@ -3,7 +3,8 @@ import{Http,Response,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 // import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import{HomeComponent} from './components/home/home'
+import{HomeComponent} from './components/home/home';
+
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent{
       send() {
         const that = this;
        console.log(that)
-        this.http.post('http://localhost:3000/user',{
+        this.http.post('http://localhost:4500/user',{
           username: that.name,
           password: that.password
         })
