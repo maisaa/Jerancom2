@@ -56,35 +56,35 @@
 
 <div>
   <div class="col-sm-2" style="background:black;height:500px"></div>
-  <div class="col-sm-8" >
+  <div class="col-sm-8">
 
     <!-- <div class="col-sm-4">
       <img src="../../assets/tools.png">
     </div> -->
-    <div id="container" [@listAnimation]="item.length"> 
-    <div id="list" *ngFor="let item of item"  style="border-style: solid">
+    <div id="container" [@listAnimation]="item.length">
+      <div id="list" *ngFor="let item of item" style="border-style: solid">
 
-      <div @explainerAnim>
-        <div class="row">
-      <!-- <div class="col-sm-8" > -->
-        <div class="row" style="margin-top:10% ;margin-left:20%">
-          item :{{item.itemname}}
-        </div>
-        <div class="row" style="margin-top:10% ;margin-left:20% ">
-          price: {{item.price}}
-        </div>
+        <div @explainerAnim>
+          <div class="row">
+            <!-- <div class="col-sm-8" > -->
+            <div class="row" style="margin-top:10% ;margin-left:20%">
+              item :{{item.itemname}}
+            </div>
+            <div class="row" style="margin-top:10% ;margin-left:20% ">
+              price: {{item.price}}
+            </div>
 
-        <div class="row" style="margin-top:10% ;margin-left:20%">
-          category:{{item.itemtype}}
+            <div class="row" style="margin-top:10% ;margin-left:20%">
+              category:{{item.itemtype}}
+            </div>
+            <div>
+              <button style="float:right ">buy</button>
+            </div>
+            <!-- </div> -->
+          </div>
         </div>
-        <div>
-          <button style="float:right ">buy</button>
-        </div>
-      <!-- </div> -->
-      </div>
       </div>
     </div>
-</div>
   </div>
   <div class="col-sm-2" style="background:rgb(200, 255, 0);height:500px"></div>
 </div>
