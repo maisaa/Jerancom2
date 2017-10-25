@@ -75,8 +75,8 @@
                 <div class=" col-sm-5">
                 <div class="input-group">
                 <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div> -->
-                <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-                <button type="button" name="file" (click)="upload()">Upload</button>
+                <input type="file" ng2FileSelect [uploader]="uploader"  name="photo" placeholder="Upload file..." />
+                <button type="button"  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >Upload</button>
       <div class="form-group">
         <div class=" col-sm-5 col-lg-offset-4 text-center">
           <button type="submit" class="btn btn-danger btn-lg" (click)="submit()">Submit</button>

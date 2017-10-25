@@ -29,7 +29,7 @@ import { HttpHeaders } from '@angular/common/http';
       <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
       </agm-map>
-      <button type="button" class="btn btn-success" (click)="sendloc()">Save your location</button>
+     
     </div>
     
   `
@@ -82,6 +82,8 @@ export class MapComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 4;
+          console.log(this.latitude)
+          console.log(this.longitude)
 
         });
       });
