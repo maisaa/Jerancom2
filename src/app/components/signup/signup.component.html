@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JeranCom</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="well col-md-7 col-sm-offset-2">
+
+
+      <div class="page-header " class="col-sm-offset-4">
+        <h1>
+          <small>Contact Us!</small>
+        </h1>
+      </div>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="Firstname" class="control-label col-md-2 col-sm-offset-2">User Name</label>
+          <div class=" col-sm-5">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-user"></div>
+              </div>
+              <input type="text" placeholder="User Name" class="form-control" name="user" [(ngModel)]="name">
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="Last Name" class="control-label col-lg-2  col-sm-offset-2">Password</label>
+          <div class="  col-sm-5">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-user  col-sm-offset-1"></div>
+              </div>
+              <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="password">
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="control-label col-lg-2  col-sm-offset-2">Phone: </label>
+          <div class=" col-sm-5">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-earphone"></div>
+              </div>
+              <input type="number" placeholder="Phone No." class="form-control" name="phone" [(ngModel)]="phone">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+
+          <button type="button" class="btn btn-success" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add your location</button>
+
+          <div class=" col-sm-5 col-lg-offset-4 text-center">
+            <button type="submit" class="btn btn-danger btn-lg" (click)="submit()">Submit</button>
+          </div>
+          <div>
+            <!-- <map></map> -->
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+
+
+            <div class="container">
+              <h1>Google Maps Places Autocomplete</h1>
+              <div class="form-group">
+                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                  #search [formControl]="searchControl">
+              </div>
+              <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+              </agm-map>
+              <!-- <button type="button" class="btn btn-success" (click)="sendloc()">Save your location</button> -->
+            </div>
+
+
+            <!-- <map></map>   -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default">send</button>
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- new -->
+  <!-- <form>
+    <h1>Sign Up</h1>
+    <fieldset>
+      <legend><span class="number">1</span> Your basic info</legend>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="user_name">
+  
+      <label for="mail">Email:</label>
+      <input type="email" id="mail" name="user_email">
+  
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="user_password">
+  
+      <label>Age:</label>
+      <input type="radio" id="under_13" value="under_13" name="user_age">
+      <label for="under_13" class="light">Under 13</label>
+  
+      <input type="radio" id="over_13" value="over_13" name="user_age">
+      <label for="over_13" class="light">Over 13</label>
+    </fieldset>
+  
+    <fieldset>
+      <legend><span class="number">2</span> Your profile</legend>
+  
+      <label for="bio">Biography:</label>
+      <textarea id="bio" name="user_bio"></textarea>
+  
+      <label for="job">Job role:</label>
+      <select id="job" name="user_job">
+  
+        <optgroup label="Web">
+          <option value="frontend_developer">Front-End Developer</option>
+          <option value="php_developer">PHP Developer</option>
+          <option value="python_developer">Python Developer</option>
+          <option value="rails_developer">Rails Developer</option>
+          <option value="web_designer">Web Designer</option>
+          <option value="wordpress developer">Wordpress Developer</option>
+        </optgroup>
+  
+        <optgroup label="Mobile">
+          <option value="android_developer">Android Developer</option>
+          <option value="ios_developer">iOS Developer</option>
+          <option value="mobile_designer">Mobile Designer</option>
+        </optgroup>
+  
+        <optgroup label="Business">
+          <option value="business_owner">Business Owner</option>
+          <option value="freelancer">Freelancer</option>
+        </optgroup>
+      </select>
+  
+      <label>Interests:</label>
+      <br>
+      <input type="checkbox" id="development" value="interest_development" name="user_interest">
+      <label for="development">Development</label>
+      <br>
+  
+      <input type="checkbox" id="design" value="interest_design" name="user_interest">
+      <label for="design">Design</label>
+      <br>
+  
+      <input type="checkbox" id="business" value="business" name="user_interest">
+      <label for="business">Business</label>
+  
+    </fieldset>
+    <button type="submit">Sign Up</button>
+  </form> -->
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
