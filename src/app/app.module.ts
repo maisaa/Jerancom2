@@ -7,13 +7,16 @@ import {Http, Headers} from '@angular/http';
 import{HomeComponent} from './components/home/home';
 import{signupComponent} from './components/signup/signup.component';
 import{ItemComponent} from './components/item/item.component';
+import{FileSelectDirective} from 'ng2-file-upload';
+
 
 @NgModule({
   declarations: [
     AppComponent,
    HomeComponent,
    signupComponent,
-   ItemComponent
+   ItemComponent,
+   FileSelectDirective
 
   ],
   imports: [
