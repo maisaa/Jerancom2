@@ -54,7 +54,7 @@ app.use(session({
 app.use(function (req, res, next) {
   
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
@@ -246,7 +246,7 @@ app.post('/user', urlencodedParser,(req, res, next) => {
   // console.log("----------------------------",req.file)
  const results = [];
  // Grab data from http request
- const data = {itemname: req.body.itemname, itemtype: req.body.itemtype,massege:req.body.massege,price:req.body.price,picture: req.files};
+ const data = {itemname: req.body.itemname, itemtype: req.body.itemtype,massege:req.body.massege,price:req.body.price};
  // Get a Postgres client from the connection pool
  pg.connect(connectionString, (err, client, done) => {
    // Handle connection errors
@@ -256,8 +256,8 @@ app.post('/user', urlencodedParser,(req, res, next) => {
      return res.status(500).json({success: false, data: err});
    }
    // SQL Query > Insert Data
-   client.query('INSERT INTO items(itemname, itemtype,massege,price,picture) values($1,$2,$3,$4,$5)',
-   [data.itemname, data.itemtype,data.massege ,data.price,data.picture ]);
+   client.query('INSERT INTO items(itemname, itemtype,massege,price) values($1,$2,$3,$4)',
+   [data.itemname, data.itemtype,data.massege ,data.price]);
    // SQL Query > Select Data
    const query = client.query('SELECT * FROM items ');
    // Stream results back one row at a time

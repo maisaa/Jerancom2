@@ -12,7 +12,6 @@ import{MapComponent} from './components/map/map.components';
 import { AgmCoreModule } from '@agm/core';
 import{ReactiveFormsModule} from '@angular/forms';
 
-import{FileSelectDirective} from 'ng2-file-upload';
 
 import{LoginComponent} from './components/login/login.component';
 
