@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Component, NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router'
+import { AppRoutingModule, routingComponents } from './app.routing'; 
 import {FormsModule}from '@angular/forms';
 import { AppComponent } from './app.component';
 import {HttpModule} from '@angular/http'; 
@@ -15,13 +17,15 @@ import{LoginComponent} from './components/login/login.component';
    HomeComponent,
    signupComponent,
    ItemComponent,
-   LoginComponent
+   LoginComponent,
+   routingComponents
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
