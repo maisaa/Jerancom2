@@ -71,11 +71,11 @@ export class ToolsComponent {
     this.items.pop();
   }
 
-  item=[];
+  item = [];
 
   ngOnInit() {
 
-    this.http.get('http://localhost:4500/item')
+    this.http.get('http://localhost:4500/tools')
       .map(res => res.json())
       .subscribe(
       data => {
