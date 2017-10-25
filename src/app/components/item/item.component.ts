@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 // import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 //import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { FileSelectDirective, FileDropDirective, FileUploader} from 'ng2-file-upload/ng2-file-upload';
+
 const URL =' http://localhost:4500/item';
 
 @Component({

@@ -24,11 +24,35 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-app.use(express.static(path.join(__dirname, "../")));
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+
+app.use(express.static(path.join(__dirname, "./src")));
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded())
 app.use(morgan('dev'));
+//..................................
+var session=require('express-session');
+
+app.use(session({
+  secret:"shhh it's a secret",
+  resave:false,
+  aveUnintinalized:true
+}));
+
+// var comparePassword = function (attempedPassword, callback){
+//   bcrypt.compare(attempedPassword, this.password, function(err, isMatch){
+//      if(err){
+//        callback(err, null)
+//      }
+//      else{
+//         callback(null, isMatch)
+//      }
+//   });
+// }
+
+//..................................
 app.use(function (req, res, next) {
+  
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   // Request methods you wish to allow
@@ -38,17 +62,114 @@ app.use(function (req, res, next) {
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
+  
+  //resp.setHeader('Access-Control-Allow-Origin','*') 
+  
   // Pass to next layer of middleware
   next();
 });
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:3000/jerancomdb';
 
+
+
+app.post('/loc',urlencodedParser,(req,res,next)=>{
+  const results=[];
+  const data={longitude:req.body.longitude,latitude:req.body.latitude};
+  pg.connect(connectionString,(err,client,done)=>{
+    if(err){
+      done();
+      console.log(err);
+      return res.status(500).json({sucsess:false,data:err});
+    }
+    client.query('INSERT INTO users(longitude,latitude) values($1, $2)',
+    [data.longitude, data.latitude]);
+
+console.log(data.longitude)
+    const query = client.query('SELECT * FROM users ');
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      
+      return res.json(results);
+    });
+  })
+})
+
+//....................................................
+app.post('/login', (req, res, next) => {
+  const results = [];
+  
+  // Grab data from the URL parameters
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({success: false, data: err});
+    }
+    const data = {username: req.body.username, password: req.body.password};
+    //console.log(data.username);
+    
+    bcrypt.hash( data.password, saltRounds, function(err, hash) {
+      //console.log("hiiiii login password")
+       
+     // SQL Query > Select Data
+    
+    var query = client.query('SELECT * FROM users WHERE username=($1) AND password=($2) ',[data.username, hash]);
+    //console.log("hiiiii password",data.password);
+    // Stream results back one row at a time
+
+     //var hash = hash;
+     
+     query.on('row', (row) => {
+      results.push(row);
+      console.log(" results ", results);
+      req.session.username = row.username;
+       res.send ('./home/home.html');
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+       res.send ('./');
+      
+    });
+  });
+ });  
+});
+/////////////////////////////////////
+
+// app.get('/',(req, res) => {
+//    console.log ('app.get(/)');
+//    if( !!req.session.username ){
+//      res.redirect('/index.html')
+//    }else{
+//     res.redirect('/index.html'); // check if this path right or not
+//    }
+// });
+
+// app.get('/home',(req, res) =>{
+//   console.log('req.session---->',req.session);
+//   if( !!req.session.username){
+//      res.redirect('/app/app.component.html')
+//   }
+// })
+
+// app.get('/login',(req,res) =>{
+//   // res.redirect('../app/components/login/login.component.html'); // check if this path right or not
+//   res.send("get login");
+// })
+
+
+//....................................................
 
 app.post('/user', urlencodedParser,(req, res, next) => {
     //console.log(req.body)
    const results = [];
    // Grab data from http request
-   const data = {username: req.body.username, password: req.body.password,phone:req.body.phone};
+   const data = {username: req.body.username, password: req.body.password,phone:req.body.phone,longitude:req.body.longitude,latitude:req.body.latitude};
    // Get a Postgres client from the connection pool
    pg.connect(connectionString, (err, client, done) => {
      // Handle connection errors
@@ -60,8 +181,10 @@ app.post('/user', urlencodedParser,(req, res, next) => {
      // SQL Query > Insert Data
     //  bcrypt.hash( data.password, saltRounds, function(err, hash) {
       // Store hash in your password DB.
-      client.query('INSERT INTO users(username, password,phone) values($1, $2,$3)',
-      [data.username,data.password ,data.phone]);
+
+      client.query('INSERT INTO users(username, password,phone,longitude,latitude) values($1,$2,$3,$4,$5)',
+      [data.username, data.password,data.phone,data.longitude,data.latitude]);
+
       // SQL Query > Select Data
       const query = client.query('SELECT * FROM users ');
       // Stream results back one row at a time
@@ -123,7 +246,7 @@ app.post('/user', urlencodedParser,(req, res, next) => {
   // console.log("----------------------------",req.file)
  const results = [];
  // Grab data from http request
- const data = {itemname: req.body.itemname, itemtype: req.body.itemtype,massege:req.body.massege,price:req.body.price,picture: req.files};
+ const data = {itemname: req.body.itemname, itemtype: req.body.itemtype,massege:req.body.massege,price:req.body.price};
  // Get a Postgres client from the connection pool
  pg.connect(connectionString, (err, client, done) => {
    // Handle connection errors
@@ -133,8 +256,8 @@ app.post('/user', urlencodedParser,(req, res, next) => {
      return res.status(500).json({success: false, data: err});
    }
    // SQL Query > Insert Data
-   client.query('INSERT INTO items(itemname, itemtype,massege,price,picture) values($1,$2,$3,$4,$5)',
-   [data.itemname, data.itemtype,data.massege ,data.price,data.picture ]);
+   client.query('INSERT INTO items(itemname, itemtype,massege,price) values($1,$2,$3,$4)',
+   [data.itemname, data.itemtype,data.massege ,data.price]);
    // SQL Query > Select Data
    const query = client.query('SELECT * FROM items ');
    // Stream results back one row at a time
@@ -203,10 +326,6 @@ pg.connect(connectionString, (err, client, done) => {
 });
 });
 /////
-
-
-
-
 
 
 ////
