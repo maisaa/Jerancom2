@@ -7,6 +7,8 @@ import {Http, Headers} from '@angular/http';
 import{HomeComponent} from './components/home/home';
 import{signupComponent} from './components/signup/signup.component';
 import{ItemComponent} from './components/item/item.component';
+import{FileSelectDirective} from 'ng2-file-upload';
+// import { FileSelectDirective } from 'ng2-file-upload';
 import{MapComponent} from './components/map/map.components';
 //import{AgmCoreModule} from 'angular2-google-maps/core';
 import { AgmCoreModule } from '@agm/core';
@@ -21,6 +23,8 @@ import{LoginComponent} from './components/login/login.component';
    HomeComponent,
    signupComponent,
    ItemComponent,
+   FileSelectDirective,
+   
   MapComponent,
     LoginComponent
 
