@@ -40,7 +40,7 @@ app.use(session({
 //   });
 // }
 
-//..................................
+/*************************************** HEADERS ***************************************************/
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
@@ -60,6 +60,7 @@ app.use(function (req, res, next) {
 });
 
 
+/***************************************SAVE LOCATION IN DATABASE***************************************************/
 
 app.post('/loc', urlencodedParser, (req, res, next) => {
   const results = [];
@@ -87,7 +88,7 @@ app.post('/loc', urlencodedParser, (req, res, next) => {
   })
 })
 
-//....................................................
+/*************************************** LOGIN ***************************************************/
 app.post('/login', (req, res, next) => {
   const results = [];
 
@@ -153,7 +154,7 @@ app.post('/login', (req, res, next) => {
 // })
 
 
-//....................................................
+/***************************************SIGN UP***************************************************/
 
 app.post('/user', urlencodedParser, (req, res, next) => {
   //console.log(req.body)
@@ -195,7 +196,7 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   });
 });
 // });
-/////////
+///////////////////////////////////////////////////////////////////////////
 app.post('/loginn', (req, res, next) => {
   const results = [];
 
@@ -231,7 +232,7 @@ app.post('/loginn', (req, res, next) => {
   });
 });
 /////
-
+/***************************************POST ITEM IN DATABASE***************************************************/
 app.post('/item', urlencodedParser, (req, res, next) => {
   //console.log("----------------------------",req.file)
   const results = [];
@@ -261,6 +262,8 @@ app.post('/item', urlencodedParser, (req, res, next) => {
     });
   });
 });
+
+/***************************************UPLOUDE IMAGE IN DATABASE***************************************************/
 
 app.post('/upload', function (req, res, next) {
   const results = [];
@@ -328,7 +331,7 @@ app.post('/upload', function (req, res, next) {
   // }); 
 })
 
-
+/***************************************GET USERS FROM DATABASE***************************************************/
 app.get('/user', (req, res, next) => {
   console.log('hiiiiiiiii')
   console.log(req.body)
@@ -355,8 +358,8 @@ app.get('/user', (req, res, next) => {
   });
 });
 
-
-app.get('/item', (req, res, next) => {
+/***************************************GET TOOLS FROM DATABASE***************************************************/
+app.get('/tools', (req, res, next) => {
   //console.log(req.files)
   console.log(req.body)
   const results = [];
@@ -369,7 +372,7 @@ app.get('/item', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items ');
+    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Tools']);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -381,10 +384,120 @@ app.get('/item', (req, res, next) => {
     });
   });
 });
-/////
+/***************************************GET CLOTHES FROM DATABASE***************************************************/
 
+app.get('/clothes', (req, res, next) => {
+  //console.log(req.files)
+  console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Clothes']);
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
+  });
+});
 
-////
+/***************************************GET FURNUTURE FROM DATABASE***************************************************/
+
+app.get('/fernuture', (req, res, next) => {
+  //console.log(req.files)
+  console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Fernuture']);
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
+  });
+});
+
+/***************************************GET MAINTAINANCE FROM DATABASE***************************************************/
+
+app.get('/maintenance', (req, res, next) => {
+  //console.log(req.files)
+  console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Maintenance']);
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
+  });
+});
+
+/***************************************GET OTHERS FROM DATABASE***************************************************/
+
+app.get('/others', (req, res, next) => {
+  //console.log(req.files)
+  console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Others']);
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
+    });
+  });
+});
+
+/***************************************DELETE FROM DATABASE***************************************************/
+
 app.delete('/delete', (req, res, next) => {
   const results = [];
   // Grab data from the URL parameters
@@ -412,6 +525,8 @@ app.delete('/delete', (req, res, next) => {
     });
   });
 });
+
+/***************************************UPDATE DATABASE***************************************************/
 
 app.put('/putt', (req, res, next) => {
   const results = [];
@@ -443,6 +558,8 @@ app.put('/putt', (req, res, next) => {
     });
   });
 });
+
+/***************************************LISTENER***************************************************/
 
 app.listen(4500, function () {
   console.log('server started on port 4500');
