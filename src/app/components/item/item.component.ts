@@ -59,7 +59,7 @@ export class ItemComponent {
                    name : String;
                    type : String;
                    price:Number;
-                   massege:String;
+                   info:String;
                      submit() {
    
   const that = this;
@@ -67,7 +67,7 @@ export class ItemComponent {
   this.http.post('http://localhost:4500/item',{
     itemname: that.name,
     price: that.price,
-    massege : that.massege,
+    info : that.info,
     itemtype : that.type
   })
   // JSON.stringify({
