@@ -8,6 +8,7 @@ import{HomeComponent} from './components/home/home';
 import{signupComponent} from './components/signup/signup.component';
 import{ItemComponent} from './components/item/item.component';
 import{FileSelectDirective} from 'ng2-file-upload';
+// import { FileSelectDirective } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import{FileSelectDirective} from 'ng2-file-upload';
    signupComponent,
    ItemComponent,
    FileSelectDirective
+   
 
   ],
   imports: [
