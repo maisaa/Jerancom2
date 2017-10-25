@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
+import {Component, NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router'
+import { AppRoutingModule, routingComponents } from './app.routing'; 
+import {FormsModule}from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { Http, Headers } from '@angular/http';
@@ -27,7 +31,8 @@ import { LoginComponent } from './components/login/login.component';
     FileSelectDirective,
     MapComponent,
     LoginComponent,
-    ToolsComponent
+    ToolsComponent,
+    routingComponents
 
 
   ],
@@ -35,6 +40,9 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    AppRoutingModule
+
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
@@ -42,6 +50,7 @@ import { LoginComponent } from './components/login/login.component';
       apiKey: "AIzaSyAaprvcVNVDbJGy7YTZ3OUVCl4c0KvrhTc",
       libraries: ["places"]
     })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
