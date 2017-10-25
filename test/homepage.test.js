@@ -1,14 +1,7 @@
-// let app = require('../server');
-// let chai = require('chai');
-// let request = require('supertest');
-// let server = require('../server');
-
-// let expect = chai.expect;
-
 var app = require('../server');
 var chai = require('chai');
 var request = require('supertest');
-
+var mocha = require("mocha")
 var expect = chai.expect;
 
 describe('get user', function() {
@@ -34,15 +27,15 @@ describe('get item', function() {
     });
   });
 
- describe('Registration Tests', function() {
+  describe('Registration Tests', function() {
     it('should return the user if the username is valid', function(done) {
       request(app)
       .post('/user')
       .send({username:'aya'})
       .end(function(err, res) {
 
-      console.log(res.body[0].username)
-      expect(res.body[0].username).to.be.equal("m");
+       console.log(res.body[0].username)
+      expect(res.body[0].username).to.be.equal("aya");
       // //  expect(res.body).to.eql('aya');
         expect(res.statusCode).to.be.equal(200);
         done();
@@ -51,7 +44,7 @@ describe('get item', function() {
   });
 
 
- describe(' GET all the users', function() {
+  describe(' GET all the users', function() {
     it('it should GET all the users', function(done) {
       request(app)
         .get('/user')
@@ -65,7 +58,7 @@ describe('get item', function() {
     });
   });
 
- describe(' GET  items ', function() {
+  describe(' GET  items ', function() {
     it('it should GET all the items', function(done) {
       request(app)
         .get('/item')
@@ -79,11 +72,16 @@ describe('get item', function() {
     });
   });
 
-
-
-
-
-
-
+  describe('/GET users', () => {
+    it('it should GET all the users', (done) => {
+      request(app)
+          .get('/user')
+          .end((err, res) => {
+            console.log(res.body.length)
+            expect((res.body.length)).to.not.equal(0);
+            done();
+          });
+    });
+});
 
 

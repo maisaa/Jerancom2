@@ -1,50 +1,41 @@
-import { OnInit, Component } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
-// import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 
-import { Router } from '@angular/router';
-// import{Component} from '@angular/core';
-import { ElementRef, NgZone, ViewChild } from '@angular/core';
+
+import { Component } from '@angular/core';
+import { ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-// import{Http,Response,Headers} from '@angular/http';
-// import { HttpHeaders } from '@angular/common/http';
+import { Http, Response, Headers } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
-  selector: 'signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
-
-
+  selector: 'map',
+  styles: [`
+    agm-map {
+      height: 300px;
+      width:800px;
+    }
+    input{
+      width:800px
+    }
+  `],
+  template: `
+    <div class="container">
+      <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+      <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+      </div>
+      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+     
+    </div>
+    
+  `
 })
 
-// export class signupComponent {
-//   name: String;
-//   password: String;
-//   phone: Number;
-//   constructor(public http: Http, private router: Router) {
-
-//   }
-
-//   submit() {
-//     const that = this;
-//     console.log(that)
-//     this.http.post('http://127.0.0.1:4500/signup', {
-//       username: that.name,
-//       password: that.password,
-//       phone: that.phone
-
-//     })
-
-
-export class signupComponent implements OnInit {
-  name: String;
-  password: String;
-  phone: Number;
+export class MapComponent implements OnInit {
 
   public latitude: number;
   public longitude: number;
@@ -60,13 +51,6 @@ export class signupComponent implements OnInit {
     public http: Http
   ) { }
 
-  // constructor(public http: Http) {
-
-  //     }
-
-
-
-  /************** */
   ngOnInit() {
     //set google maps defaults
     this.zoom = 4;
@@ -120,40 +104,24 @@ export class signupComponent implements OnInit {
 
 
 
-
-
-  /*********** */
-
-  submit() {
+  sendloc() {
     const that = this;
     console.log(that)
-    this.http.post('http://localhost:4500/user', {
-      username: that.name,
-      password: that.password,
-      phone: that.phone,
+    this.http.post('http://localhost:4500/loc', {
       longitude: that.longitude,
       latitude: that.latitude
 
-
     })
-      // JSON.stringify({
-      //   username: that.name,
-      //   password: that.password
-      // })
-
       .subscribe(
       data => {
-        alert('SingUp correctly');
+        alert('location saved');
         console.log(data)
-
-        //this.router.navigate(['/login']);
-
       },
       error => {
         console.log(error, "erooooooooooooooooooe");
       }
       )
 
-
   }
 }
+
