@@ -7,19 +7,16 @@ var morgan = require('morgan');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var bodyparser = require('body-parser')
-
 var multer = require('multer')
 var upload = multer({
   dest: './uploads/'
 }).single('photo');
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
-
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
 const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
-app.use(express.static("app"));
-app.use('/', express.static(__dirname + '/'));
-//app.use(express.static(path.join(__dirname, "./src")));
+
+app.use(express.static(path.join(__dirname, "./src")));
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded())
 app.use(morgan('dev'));
@@ -119,9 +116,9 @@ app.post('/login', (req, res, next) => {
       // SQL Query > Select Data
       var query = client.query('SELECT username ,password FROM users WHERE username=($1) AND password=($2) ', [data.username, data.password]);
 
-    //console.log(data.username);
+      //console.log(data.username);
 
-    
+
       //console.log("hiiiii password",data.password);
       // Stream results back one row at a time
 
@@ -168,14 +165,13 @@ app.post('/login', (req, res, next) => {
 //   }
 // })
 
-app.get('/logout',(req,res) =>{
- res.sendFile(__dirname + './src/app/components/login/login.component.html'); // check if this path right or not
- res.send("get login");
-})
+// app.get('/logout', (req, res) => {
+//   res.sendFile(__dirname + './src/app/components/login/login.component.html'); // check if this path right or not
+//   res.send("get login");
+// })
 
 
 //....................................................
-
 
 
 
@@ -262,8 +258,7 @@ app.post('/item', urlencodedParser, (req, res, next) => {
   //console.log("----------------------------",req.file)
   const results = [];
   // Grab data from http request
-  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price };
-
+  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
@@ -273,15 +268,8 @@ app.post('/item', urlencodedParser, (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Insert Data
-
-    bcrypt.hash(data.password, saltRounds, function (err, hash) {
-      console.log()
-      // Store hash in your password DB.
-      client.query('INSERT INTO users(username, password,phone) values($1, $2,$3)',
-        [data.username, hash, data.phone]);
-
-    client.query('INSERT INTO items(itemname, itemtype,info,price) values($1,$2,$3,$4)',
-      [data.itemname, data.itemtype, data.info, data.price]);
+    client.query('INSERT INTO items(itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5)',
+      [data.itemname, data.itemtype, data.info, data.price,data.picture]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items ');
     // Stream results back one row at a time
@@ -299,45 +287,19 @@ app.post('/item', urlencodedParser, (req, res, next) => {
 /***************************************UPLOUDE IMAGE IN DATABASE***************************************************/
 
 app.post('/upload', function (req, res, next) {
-  const results = [];
+  
   var path = '';
   upload(req, res, function (err) {
-    if (err) {
-      // An error occurred when uploading
-      console.log(err, "ljfddddksdlksadlkasdsa");
-      //return res.status(422).send("an Error occured")
-    }
-    // No error occured.
-    path = req.file.path;
-    console.log(req.file.path)
-    pg.connect(connectionString, (err, client, done) => {
-      // Handle connection errors
-      if (err) {
-        done();
-        console.log(err, "------------------------rtete");
-        //return res.status(500).json({success: false, data: err});
-      }
-      // SQL Query > Insert Data
-      client.query('INSERT INTO items(picture) values($1)',
-        [path]);
-
-      // SQL Query > Select Data
-      const query = client.query('SELECT * FROM items ');
-      // Stream results back one row at a time
-      query.on('row', (row) => {
-        results.push(row);
-      });
-      // After all data is returned, close connection and return results
-      query.on('end', () => {
-
-        return res.json(results);
-      });
-    });
-    //return res.send("Upload Completed for "+path); 
-
+     if (err) {
+       // An error occurred when uploading
+       console.log(err);
+       return res.status(422).send("an Error occured")
+     }  
+   // No error occured.
+     path = req.file.path;
+     return res.send(path); 
+ });
   });
-
-
   // const results = [];
   // // Grab data from http request
   // const data = {picture: path};
@@ -365,7 +327,7 @@ app.post('/upload', function (req, res, next) {
   //     return res.json(results);
   //   });
   // }); 
-})
+
 
 /***************************************GET USERS FROM DATABASE***************************************************/
 app.get('/user', (req, res, next) => {
@@ -392,7 +354,6 @@ app.get('/user', (req, res, next) => {
       return res.json(results);
     });
   });
-
 });
 
 /***************************************GET TOOLS FROM DATABASE***************************************************/
@@ -423,19 +384,10 @@ app.get('/tools', (req, res, next) => {
 });
 /***************************************GET CLOTHES FROM DATABASE***************************************************/
 
-
-
-app.post('/item', urlencodedParser, (req, res, next) => {
-  console.log(req.body)
-  const results = [];
-  // Grab data from http request
-  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, massege: req.body.massege, price: req.body.price };
-
 app.get('/clothes', (req, res, next) => {
   //console.log(req.files)
   console.log(req.body)
   const results = [];
-
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
@@ -444,26 +396,15 @@ app.get('/clothes', (req, res, next) => {
       console.log(err);
       return res.status(500).json({ success: false, data: err });
     }
-
-    // SQL Query > Insert Data
-    client.query('INSERT INTO items(itemname, itemtype,massege,price) values($1, $2,$3,$4)',
-      [data.itemname, data.itemtype, data.massege, data.price]);
-    // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items ');
-
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items where itemtype=($1)', ['Clothes']);
-
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
     });
     // After all data is returned, close connection and return results
     query.on('end', () => {
-
-
       done();
-
       return res.json(results);
     });
   });
@@ -471,40 +412,8 @@ app.get('/clothes', (req, res, next) => {
 
 /***************************************GET FURNUTURE FROM DATABASE***************************************************/
 
-
-app.get('/user', (req, res, next) => {
-  console.log('hiiiiiiiii')
-  console.log(req.body)
-  const results = [];
-  // Get a Postgres client from the connection pool
-  pg.connect(connectionString, (err, client, done) => {
-    // Handle connection errors
-    if (err) {
-      done();
-      console.log(err);
-      return res.status(500).json({ success: false, data: err });
-    }
-    // SQL Query > Select Data
-    const query = client.query('SELECT * FROM users ;');
-    // Stream results back one row at a time
-    query.on('row', (row) => {
-      results.push(row);
-    });
-    // After all data is returned, close connection and return results
-    query.on('end', () => {
-      done();
-      return res.json(results);
-    });
-  });
-});
-
-
-app.get('/item', (req, res, next) => {
-  console.log('hiiiiiiiii')
-
 app.get('/fernuture', (req, res, next) => {
   //console.log(req.files)
-
   console.log(req.body)
   const results = [];
   // Get a Postgres client from the connection pool
@@ -516,9 +425,6 @@ app.get('/fernuture', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-
-    const query = client.query('SELECT * FROM items ;');
-
     const query = client.query('SELECT * FROM items where itemtype=($1)', ['Fernuture']);
     // Stream results back one row at a time
     query.on('row', (row) => {
@@ -548,7 +454,6 @@ app.get('/maintenance', (req, res, next) => {
     }
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items where itemtype=($1)', ['Maintenance']);
-
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -560,7 +465,6 @@ app.get('/maintenance', (req, res, next) => {
     });
   });
 });
-
 
 /***************************************GET OTHERS FROM DATABASE***************************************************/
 
@@ -590,9 +494,7 @@ app.get('/others', (req, res, next) => {
   });
 });
 
-
 /***************************************DELETE FROM DATABASE***************************************************/
-
 
 app.delete('/delete', (req, res, next) => {
   const results = [];
@@ -621,7 +523,6 @@ app.delete('/delete', (req, res, next) => {
     });
   });
 });
-
 
 /***************************************UPDATE DATABASE***************************************************/
 
@@ -656,7 +557,6 @@ app.put('/putt', (req, res, next) => {
   });
 });
 
-
 /***************************************LISTENER***************************************************/
 
 app.listen(4500, function () {
@@ -664,4 +564,3 @@ app.listen(4500, function () {
 });
 
 module.exports = app
-
