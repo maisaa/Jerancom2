@@ -76,6 +76,8 @@ export class signupComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 4;
+          console.log(this.latitude)
+          console.log(this.longitude)
 
         });
       });
