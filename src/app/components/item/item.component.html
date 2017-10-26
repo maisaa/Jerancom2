@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>JeranCom</title>
   <meta charset="utf-8">
@@ -13,82 +14,93 @@
   <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
   <script src="../node_modules/angular2/bundles/http.dev.js"></script>
   <script>
-      System.config({
-          packages: {'app': {defaultExtension: 'js'}}
-      });
-      System.import('app/app');
+    System.config({
+      packages: { 'app': { defaultExtension: 'js' } }
+    });
+    System.import('app/app');
   </script>
   <style type="text/css">
   </style>
 </head>
+
 <body>
 
-<div class="container" >
-<div class="well col-md-7 col-sm-offset-2">
-  
+  <div class="container">
+    <div class="well col-md-7 col-sm-offset-2">
 
-  <div class="page-header " class="col-sm-offset-4">
-    <h1><small>Contact Us!</small></h1>
-  </div>
-  <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
-  <form class="form-horizontal" enctype="multipart/form-data" >
-      <div class="form-group">
-        <label for="Firstname" class="control-label col-md-2 col-sm-offset-2" >Item Name</label>
-        <div class=" col-sm-5"> 
-        <div class="input-group">
-          <div class="input-group-addon"><div class="glyphicon glyphicon-user"></div></div>
-          <input type="text" placeholder="item Name" class="form-control" name="user" [(ngModel)] = "name">
-        </div>
-        </div>
+
+      <div class="page-header " class="col-sm-offset-4">
+        <h1>
+          <small>Contact Us!</small>
+        </h1>
       </div>
-      <br>
-      <div class="form-group">
-            <label for="Last Name" class="control-label col-lg-2  col-sm-offset-2" >Item Type</label>
-            <div class="  col-sm-5"> 
+      <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
+      <form class="form-horizontal" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="Firstname" class="control-label col-md-2 col-sm-offset-2">Item Name</label>
+          <div class=" col-sm-5">
             <div class="input-group">
-              <div class="input-group-addon"><div class="glyphicon glyphicon-user  col-sm-offset-1"></div></div>
-              <input type="text"  placeholder="item type" class="form-control" name="type" [(ngModel)] = "type">
-            </div>
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-user"></div>
+              </div>
+              <input type="text" placeholder="item Name" class="form-control" name="user" [(ngModel)]="name">
             </div>
           </div>
-          <br>
-              <div class="form-group">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="Last Name" class="control-label col-lg-2  col-sm-offset-2">Item Type</label>
+          <div class="  col-sm-5">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-user  col-sm-offset-1"></div>
+              </div>
+              <input type="text" placeholder="item type" class="form-control" name="type" [(ngModel)]="type">
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
           <label class="control-label col-lg-2  col-sm-offset-2">price: </label>
           <div class=" col-sm-5">
-          <div class="input-group">
-          <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div>
-          <input type="number"  placeholder="Price" class="form-control" name="price" [(ngModel)] = "price">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-earphone"></div>
+              </div>
+              <input type="number" placeholder="Price" class="form-control" name="price" [(ngModel)]="price">
             </div>
           </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-lg-2  col-sm-offset-2">Massege: </label>
+          <div class=" col-sm-5">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <div class="glyphicon glyphicon-earphone"></div>
+              </div>
+              <input type="text" placeholder="Massege" class="form-control" name="massege" [(ngModel)]="massege">
+            </div>
           </div>
-          <div class="form-group">
-                <label class="control-label col-lg-2  col-sm-offset-2">Massege: </label>
-                <div class=" col-sm-5">
-                <div class="input-group">
-                <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div>
-                <input type="text"  placeholder="Massege" class="form-control" name="massege" [(ngModel)] = "massege">
-                  </div>
-                </div>
-                </div>
-          <!-- <div class="form-group"> -->
-                <!-- <label class="control-label col-lg-2  col-sm-offset-2">picture: </label>
+        </div>
+        <!-- <div class="form-group"> -->
+        <!-- <label class="control-label col-lg-2  col-sm-offset-2">picture: </label>
                 <div class=" col-sm-5">
                 <div class="input-group">
                 <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div> -->
-                <input type="file" ng2FileSelect [uploader]="uploader"  name="photo" placeholder="Upload file..." />
-                <button type="button"  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >Upload</button>
-      <div class="form-group">
-        <div class=" col-sm-5 col-lg-offset-4 text-center">
-          <button type="submit" class="btn btn-danger btn-lg" (click)="submit()">Submit</button>
+        <input type="file" ng2FileSelect [uploader]="uploader" name="photo" placeholder="Upload file..." />
+        <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload</button>
+        <div class="form-group">
+          <div class=" col-sm-5 col-lg-offset-4 text-center">
+            <button type="submit" class="btn btn-danger btn-lg" (click)="submit()">Submit</button>
+          </div>
         </div>
-      </div>
-  </form>
-</div>
-</div>
+      </form>
+    </div>
+  </div>
 
 
-<!-- new -->
-<!-- <form>
+  <!-- new -->
+  <!-- <form>
     <h1>Sign Up</h1>
     <fieldset>
       <legend><span class="number">1</span> Your basic info</legend>
@@ -155,7 +167,9 @@
     </fieldset>
     <button type="submit">Sign Up</button>
   </form> -->
- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-   </body>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
