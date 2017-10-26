@@ -21,7 +21,7 @@ export class ItemComponent {
     public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
     //This is the default title property created by the angular cli. Its responsible for the app works 
     //title = 'app works!';
-
+picture:String;
     ngOnInit() {
         //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
         this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -29,6 +29,7 @@ export class ItemComponent {
         //able to deal with the server response.
         this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
             console.log("ImageUpload:uploaded:", item, status, response);
+            this.picture=response;
         };
     }
     constructor(private http: Http, private el: ElementRef) {
@@ -68,7 +69,8 @@ export class ItemComponent {
             itemname: that.name,
             price: that.price,
             info: that.info,
-            itemtype: that.type
+            itemtype: that.type,
+            picture:that.picture
         })
             // JSON.stringify({
             //   username: that.name,
