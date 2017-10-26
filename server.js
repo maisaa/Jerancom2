@@ -14,7 +14,7 @@ var upload = multer({
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
 
 app.use(express.static(path.join(__dirname, "./src")));
 app.use(bodyparser.json())
@@ -92,6 +92,8 @@ app.post('/loc', urlencodedParser, (req, res, next) => {
 app.post('/login', (req, res, next) => {
   const results = [];
 
+  console.log("wwwwwwwwwwwwwwwwww", req.body.username)
+
   // Grab data from the URL parameters
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
@@ -102,14 +104,21 @@ app.post('/login', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     const data = { username: req.body.username, password: req.body.password };
+
+
+    if (data.username === undefined || data.username === '')
+      res.send('No username specified');
     //console.log(data.username);
 
-    bcrypt.hash(data.password, saltRounds, function (err, hash) {
-      //console.log("hiiiii login password")
-
+    // bcrypt.hash(data.password, saltRounds, function (err, hash) {
+    //console.log("hiiiii login password")
+    else {
       // SQL Query > Select Data
+      var query = client.query('SELECT username ,password FROM users WHERE username=($1) AND password=($2) ', [data.username, data.password]);
 
-      var query = client.query('SELECT * FROM users WHERE username=($1) AND password=($2) ', [data.username, hash]);
+      //console.log(data.username);
+
+
       //console.log("hiiiii password",data.password);
       // Stream results back one row at a time
 
@@ -117,17 +126,25 @@ app.post('/login', (req, res, next) => {
 
       query.on('row', (row) => {
         results.push(row);
-        console.log(" results ", results);
+        console.log(" results ", row);
         req.session.username = row.username;
-        res.send('./home/home.html');
+
+
       });
       // After all data is returned, close connection and return results
       query.on('end', () => {
         done();
-        res.send('./');
+
+        console.log(" results.............. ", results.username);
+        // console.log('ayaaaaaaaaaaaaaaaaaaaaaaaaaaaa i love youuuuuuuuuuuuuuuuuuuuu');
+        //res.send('./');
+        res.sendFile(__dirname + './src/app/components/home/home.html');
+        return res.send(results);
 
       });
-    });
+      //});
+    }
+
   });
 });
 /////////////////////////////////////
@@ -135,7 +152,7 @@ app.post('/login', (req, res, next) => {
 // app.get('/',(req, res) => {
 //    console.log ('app.get(/)');
 //    if( !!req.session.username ){
-//      res.redirect('/index.html')
+//       res.sendFile(__dirname + './index.html');
 //    }else{
 //     res.redirect('/index.html'); // check if this path right or not
 //    }
@@ -148,10 +165,14 @@ app.post('/login', (req, res, next) => {
 //   }
 // })
 
-// app.get('/login',(req,res) =>{
-//   // res.redirect('../app/components/login/login.component.html'); // check if this path right or not
+// app.get('/logout', (req, res) => {
+//   res.sendFile(__dirname + './src/app/components/login/login.component.html'); // check if this path right or not
 //   res.send("get login");
 // })
+
+
+//....................................................
+
 
 
 /***************************************SIGN UP***************************************************/
@@ -237,7 +258,7 @@ app.post('/item', urlencodedParser, (req, res, next) => {
   //console.log("----------------------------",req.file)
   const results = [];
   // Grab data from http request
-  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price };
+  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
@@ -247,8 +268,8 @@ app.post('/item', urlencodedParser, (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Insert Data
-    client.query('INSERT INTO items(itemname, itemtype,info,price) values($1,$2,$3,$4)',
-      [data.itemname, data.itemtype, data.info, data.price]);
+    client.query('INSERT INTO items(itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5)',
+      [data.itemname, data.itemtype, data.info, data.price,data.picture]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items ');
     // Stream results back one row at a time
@@ -266,41 +287,18 @@ app.post('/item', urlencodedParser, (req, res, next) => {
 /***************************************UPLOUDE IMAGE IN DATABASE***************************************************/
 
 app.post('/upload', function (req, res, next) {
-  const results = [];
+  
   var path = '';
   upload(req, res, function (err) {
-    if (err) {
-      // An error occurred when uploading
-      console.log(err, "ljfddddksdlksadlkasdsa");
-      //return res.status(422).send("an Error occured")
-    }
-    // No error occured.
-    path = req.file.path;
-    console.log(req.file.path)
-    pg.connect(connectionString, (err, client, done) => {
-      // Handle connection errors
-      if (err) {
-        done();
-        console.log(err, "------------------------rtete");
-        //return res.status(500).json({success: false, data: err});
-      }
-      // SQL Query > Insert Data
-      client.query('INSERT INTO items(picture) values($1)',
-        [path]);
-      // SQL Query > Select Data
-      const query = client.query('SELECT * FROM items ');
-      // Stream results back one row at a time
-      query.on('row', (row) => {
-        results.push(row);
-      });
-      // After all data is returned, close connection and return results
-      query.on('end', () => {
-
-        return res.json(results);
-      });
-    });
-    //return res.send("Upload Completed for "+path); 
-
+     if (err) {
+       // An error occurred when uploading
+       console.log(err);
+       return res.status(422).send("an Error occured")
+     }  
+   // No error occured.
+     path = req.file.path;
+     return res.send(path); 
+ });
   });
   // const results = [];
   // // Grab data from http request
@@ -329,7 +327,7 @@ app.post('/upload', function (req, res, next) {
   //     return res.json(results);
   //   });
   // }); 
-})
+
 
 /***************************************GET USERS FROM DATABASE***************************************************/
 app.get('/user', (req, res, next) => {

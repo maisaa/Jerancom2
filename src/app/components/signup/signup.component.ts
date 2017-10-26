@@ -3,6 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 // import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+
 import { Router } from '@angular/router';
 // import{Component} from '@angular/core';
 import { ElementRef, NgZone, ViewChild } from '@angular/core';
@@ -12,6 +13,7 @@ import { MapsAPILoader } from '@agm/core';
 // import{Http,Response,Headers} from '@angular/http';
 // import { HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'signup',
   templateUrl: './signup.component.html',
@@ -19,6 +21,26 @@ import { MapsAPILoader } from '@agm/core';
 
 
 })
+
+// export class signupComponent {
+//   name: String;
+//   password: String;
+//   phone: Number;
+//   constructor(public http: Http, private router: Router) {
+
+//   }
+
+//   submit() {
+//     const that = this;
+//     console.log(that)
+//     this.http.post('http://127.0.0.1:4500/signup', {
+//       username: that.name,
+//       password: that.password,
+//       phone: that.phone
+
+//     })
+
+
 export class signupComponent implements OnInit {
   name: String;
   password: String;
@@ -118,29 +140,20 @@ export class signupComponent implements OnInit {
       //   username: that.name,
       //   password: that.password
       // })
+
       .subscribe(
       data => {
         alert('SingUp correctly');
         console.log(data)
+
+        //this.router.navigate(['/login']);
+
       },
       error => {
         console.log(error, "erooooooooooooooooooe");
       }
       )
 
+
   }
-  //   send() {
-  //     console.log(this.password)
-  //  this.http.get('http://localhost:3000/user')
-  // .map(res => res.json())
-  // .subscribe(
-  //   data =>{
-  //     console.log(data)
-  //   },
-  //   err => console.log(err),
-  //   () => console.log("khawa" )
-  // );
-
-  //     }
-
 }

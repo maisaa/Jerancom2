@@ -1,5 +1,3 @@
-
-
 import { Component } from '@angular/core';
 import { ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
