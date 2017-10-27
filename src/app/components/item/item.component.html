@@ -52,10 +52,13 @@
           <label for="Last Name" class="control-label col-lg-2  col-sm-offset-2">Item Type</label>
           <div class="  col-sm-5">
             <div class="input-group">
-              <div class="input-group-addon">
-                <div class="glyphicon glyphicon-user  col-sm-offset-1"></div>
-              </div>
-              <input type="text" placeholder="item type" class="form-control" name="type" [(ngModel)]="type">
+              <select name="type" [(ngModel)]="type">
+                <option value="Tools">Tools</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Fernuture">Fernuture</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Othres">Othres</option>
+              </select>
             </div>
           </div>
         </div>
