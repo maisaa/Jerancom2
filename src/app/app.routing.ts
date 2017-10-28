@@ -3,13 +3,14 @@ import { Routes, RouterModule } from  '@angular/router';
 import  {HomeComponent} from './components/home/home';
 import {LoginComponent} from './components/login/login.component';
 import{signupComponent} from './components/signup/signup.component';
-
+import{ItemComponent} from './components/item/item.component';
 
 const routes: Routes = [
     { path: '' , pathMatch: 'full', redirectTo: 'login' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: signupComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'item', component: ItemComponent }
   ];
 
 
@@ -20,4 +21,4 @@ const routes: Routes = [
   export class AppRoutingModule { }
 
 
-  export const routingComponents = [LoginComponent, signupComponent, HomeComponent];
+  export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ItemComponent];
