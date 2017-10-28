@@ -18,10 +18,9 @@ export class LoginComponent {
   classres: Object
 
   constructor(public http: Http, private router: Router) {
-
-
-  }
-
+   
+}
+//*********************************************************/
   login() {
     const that = this;
 
@@ -53,4 +52,9 @@ export class LoginComponent {
       }
       )
   }
+  newAcount() {
+    
+    this.router.navigate(['/signup']);
+
+   }
 }
