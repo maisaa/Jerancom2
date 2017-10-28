@@ -21,26 +21,7 @@ import { MapsAPILoader } from '@agm/core';
 
 
 })
-
-// export class signupComponent {
-//   name: String;
-//   password: String;
-//   phone: Number;
-//   constructor(public http: Http, private router: Router) {
-
-//   }
-
-//   submit() {
-//     const that = this;
-//     console.log(that)
-//     this.http.post('http://127.0.0.1:4500/signup', {
-//       username: that.name,
-//       password: that.password,
-//       phone: that.phone
-
-//     })
-
-
+//*********************************************************************************/
 export class signupComponent implements OnInit {
   name: String;
   password: String;
@@ -54,19 +35,11 @@ export class signupComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
-  constructor(
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    public http: Http
-  ) { }
+  constructor( private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, public http: Http, private router: Router) {
 
-  // constructor(public http: Http) {
+   }
 
-  //     }
-
-
-
-  /************** */
+  /**********************************************************************************/
   ngOnInit() {
     //set google maps defaults
     this.zoom = 4;
@@ -136,17 +109,13 @@ export class signupComponent implements OnInit {
 
 
     })
-      // JSON.stringify({
-      //   username: that.name,
-      //   password: that.password
-      // })
-
+     
       .subscribe(
       data => {
         alert('SingUp correctly');
         console.log(data)
 
-        //this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
 
       },
       error => {
