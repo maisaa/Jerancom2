@@ -8,7 +8,9 @@ import { HttpHeaders } from '@angular/common/http';
   templateUrl: './others.html',
   styleUrls: ['./others.scss'],
   animations: [
-
+/**********************************************************************************************************/
+/*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
+/**********************************************************************************************************/
     trigger('listAnimation', [
       transition('* => *', [
 
@@ -37,39 +39,17 @@ import { HttpHeaders } from '@angular/common/http';
         query('.row', stagger('500ms', [
           animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
         ]))
-
-
-
       ])
     ])
-
   ]
 })
+
+/**********************************************************************************************************/
+/*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
+/**********************************************************************************************************/
 export class OthersComponent {
-  // items = [];
 
-  // constructor(public http: Http) {
-  //   this.items = ['item1', 'item2', 'item3'];
-  // }
-   constructor(public http: Http) { }
-
-
-  // pushItem() {
-  //   this.items.push('item');
-
-  //   // this.http.get('http://localhost:4500/item')
-  //   // .map(res => res.json())
-  //   // .subscribe(
-  //   //   data =>{
-  //   //     console.log(data)
-  //   //   },
-  //   //   err => console.log(err),
-  //   //   () => console.log("here is the item " )
-  //   // );
-  // }
-  // removeItem() {
-  //   this.items.pop();
-  // }
+  constructor(public http: Http) { }
 
   item = [];
 
@@ -80,12 +60,9 @@ export class OthersComponent {
       .subscribe(
       data => {
         this.item = data;
-        // console.log(data[0].renter)
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
-
   }
-
 }
