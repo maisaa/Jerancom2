@@ -11,6 +11,7 @@ var multer = require('multer')
 var upload = multer({
   dest: './uploads/'
 }).single('photo');
+var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
@@ -44,7 +45,7 @@ app.use(session({
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200');
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
@@ -559,7 +560,7 @@ app.put('/putt', (req, res, next) => {
 
 /***************************************LISTENER***************************************************/
 
-app.listen(4500, function () {
+app.listen(port, function () {
   console.log('server started on port 4500');
 });
 

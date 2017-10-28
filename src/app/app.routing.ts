@@ -8,6 +8,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance';
 import { OthersComponent } from './components/others/others';
 import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
+import { ItemComponent } from './components/item/item.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'clothes', component: ClothesComponent },
   { path: 'others', component: OthersComponent },
   { path: 'fernuture', component: FernutureComponent },
-  { path: 'maintenance', component: MaintenanceComponent }
+  { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'item', component: ItemComponent }
+
 ];
 
 
@@ -29,4 +32,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent];
+export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent, ItemComponent];
