@@ -11,10 +11,11 @@ var multer = require('multer')
 var upload = multer({
   dest: './uploads/'
 }).single('photo');
+var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
 
 app.use(express.static(path.join(__dirname, "./src")));
 app.use(bodyparser.json())
@@ -559,7 +560,7 @@ app.put('/putt', (req, res, next) => {
 
 /***************************************LISTENER***************************************************/
 
-app.listen(4500, function () {
+app.listen(port, function () {
   console.log('server started on port 4500');
 });
 

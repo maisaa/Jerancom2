@@ -29,13 +29,9 @@
 }
 
 
-/***********/
 .container {
     padding: 16px;
-   
- 
-}
-
+} 
 img{
   width: 100%;  
 }
@@ -48,57 +44,50 @@ body{
     font-family: Arial,Helvtica,sans-serif;
     font-size: 15px;
     line-height: 1.5;
-    /* font: 15px/1.5 Arial,Helvtica,sans-serif;*/   /*the same of the above*/
     padding: 0;
     margin: 0;
 }
 
-/* Global */
 .container {
     width: 100%;
     margin: auto;
     overflow: hidden;
-  
+ }
 
-    }
+ ul{
+    margin: 0;
+    padding: 0;
+ }
 
-    ul{
-        margin: 0;
-        padding: 0;
-    }
+ header{
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 30px;
+    border-bottom: #8cff66 3px solid ;
+}
+ header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+ }
 
-    /* Header */
+ header li {
+     float: left;
+     display: inline;
+     padding: 0 20px 0 20px ;  /*(top right bottom left)*/
+ }
 
-    header{
-        background: #35424a;
-        color: #ffffff;
-        padding-top: 30px;
-        border-bottom: #8cff66 3px solid ;
-        
-    }
-    header a {
-        color: #ffffff;
-        text-decoration: none;
-        /*text-transform: uppercase;*/
-        font-size: 16px;
-    }
-    header li {
-        float: left;
-        display: inline;
-        padding: 0 20px 0 20px ;  /*(top right bottom left)*/
-    }
+ header #branding {
+    float: left;
+}
 
-    header #branding {
-        float: left;
-    }
+ header #branding h1{
+    margin: 0;
+}
 
-    header #branding h1{
-        margin: 0;
-    }
-
-    header nav {
-     float: right;
-     margin-top: 10px;
+ header nav {
+    float: right;
+    margin-top: 10px;
  }
 
  header .highlight ,header .current a {
