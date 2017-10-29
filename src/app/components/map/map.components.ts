@@ -96,6 +96,7 @@ export class MapComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.zoom = 4;
         console.log(this.longitude);
+        console.log(this.latitude);
       });
     }
   }
