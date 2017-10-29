@@ -22,6 +22,7 @@ export class ItemComponent {
     //This is the default title property created by the angular cli. Its responsible for the app works 
     //title = 'app works!';
 picture:String;
+item=[];
     ngOnInit() {
         //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
         this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -31,6 +32,16 @@ picture:String;
             console.log("ImageUpload:uploaded:", item, status, response);
             this.picture=response;
         };
+
+        this.http.get('http://localhost:4500/getuser')
+        .map(res => res.json())
+        .subscribe(
+        data => {
+          this.item = data;
+        },
+        err => console.log(err),
+        () => console.log("here is the item ")
+        );
     }
     constructor(private http: Http, private el: ElementRef) {
         // this.filesToUpload = [];
@@ -70,7 +81,7 @@ picture:String;
             price: that.price,
             info: that.info,
             itemtype: that.type,
-            picture:that.picture
+            picture:that.picture,
         })
             // JSON.stringify({
             //   username: that.name,
@@ -90,97 +101,6 @@ picture:String;
 }
 
 
-
- // public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'})
-
-  // ngOnInit() {
-  //   //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-  //     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-  //   //overide the onCompleteItem property of the uploader so we are 
-  //   //able to deal with the server response.
-  //     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-  //           console.log("ImageUpload:uploaded:", item, status, response);
-  //       };
-  //     }
-
-
-  // ngOnInit() {
-  //        //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-  //        this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-  //        //overide the onCompleteItem property of the uploader so we are
-  //        //able to deal with the server response.
-  //        this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-  //             console.log("ImageUpload:uploaded:", item, status, response);
-  //         }
-  //       }
-
-   ////
-//    uploadfile(event) {
-//     AWS.config.accessKeyId = 'YOUR-ACCESS-KEY';
-//     AWS.config.secretAccessKey = 'YOU-SECRET-ACCESS-KEY';
-//     var bucket = new AWS.S3({params: {Bucket: 'YOUR-BUCKET-NAME'}});
-//     var params = {Key: this.file.name, Body: this.file};
-//     bucket.upload(params, function (err, data) {
-//         console.log(err, data);
-//     });
-// }
-
-
-// fileEvent(fileInput: any){
-//     var files = event.target.files;
-//     var file = files[0];
-//     this.file = file;
-// }
-
-// }
-   ///
-//       upload() {
-//         this.makeFileRequest("http://localhost:4500/item", [], this.filesToUpload).then((result) => {
-//             console.log("herrrrrrrrrrrrrrrrrr",result);
-//         }, (error) => {
-//             console.log('------------------')
-//             console.error(error);
-//         });
-//     }
-
-//     fileChangeEvent(fileInput: any){
-//         this.filesToUpload = <Array<File>> fileInput.target.files;
-//     }
-
-//     makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
-//         return new Promise((resolve, reject) => {
-//             var formData: any = new FormData();
-//             var xhr = new XMLHttpRequest();
-//             for(var i = 0; i < files.length; i++) {
-//                 formData.append("uploads[]", files[i], files[i].name);
-//             }
-//             xhr.onreadystatechange = function () {
-//                 if (xhr.readyState == 4) {
-//                     if (xhr.status == 200) {
-//                         resolve(JSON.parse(xhr.response));
-//                     } else {
-//                         reject(xhr.response);
-//                     }
-//                 }
-//             }
-//             xhr.open("POST", url, true);
-//             xhr.send(formData);
-//         });
-//     }
-
-// }
-// upload() {
-//     this.us.makeFileRequest("http://localhost:4500/item", this.filesToUpload)
-//     .then((result) => {
-//         console.log(result);
-//     }, (error) => {
-//         console.error(error);
-//     });
-// }
-// onFileChange(fileInput: any){
-//     this.logo = fileInput.target.files[0];
-// }
-// }
 
 
 

@@ -4,13 +4,13 @@ import { Http, Response, Headers } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'tools',
-  templateUrl: './tools.html',
-  styleUrls: ['./tools.scss'],
+  selector: 'others',
+  templateUrl: './others.html',
+  styleUrls: ['./others.scss'],
   animations: [
-    /**********************************************************************************************************/
-    /*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
-    /**********************************************************************************************************/
+/**********************************************************************************************************/
+/*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
+/**********************************************************************************************************/
     trigger('listAnimation', [
       transition('* => *', [
 
@@ -29,6 +29,7 @@ import { HttpHeaders } from '@angular/common/http';
             style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
             style({ opacity: 0, transform: 'translateY(-75%)', offset: 1.0 }),
           ]))]), { optional: true })
+
       ])
     ]),
     trigger('explainerAnim', [
@@ -40,81 +41,28 @@ import { HttpHeaders } from '@angular/common/http';
         ]))
       ])
     ])
-
   ]
 })
 
 /**********************************************************************************************************/
 /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
 /**********************************************************************************************************/
-export class ToolsComponent {
+export class OthersComponent {
 
   constructor(public http: Http) { }
 
   item = [];
-  latitude: number;
-  longitude: number;
-  lat: number;
-  lon: number;
-  arr = [];
 
   ngOnInit() {
-    let that = this;
-    this.lat = 31.9866647;
-    this.lon = 35.8377642;
-    this.http.get('http://localhost:4500/tools')
+
+    this.http.get('http://localhost:4500/others')
       .map(res => res.json())
       .subscribe(
       data => {
         this.item = data;
-        for (var i = 0; i < this.item.length; i++) {
-          this.latitude = this.item[i].latitude;
-          this.longitude = this.item[i].longitude;
-         this.getDistanceFromLatLonInKm(this.latitude,this.longitude,this.lat,this.lon);
-          console.log(this.item[i].longitude, this.item[i].latitude)
-         
-        }
-        console.log(this.arr);
-
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
-
-
   }
-
-
-  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
-    var dLon = this.deg2rad(lon2 - lon1);
-    var a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2)
-      ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    this.arr.push(d);
-    return d;
-  }
-
-  deg2rad(deg) {
-    return deg * (Math.PI / 180)
-  }
-   bubbleSort = function(arr) {
-     for(var i = 0; i < arr.length; i++){
-        for(var j = 0; j < arr.length; j++){
-        if(arr[i] < arr[j]){
-          var x = arr[i];
-          arr[i] = arr[j];
-          arr[j] = x;
-         }
-        }
-      }  
-      //console.log(arr);
-      return arr;
-     
-  };
 }
