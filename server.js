@@ -15,7 +15,37 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+
+var ccc ;
+/***************************************GET USERS FROM DATABASE***************************************************/
+app.get('/getuser', (req, res, next) => {
+  console.log('hiii get user');
+  console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM users  WHERE username=($1) ', [ccc]);
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      //console.log('$$$$---->>>>>>>>>> ',result);
+      return res.json(results);
+    });
+  });
+});
+/*****************************************************************************************/
 
 app.use(express.static(path.join(__dirname, "./src")));
 app.use(bodyparser.json())
@@ -45,7 +75,7 @@ app.use(session({
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
@@ -93,7 +123,7 @@ app.post('/loc', urlencodedParser, (req, res, next) => {
 app.post('/login', (req, res, next) => {
   const results = [];
 
-  console.log("wwwwwwwwwwwwwwwwww", req.body.username)
+  console.log("wwwwwwwwloginwwwwwwwwww", req.body.username)
 
   // Grab data from the URL parameters
   // Get a Postgres client from the connection pool
@@ -129,7 +159,8 @@ app.post('/login', (req, res, next) => {
         results.push(row);
         console.log(" results ", row);
         req.session.username = row.username;
-
+       //------------------------
+        ccc = req.session.username
 
       });
       // After all data is returned, close connection and return results
@@ -137,9 +168,10 @@ app.post('/login', (req, res, next) => {
         done();
 
         console.log(" results.............. ", results.username);
-        // console.log('ayaaaaaaaaaaaaaaaaaaaaaaaaaaaa i love youuuuuuuuuuuuuuuuuuuuu');
+         console.log('ayaaaaaaaaaaaaaaaaaaaaaaaaaaaa i love youuuuuuuuuuuuuuuuuuuuu');
         //res.send('./');
         res.sendFile(__dirname + './src/app/components/home/home.html');
+        console.log("after login ------------------>> ",ccc)
         return res.send(results);
 
       });
@@ -148,6 +180,8 @@ app.post('/login', (req, res, next) => {
 
   });
 });
+
+
 /////////////////////////////////////
 
 // app.get('/',(req, res) => {
@@ -219,41 +253,41 @@ app.post('/user', urlencodedParser, (req, res, next) => {
 });
 // });
 ///////////////////////////////////////////////////////////////////////////
-app.post('/loginn', (req, res, next) => {
-  const results = [];
+// app.post('/loginn', (req, res, next) => {
+//   const results = [];
 
-  // Grab data from the URL parameters
-  // Get a Postgres client from the connection pool
-  pg.connect(connectionString, (err, client, done) => {
-    // Handle connection errors
-    if (err) {
-      done();
-      console.log(err);
-      return res.status(500).json({ success: false, data: err });
-    }
-    const data = { username: req.body.username, password: req.body.password };
-    console.log(data.username);
-    // SQL Query > Delete Data
-    client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
-    // SQL Query > Select Data
+//   // Grab data from the URL parameters
+//   // Get a Postgres client from the connection pool
+//   pg.connect(connectionString, (err, client, done) => {
+//     // Handle connection errors
+//     if (err) {
+//       done();
+//       console.log(err);
+//       return res.status(500).json({ success: false, data: err });
+//     }
+//     const data = { username: req.body.username, password: req.body.password };
+//     console.log(data.username);
+//     // SQL Query > Delete Data
+//     client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
+//     // SQL Query > Select Data
 
-    var query = client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
-    //console.log(query);
-    // Stream results back one row at a time
-    //console.log("my result--------",results)
-    query.on('row', (row) => {
+//     var query = client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
+//     //console.log(query);
+//     // Stream results back one row at a time
+//     //console.log("my result--------",results)
+//     query.on('row', (row) => {
 
-      results.push(row);
-      // console.log("console.log(results);",results);
-      //console.log('results.length ----',results.length);
-    });
-    query.on('end', () => {
-      done();
-      return res.json(results);
-    });
-  });
-});
-/////
+//       results.push(row);
+//       // console.log("console.log(results);",results);
+//       //console.log('results.length ----',results.length);
+//     });
+//     query.on('end', () => {
+//       done();
+//       return res.json(results);
+//     });
+//   });
+// });
+// /////
 /***************************************POST ITEM IN DATABASE***************************************************/
 app.post('/item', urlencodedParser, (req, res, next) => {
   //console.log("----------------------------",req.file)
@@ -328,7 +362,7 @@ app.post('/upload', function (req, res, next) {
   //     return res.json(results);
   //   });
   // }); 
-
+//......................................................................
 
 /***************************************GET USERS FROM DATABASE***************************************************/
 app.get('/user', (req, res, next) => {
