@@ -1,5 +1,6 @@
 const express = require('express');
 // const router = express.Router();
+
 const app = express()
 const pg = require('pg');
 const path = require('path');
@@ -15,36 +16,11 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
-app.get('/getuser', (req, res, next) => {
-  console.log('hiii get user');
-  console.log(req.body)
-  const results = [];
-  // Get a Postgres client from the connection pool
-  pg.connect(connectionString, (err, client, done) => {
-    // Handle connection errors
-    if (err) {
-      done();
-      console.log(err);
-      return res.status(500).json({ success: false, data: err });
-    }
-    // SQL Query > Select Data
-    const query = client.query('SELECT * FROM users  WHERE username=($1) ', [ccc]);
-    // Stream results back one row at a time
-    query.on('row', (row) => {
-      results.push(row);
-    });
-    // After all data is returned, close connection and return results
-    query.on('end', () => {
-      done();
-      //console.log('$$$$---->>>>>>>>>> ',result);
-      return res.json(results);
-    });
-  });
-});
+
 /*****************************************************************************************/
 
 app.use(express.static(path.join(__dirname, "./src")));
@@ -75,7 +51,7 @@ app.use(session({
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Origin',"*");
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
@@ -118,7 +94,43 @@ app.post('/loc', urlencodedParser, (req, res, next) => {
     });
   })
 })
-
+////////////////////////
+app.get('/prof', (req, res, next) => {
+  console.log('hiii get user',ccc);
+  // console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    console.log("user loged in = ", ccc)
+    const query = client.query('SELECT * FROM users  WHERE username=($1)', [ccc]);
+  
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      
+      
+      results.push(row);
+      console.log("reeeeeeeees on",results)
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      // console.log('$$$$---->>>>>>>>>> ',result);
+      console.log("reeeeeeeees end",results)
+      
+      return res.json(results);
+      
+      
+    });
+  });
+  
+});
 /*************************************** LOGIN ***************************************************/
 app.post('/login', (req, res, next) => {
   const results = [];
@@ -288,12 +300,12 @@ app.post('/user', urlencodedParser, (req, res, next) => {
 //   });
 // });
 // /////
-/***************************************POST ITEM IN DATABASE***************************************************/
-app.post('/item', urlencodedParser, (req, res, next) => {
-  //console.log("----------------------------",req.file)
+
+app.post('/renter', urlencodedParser, (req, res, next) => {
+  //console.log(req.body)
   const results = [];
   // Grab data from http request
-  const data = { itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
+  const data = { renter: req.body.renter,item_id:req.body.item_id};
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
@@ -303,8 +315,50 @@ app.post('/item', urlencodedParser, (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Insert Data
-    client.query('INSERT INTO items(itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5)',
-      [data.itemname, data.itemtype, data.info, data.price,data.picture]);
+    //  bcrypt.hash( data.password, saltRounds, function(err, hash) {
+    // Store hash in your password DB.
+
+    client.query('UPDATE items SET renter=($1) WHERE item_id=($2)',
+    [data.renter, data.item_id]);
+
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM items ');
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      // if(data.username.length === 0 ){
+      //   console.log("empty ------------")
+      // }
+      // else{
+      //   console.log('have -----------')
+      // }
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+
+      return res.json(results);
+    });
+  });
+});
+
+
+/***************************************POST ITEM IN DATABASE***************************************************/
+app.post('/item', urlencodedParser, (req, res, next) => {
+  console.log("----------------------------",req.body.renter)
+  const results = [];
+  // Grab data from http request
+  const data = {longitude:req.body.longitude,latitude:req.body.latitude, owner:req.body.owner,itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Insert Data
+    client.query('INSERT INTO items(longitude,latitude,owner,itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5,$6,$7,$8)',
+      [data.longitude,data.latitude,data.owner,data.itemname, data.itemtype, data.info, data.price,data.picture]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items ');
     // Stream results back one row at a time
@@ -408,11 +462,14 @@ app.get('/tools', (req, res, next) => {
     const query = client.query('SELECT * FROM items where itemtype=($1)', ['Tools']);
     // Stream results back one row at a time
     query.on('row', (row) => {
+      console.log("reeeeeeeees",results)
       results.push(row);
     });
     // After all data is returned, close connection and return results
     query.on('end', () => {
       done();
+      console.log("reeeeeeeees",results)
+      
       return res.json(results);
     });
   });

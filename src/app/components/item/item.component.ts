@@ -23,7 +23,14 @@ export class ItemComponent {
     //title = 'app works!';
 picture:String;
 item=[];
+owner:number;
+//latitude: number;
+longitude: number;
+constructor(private http: Http, private el: ElementRef) {}
+    
     ngOnInit() {
+       
+        
         //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
         this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
         //overide the onCompleteItem property of the uploader so we are 
@@ -33,19 +40,25 @@ item=[];
             this.picture=response;
         };
 
-        this.http.get('http://localhost:4500/getuser')
+        this.http.get('http://localhost:4500/prof')
         .map(res => res.json())
         .subscribe(
         data => {
           this.item = data;
+          this.owner=data[0].user_id;
+          this.longitude=data[0].longitude;
+          //this.latitude=data[0].latitude;
+          console.log("here is the .............................",data)
+          console.log("username ",data[0].username);
+
         },
-        err => console.log(err),
+        err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
         () => console.log("here is the item ")
         );
+        
     }
-    constructor(private http: Http, private el: ElementRef) {
-        // this.filesToUpload = [];
-    }
+      // this.filesToUpload = [];
+    
     upload() {
         //locate the file element meant for the file upload.
         let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
@@ -72,8 +85,9 @@ item=[];
     type: String;
     price: Number;
     info: String;
+    
     submit() {
-
+console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner)
         const that = this;
         console.log(that)
         this.http.post('http://localhost:4500/item', {
@@ -82,7 +96,10 @@ item=[];
             info: that.info,
             itemtype: that.type,
             picture:that.picture,
-        })
+            owner:that.owner,
+            longitude:that.longitude,
+            latitude:that.item[0].latitude
+            })
             // JSON.stringify({
             //   username: that.name,
             //   password: that.password
@@ -98,6 +115,18 @@ item=[];
             )
 
     }
+    // getuser(){
+    //     this.http.get('http://localhost:4500/prof')
+    //     .map(res => res.json())
+    //     .subscribe(
+    //     data => {
+    //     //   this.item = data;
+    //       console.log(data)
+    //     },
+    //     err => console.log(err),
+    //     () => console.log("here is the item ")
+    //     );
+    // }
 }
 
 

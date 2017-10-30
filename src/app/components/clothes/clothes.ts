@@ -52,6 +52,7 @@ export class ClothesComponent {
   constructor(public http: Http) { }
 
   item = [];
+  arrlog=[];
 
   ngOnInit() {
 
@@ -65,7 +66,45 @@ export class ClothesComponent {
       err => console.log(err),
       () => console.log("here is the item ")
       );
+      /*************************************** */
+this.http.get('http://localhost:4500/prof')
+.map(res => res.json())
+.subscribe(
+data => {
+  this.arrlog = data;
+  // this.renter=data[0].user_id;
+  console.log("here is the .............................",data)
+  console.log("username ",data[0].username);
+
+},
+err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
+() => console.log("here is the item ")
+);
+  }
+  /*************************** */
+
+  
+rent(i){
+console.log(i)
+  const that = this;
+  console.log(that)
+  this.http.post('http://localhost:4500/renter', {
+    item_id:i,
+    renter:that.arrlog[0].user_id
+      })
+     
+      .subscribe(
+      data => {
+          alert('ok');
+          console.log(data)
+      },
+      error => {
+          console.log(error, "erooooooooooooooooooe");
+      }
+      )
+}
+/******************************* */
 
   }
 
-}
+
