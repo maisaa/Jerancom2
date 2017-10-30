@@ -26,7 +26,7 @@ export class LoginComponent {
 
     console.log(this.name);
 
-    this.http.post('http://127.0.0.1:4500/login', {
+    this.http.post('http://localhost:4500/login', {
       username: that.name,
       password: that.password
     })
