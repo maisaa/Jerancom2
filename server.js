@@ -19,11 +19,7 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-<<<<<<< HEAD
 const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
-=======
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:3000/jerancomdb';
->>>>>>> e740fb89885c61715c3f31ae6944bcee03482ded
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
