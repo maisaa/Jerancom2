@@ -1,0 +1,32 @@
+<html>
+<head>
+  <style>
+    font{
+      color: x
+    }
+  </style>
+</head>
+</html>
+
+
+
+
+
+<div id="messages" *ngFor="let chat of chats">
+    <div>
+      {{x}}
+      <pre><font [style.color]="x">
+{{chat.text[0]}}</font>     {{chat.text[1]}} </pre>
+    </div>
+</div>
+  
+
+     
+<form action="" style="bottom:10px;position:fixed;"> 
+    <input [(ngModel)]="chat" [ngModelOptions]="{standalone: true}" />
+    <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+    
+    
+    <button (click)="send()">Send</button>
+  </form>
+  
