@@ -58,11 +58,31 @@ export class ToolsComponent {
   lon: number;
   arr = [];
  arrlog=[]
+
+
+ 
 // renter:number;
   ngOnInit() {
+    this.arrlog
     let that = this;
     this.lat = 31.9866647;
     this.lon = 35.8377642;
+
+    this.http.get('http://localhost:4500/prof')
+    .map(res => res.json())
+    .subscribe(
+    data => {
+      this.arrlog = data;
+      // this.renter=data[0].user_id;
+      console.log("here is the .............................",data)
+      console.log("username ",data[0].username);
+    
+    },
+    err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
+    () => console.log("here is the item ")
+    );
+      
+      /*************************** */
     this.http.get('http://localhost:4500/tools')
       .map(res => res.json())
       .subscribe(
@@ -72,6 +92,7 @@ export class ToolsComponent {
         for (var i = 0; i < this.item.length; i++) {
           this.latitude = this.item[i].latitude;
           this.longitude = this.item[i].longitude;
+          
          this.getDistanceFromLatLonInKm(this.latitude,this.longitude,this.lat,this.lon);
           console.log(this.item[i].longitude, this.item[i].latitude)
          
@@ -83,25 +104,11 @@ export class ToolsComponent {
       () => console.log("here is the item ")
       );
 /*************************************** */
-this.http.get('http://localhost:4500/prof')
-.map(res => res.json())
-.subscribe(
-data => {
-  this.arrlog = data;
-  // this.renter=data[0].user_id;
-  console.log("here is the .............................",data)
-  console.log("username ",data[0].username);
-
-},
-err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
-() => console.log("here is the item ")
-);
-  }
-  /*************************** */
-
+    }
   
 rent(i){
 console.log(i)
+// console.log("in rent function ",this.arrlog[0].latitude)
   const that = this;
   console.log(that)
   this.http.post('http://localhost:4500/renter', {
@@ -152,4 +159,5 @@ console.log(i)
       return arr;
      
   };
+  
 }
