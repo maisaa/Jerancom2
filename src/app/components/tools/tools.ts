@@ -57,24 +57,41 @@ export class ToolsComponent {
   lat: number;
   lon: number;
   arr = [];
- arrlog=[]
-// renter:number;
+  arrlog = [];
+  obj={item:Object,distance:Number}
+  // renter:number;
   ngOnInit() {
     let that = this;
-    this.lat = 31.9866647;
-    this.lon = 35.8377642;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    /************************bring inormation for user who logged in now*************** */
+    this.http.get('http://localhost:4500/prof')
+      .map(res => res.json())
+      .subscribe(
+      data => {
+        this.arrlog = data;
+      },
+      err => console.log("eeeeeeeeeeeeeeeerrrrrrrror", err),
+      () => console.log("here is the item ")
+
+      );
+
+
+    /***************get tools information************ */
+
     this.http.get('http://localhost:4500/tools')
       .map(res => res.json())
       .subscribe(
       data => {
         console.log(data)
         this.item = data;
+        this.lat = this.arrlog[0].latitude;
+        this.lon = this.arrlog[0].longitude;
         for (var i = 0; i < this.item.length; i++) {
           this.latitude = this.item[i].latitude;
           this.longitude = this.item[i].longitude;
-         this.getDistanceFromLatLonInKm(this.latitude,this.longitude,this.lat,this.lon);
+          this.getDistanceFromLatLonInKm(this.latitude, this.longitude, this.lat, this.lon);
           console.log(this.item[i].longitude, this.item[i].latitude)
-         
+          //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
         }
         console.log(this.arr);
 
@@ -82,44 +99,29 @@ export class ToolsComponent {
       err => console.log(err),
       () => console.log("here is the item ")
       );
-/*************************************** */
-this.http.get('http://localhost:4500/prof')
-.map(res => res.json())
-.subscribe(
-data => {
-  this.arrlog = data;
-  // this.renter=data[0].user_id;
-  console.log("here is the .............................",data)
-  console.log("username ",data[0].username);
 
-},
-err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
-() => console.log("here is the item ")
-);
+
   }
-  /*************************** */
+  rent(i) {
+    console.log(i)
+    const that = this;
+    console.log(that)
+    this.http.post('http://localhost:4500/renter', {
+      item_id: i,
+      renter: that.arrlog[0].user_id
+    })
 
-  
-rent(i){
-console.log(i)
-  const that = this;
-  console.log(that)
-  this.http.post('http://localhost:4500/renter', {
-    item_id:i,
-    renter:that.arrlog[0].user_id
-      })
-     
       .subscribe(
       data => {
-          alert('ok');
-          console.log(data)
+        alert('ok');
+        console.log(data)
       },
       error => {
-          console.log(error, "erooooooooooooooooooe");
+        console.log(error, "erooooooooooooooooooe");
       }
       )
-}
-/******************************* */
+  }
+  /******************************* */
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
@@ -138,18 +140,18 @@ console.log(i)
   deg2rad(deg) {
     return deg * (Math.PI / 180)
   }
-   bubbleSort = function(arr) {
-     for(var i = 0; i < arr.length; i++){
-        for(var j = 0; j < arr.length; j++){
-        if(arr[i] < arr[j]){
+  bubbleSort = function (arr) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = 0; j < arr.length; j++) {
+        if (arr[i] < arr[j]) {
           var x = arr[i];
           arr[i] = arr[j];
           arr[j] = x;
-         }
         }
-      }  
-      //console.log(arr);
-      return arr;
-     
+      }
+    }
+    //console.log(arr);
+    return arr;
+
   };
 }
