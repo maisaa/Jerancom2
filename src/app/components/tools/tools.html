@@ -1,62 +1,62 @@
 <header>
-    <div class="container">
-      <div id="branding">
-        <h1>
-          <span class='highlight'>JeranCom</span>
-        </h1>
-      </div>
-      <nav>
-        <ul>
-          <li class='current'>
-            <a> Home</a>
-          </li>
-          <li>
-            <a href="about.html"> About</a>
-          </li>
-          <li>
-            <a>Profile</a>
-          </li>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-        </ul>
-      </nav>
+  <div class="container">
+    <div id="branding">
+      <h1>
+        <span class='highlight'>JeranCom</span>
+      </h1>
     </div>
-  </header>
-  
-  
-  <div>
-    <div class="col-sm-2" style="background:black;height:500px"></div>
-    <div class="col-sm-8">
-      <div id="container" [@listAnimation]="item.length">
-        <div *ngFor="let x of arr">
-        <div id="list" *ngFor="let item of item"    style="border-style: solid">
-          <div @explainerAnim>
-            <div class="row">
-              <div class="row" style="margin-top:10% ;margin-left:20%">
-                item :{{item.itemname}}
-              </div>
-              <div class="row" style="margin-top:10% ;margin-left:20% ">
-                price: {{item.price}}
-              </div>
-              <div class="row" style="margin-top:10% ;margin-left:20%">
-                category:{{item.itemtype}}
-              </div>
-            
-              <div class="row" style="margin-top:10% ;margin-left:20%">
-                  
-                  ditance:{{x}}
-                  item_id:{{item.item_id}}
-                </div>
-              <div>
+    <nav>
+      <ul>
+        <li class='current'>
+          <a href="home"> Home</a>
+        </li>
+        <li>
+          <a href="about.html"> About</a>
+        </li>
+        <li>
+          <a>Profile</a>
+        </li>
+        <li>
+          <a href="login">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-                <button style="float:right "  (click)="rent(item.item_id)">rent</button>
-              </div>
+
+<div>
+  <div class="col-sm-2" style="background:black;height:500px"></div>
+  <div class="col-sm-8">
+    <div id="container" [@listAnimation]="item.length">
+      <!-- <div *ngFor="let x of arr"> -->
+      <div id="list" *ngFor="let item of item" style="border-style: solid">
+        <div @explainerAnim>
+          <div class="row">
+            <div class="row" style="margin-top:10% ;margin-left:20%">
+              item :{{item.itemname}}
+            </div>
+            <div class="row" style="margin-top:10% ;margin-left:20% ">
+              price: {{item.price}}
+            </div>
+            <div class="row" style="margin-top:10% ;margin-left:20%">
+              category:{{item.itemtype}}
+            </div>
+
+            <div class="row" style="margin-top:10% ;margin-left:20%">
+
+              <!-- ditance:{{x}} -->
+              item_id:{{item.item_id}}
+            </div>
+            <div>
+
+              <button style="float:right " (click)="rent(item.item_id)">rent</button>
             </div>
           </div>
         </div>
-        </div>
       </div>
+      <!-- </div> -->
     </div>
-    <div class="col-sm-2" style="background:rgb(200, 255, 0);height:500px"></div>
   </div>
+  <div class="col-sm-2" style="background:rgb(200, 255, 0);height:500px"></div>
+</div>

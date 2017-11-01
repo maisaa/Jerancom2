@@ -57,24 +57,25 @@ export class ToolsComponent {
   lat: number;
   lon: number;
   arr = [];
- arrlog=[]
-
-
+  arrlog=[]
+  obj ={"item":Object,"distance":Number}
+  result = []
  
 // renter:number;
   ngOnInit() {
     this.arrlog
     let that = this;
-    this.lat = 31.9866647;
-    this.lon = 35.8377642;
+    // this.lat = 31.9866647;
+    // this.lon = 35.8377642;
 
     this.http.get('http://localhost:4500/prof')
     .map(res => res.json())
     .subscribe(
     data => {
       this.arrlog = data;
+     
       // this.renter=data[0].user_id;
-      console.log("here is the .............................",data)
+      // console.log("here is the .............................",data)
       console.log("username ",data[0].username);
     
     },
@@ -89,21 +90,38 @@ export class ToolsComponent {
       data => {
         console.log(data)
         this.item = data;
+        this.lat= this.arrlog[0].latitude;
+        this.lon= this.arrlog[0].longitude;
         for (var i = 0; i < this.item.length; i++) {
+       
           this.latitude = this.item[i].latitude;
           this.longitude = this.item[i].longitude;
-          
+        
+       
          this.getDistanceFromLatLonInKm(this.latitude,this.longitude,this.lat,this.lon);
           console.log(this.item[i].longitude, this.item[i].latitude)
-         
+          // this.obj["item"]= this.item[i]
+          // this.obj["distance"]= this.arr[i]
+          // this.result.push(this.obj)
+        
         }
-        console.log(this.arr);
+        console.log("this.object result ",this.obj);
+        console.log("inside array item ", this.item)
+        console.log("inside array distance ",this.arr)
+        // for (var i=0; i<this.arr.length&&this.arr.length;i++){
+        //   this.result.push(this.obj)
+        //   this.obj["item"]= this.item[i]
+        //   this.obj["distance"]= this.arr[i]
+         
+        //   console.log("added a new obj", this.result)
+        // }
 
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
 /*************************************** */
+console.log("this is the final result ", this.result)
     }
   
 rent(i){

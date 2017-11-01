@@ -21,7 +21,6 @@ const routes: Routes = [
   { path: 'fernuture', component: FernutureComponent },
   { path: 'maintenance', component: MaintenanceComponent },
   { path: 'item', component: ItemComponent }
-
 ];
 
 
