@@ -1,0 +1,57 @@
+<header>
+        <div class="container">
+          <div id="branding">
+            <h1>
+              <span class='highlight'>JeranCom</span>
+            </h1>
+          </div>
+          <nav>
+            <ul>
+              <li class='current'>
+                <a> Home</a>
+              </li>
+              <li>
+                <a href="about.html"> About</a>
+              </li>
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      
+      
+      <div>
+        <div class="col-sm-2" style="background:black;height:500px"></div>
+        <div class="col-sm-8">
+          <div id="container" [@listAnimation]="item.length">
+            <div id="list" *ngFor="let item of item "style="border-style: solid">
+              <div @explainerAnim>
+                <div class="row">
+      
+                    <img src="../../../{{item.picture}}">
+                    
+                  <div class="row" style="margin-top:10% ;margin-left:20%">
+                    item :{{item.itemname}}
+                  </div>
+                  <div class="row" style="margin-top:10% ;margin-left:20% ">
+                    price: {{item.price}}
+                  </div>
+                  <div class="row" style="margin-top:10% ;margin-left:20%">
+                    category:{{item.itemtype}}
+                  </div>
+
+                    <div class="row" style="margin-top:10% ;margin-left:20%">
+                    Rented By:{{item.renter_name}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2" style="background:rgb(200, 255, 0);height:500px"></div>
+      </div>

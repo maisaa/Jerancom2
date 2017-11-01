@@ -21,6 +21,9 @@ import { OthersComponent } from './components/others/others';
 import { ToolsComponent } from './components/tools/tools'
 import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
+import{chatRoomComponent} from './components/chat/chatRoom.component';
+
+import{ProfileComponent} from './components/profile/profile.component';
 /*****************************************************************************************************/
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { ClothesComponent } from './components/clothes/clothes';
     FileSelectDirective,
     routingComponents,
     FernutureComponent,
-    ClothesComponent
+    ClothesComponent,
+    chatRoomComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
