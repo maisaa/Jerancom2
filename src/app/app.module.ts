@@ -23,6 +23,7 @@ import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
 import{chatRoomComponent} from './components/chat/chatRoom.component';
 
+import{ProfileComponent} from './components/profile/profile.component';
 /*****************************************************************************************************/
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import{chatRoomComponent} from './components/chat/chatRoom.component';
     routingComponents,
     FernutureComponent,
     ClothesComponent,
-    chatRoomComponent
+    chatRoomComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

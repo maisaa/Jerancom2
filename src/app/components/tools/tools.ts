@@ -57,69 +57,89 @@ export class ToolsComponent {
   lat: number;
   lon: number;
   arr = [];
- arrlog=[]
-// renter:number;
+  arrlog = [];
+  obj={item:Object,distance:Number};
+  result=[];
+
+  // renter:number;
   ngOnInit() {
     let that = this;
-    this.lat = 31.9866647;
-    this.lon = 35.8377642;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    /************************bring inormation for user who logged in now*************** */
+    this.http.get('http://localhost:4500/prof')
+      .map(res => res.json())
+      .subscribe(
+      data => {
+        this.arrlog = data;
+      },
+      err => console.log("eeeeeeeeeeeeeeeerrrrrrrror", err),
+      () => console.log("here is the item ")
+
+      );
+
+
+    /***************get tools information************ */
+
     this.http.get('http://localhost:4500/tools')
       .map(res => res.json())
       .subscribe(
       data => {
         console.log(data)
         this.item = data;
-        for (var i = 0; i < this.item.length; i++) {
+        this.lat = this.arrlog[0].latitude;
+        this.lon = this.arrlog[0].longitude;
+        // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+        
+        
+        for ( var i = 0; i <this.item.length ; i++) {
+          // console.log('hhhhhh000hhhhhhhhhh');
+          // debugger;
+         
           this.latitude = this.item[i].latitude;
           this.longitude = this.item[i].longitude;
-         this.getDistanceFromLatLonInKm(this.latitude,this.longitude,this.lat,this.lon);
-          console.log(this.item[i].longitude, this.item[i].latitude)
-         
+          this.getDistanceFromLatLonInKm(this.latitude, this.longitude, this.lat, this.lon);
+          //console.log(this.item[i].longitude, this.item[i].latitude)
+          this.obj['item']=this.item[i];
+          this.obj['distance']= this.arr[i];
+          // console.log("Ahmad", this.arr)
+          this.result.push(this.obj);
+    // console.log('at the end of loop ',this.arr[i]);
+          //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
         }
-        console.log(this.arr);
+        // for(var j=0;j<this.arr.length;j++){
+        //   this.obj['distance']=this.arr[j];
+        // }
+        // this.result.push(this.obj);
+        
 
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
-/*************************************** */
-this.http.get('http://localhost:4500/prof')
-.map(res => res.json())
-.subscribe(
-data => {
-  this.arrlog = data;
-  // this.renter=data[0].user_id;
-  console.log("here is the .............................",data)
-  console.log("username ",data[0].username);
+console.log('kkkkkkkkkkkkk',this.result);
 
-},
-err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
-() => console.log("here is the item ")
-);
   }
-  /*************************** */
+  rent(i) {
+    console.log(i)
+    const that = this;
+    console.log(that)
+    this.http.post('http://localhost:4500/renter', {
+      item_id: i,
+      renter: that.arrlog[0].user_id,
+      renter_name:that.arrlog[0].username
+    })
 
-  
-rent(i){
-console.log(i)
-  const that = this;
-  console.log(that)
-  this.http.post('http://localhost:4500/renter', {
-    item_id:i,
-    renter:that.arrlog[0].user_id
-      })
-     
       .subscribe(
       data => {
-          alert('ok');
-          console.log(data)
+        alert('ok');
+        console.log(data)
       },
       error => {
-          console.log(error, "erooooooooooooooooooe");
+        console.log(error, "erooooooooooooooooooe");
       }
       )
-}
-/******************************* */
+  }
+  /******************************* */
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
@@ -138,18 +158,18 @@ console.log(i)
   deg2rad(deg) {
     return deg * (Math.PI / 180)
   }
-   bubbleSort = function(arr) {
-     for(var i = 0; i < arr.length; i++){
-        for(var j = 0; j < arr.length; j++){
-        if(arr[i] < arr[j]){
+  bubbleSort = function (arr) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = 0; j < arr.length; j++) {
+        if (arr[i] < arr[j]) {
           var x = arr[i];
           arr[i] = arr[j];
           arr[j] = x;
-         }
         }
-      }  
-      //console.log(arr);
-      return arr;
-     
+      }
+    }
+    //console.log(arr);
+    return arr;
+
   };
 }

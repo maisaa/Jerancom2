@@ -9,6 +9,7 @@ import { OthersComponent } from './components/others/others';
 import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
 import { ItemComponent } from './components/item/item.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'others', component: OthersComponent },
   { path: 'fernuture', component: FernutureComponent },
   { path: 'maintenance', component: MaintenanceComponent },
-  { path: 'item', component: ItemComponent }
+  { path: 'item', component: ItemComponent },
+  {path:'profiler',component:ProfileComponent}
 
 ];
 
