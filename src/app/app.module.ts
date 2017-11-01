@@ -54,7 +54,7 @@ import{chatRoomComponent} from './components/chat/chatRoom.component';
     })
   ],
   providers: [],
-  bootstrap: [chatRoomComponent]
+  bootstrap: [AppComponent]
 })
 /*****************************************************************************************************/
 export class AppModule { }
