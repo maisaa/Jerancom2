@@ -3,6 +3,9 @@ const express = require('express');
 
 const app = express()
 const pg = require('pg');
+let http = require('http').Server(app);
+var io = require('socket.io')(http);
+const nodemailer = require('nodemailer');
 const path = require('path');
 var morgan = require('morgan');
 var bcrypt = require('bcrypt');
@@ -10,13 +13,13 @@ const saltRounds = 10;
 var bodyparser = require('body-parser')
 var multer = require('multer')
 var upload = multer({
-  dest: './uploads/'
+  dest: './src/assets/uploads/'
 }).single('photo');
 var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:3000/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
@@ -157,7 +160,7 @@ app.post('/login', (req, res, next) => {
     //console.log("hiiiii login password")
     else {
       // SQL Query > Select Data
-      var query = client.query('SELECT username ,password FROM users WHERE username=($1) AND password=($2) ', [data.username, data.password]);
+      var query = client.query('SELECT username  FROM users WHERE username=($1) ', [data.username, data.password]);
 
       //console.log(data.username);
 
@@ -173,19 +176,19 @@ app.post('/login', (req, res, next) => {
         req.session.username = row.username;
        //------------------------
         ccc = req.session.username
+         bool = bcrypt.compareSync(req.body.password, row.password);
+      console.log(bool);
 
       });
       // After all data is returned, close connection and return results
       query.on('end', () => {
         done();
-
-        console.log(" results.............. ", results.username);
-         console.log('ayaaaaaaaaaaaaaaaaaaaaaaaaaaaa i love youuuuuuuuuuuuuuuuuuuuu');
-        //res.send('./');
+         if(bool){
         res.sendFile(__dirname + './src/app/components/home/home.html');
-        console.log("after login ------------------>> ",ccc)
-        return res.send(results);
-
+        return res.send(results);    
+      }else{
+        return res.json("not correct password man");
+      }
       });
       //});
     }
@@ -230,6 +233,10 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   // Grab data from http request
   const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude };
   // Get a Postgres client from the connection pool
+   var salt = bcrypt.genSaltSync(10);
+   var hash = bcrypt.hashSync(req.body.password,salt);
+  console.log(hash);
+  data.password= hash;
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if (err) {
@@ -345,6 +352,25 @@ app.post('/renter', urlencodedParser, (req, res, next) => {
 /***************************************POST ITEM IN DATABASE***************************************************/
 app.post('/item', urlencodedParser, (req, res, next) => {
   console.log("----------------------------",req.body.renter)
+   const transport = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+          user: 'ayaalbakri89@gmail.com',
+          pass: 'ayaghaleb89',
+      },
+  });
+  const mailOptions = {
+      from: 'ayaalbakri89@gmail.com',
+      to:   'ayaalbakri89@gmail.com',
+      subject: 'new Items',
+      html: 'new items added in the website check',
+  };
+  transport.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log("erooooooooooooooooooor////////",error);
+      }
+      console.log("Message sent:",info );
+  });
   const results = [];
   // Grab data from http request
   const data = {longitude:req.body.longitude,latitude:req.body.latitude, owner:req.body.owner,itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
@@ -649,9 +675,24 @@ app.put('/putt', (req, res, next) => {
   });
 });
 
+/***************************************Socket.io***************************************************/
+
+
+io.on('connection', (socket) => {
+  console.log('connected');
+  socket.on('disconnect', function(){
+    console.log('disconnected');
+  });
+   socket.on('giveChat', (message) => {
+     console.log("msg not send",message)
+
+    io.emit('newChat', {type:'new-message', text: message});   
+  });
+});
+
 /***************************************LISTENER***************************************************/
 
-app.listen(port, function () {
+http.listen(port, function () {
   console.log('server started on port 4500');
 });
 

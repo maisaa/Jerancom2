@@ -21,6 +21,8 @@ import { ToolsComponent } from './components/tools/tools'
 import { LoginComponent } from './components/login/login.component';
 import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
+import{chatRoomComponent} from './components/chat/chatRoom.component';
+
 /*****************************************************************************************************/
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ClothesComponent } from './components/clothes/clothes';
     FileSelectDirective,
     routingComponents,
     FernutureComponent,
-    ClothesComponent
+    ClothesComponent,
+    chatRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { ClothesComponent } from './components/clothes/clothes';
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [chatRoomComponent]
 })
 /*****************************************************************************************************/
 export class AppModule { }
