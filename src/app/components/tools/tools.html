@@ -7,7 +7,12 @@
       </div>
       <nav>
         <ul>
-          <li class='current'>
+          
+
+         <li class='current'>
+            <a href="item">Add Item  </a>
+          </li>
+          <li >
             <a> Home</a>
           </li>
           <li>
@@ -19,11 +24,11 @@
           <li>
             <a href="/logout">Logout</a>
           </li>
+
         </ul>
       </nav>
     </div>
   </header>
-  
   
   <div>
     <div class="col-sm-2" style="background:black;height:500px"></div>
@@ -31,7 +36,7 @@
       <div id="container" [@listAnimation]="item.length">
         <div *ngFor="let x of arr">
         <div id="list" *ngFor="let item of item"    style="border-style: solid">
-          <div @explainerAnim>
+          <div>
             <div class="row">
               <div class="row" style="margin-top:10% ;margin-left:20%">
                 item :{{item.itemname}}

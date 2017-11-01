@@ -58,7 +58,9 @@ export class ToolsComponent {
   lon: number;
   arr = [];
   arrlog = [];
-  obj={item:Object,distance:Number}
+  obj={item:Object,distance:Number};
+  result=[];
+
   // renter:number;
   ngOnInit() {
     let that = this;
@@ -86,20 +88,35 @@ export class ToolsComponent {
         this.item = data;
         this.lat = this.arrlog[0].latitude;
         this.lon = this.arrlog[0].longitude;
-        for (var i = 0; i < this.item.length; i++) {
+        // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+        
+        
+        for ( var i = 0; i <this.item.length ; i++) {
+          // console.log('hhhhhh000hhhhhhhhhh');
+          // debugger;
+         
           this.latitude = this.item[i].latitude;
           this.longitude = this.item[i].longitude;
           this.getDistanceFromLatLonInKm(this.latitude, this.longitude, this.lat, this.lon);
-          console.log(this.item[i].longitude, this.item[i].latitude)
+          //console.log(this.item[i].longitude, this.item[i].latitude)
+          this.obj['item']=this.item[i];
+          this.obj['distance']= this.arr[i];
+          // console.log("Ahmad", this.arr)
+          this.result.push(this.obj);
+    // console.log('at the end of loop ',this.arr[i]);
           //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
         }
-        console.log(this.arr);
+        // for(var j=0;j<this.arr.length;j++){
+        //   this.obj['distance']=this.arr[j];
+        // }
+        // this.result.push(this.obj);
+        
 
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
-
+console.log('kkkkkkkkkkkkk',this.result);
 
   }
   rent(i) {
@@ -108,7 +125,8 @@ export class ToolsComponent {
     console.log(that)
     this.http.post('http://localhost:4500/renter', {
       item_id: i,
-      renter: that.arrlog[0].user_id
+      renter: that.arrlog[0].user_id,
+      renter_name:that.arrlog[0].username
     })
 
       .subscribe(

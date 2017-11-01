@@ -60,15 +60,19 @@ constructor(private http: Http, private el: ElementRef) {}
       // this.filesToUpload = [];
     
     upload() {
+        console.log('uploading')
         //locate the file element meant for the file upload.
         let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+        console.log(inputEl)
         //get the total amount of files attached to the file input.
         let fileCount: number = inputEl.files.length;
+        console.log(fileCount)
         //create a new fromdata instance
         let formData = new FormData();
         //check if the filecount is greater than zero, to be sure a file was selected.
         if (fileCount > 0) { // a file was selected
             //append the key name 'photo' with the first file in the element
+            console.log('inside')
             formData.append('photo', inputEl.files.item(0));
             //call the angular http method
             this.http
@@ -76,6 +80,7 @@ constructor(private http: Http, private el: ElementRef) {}
                 .post(URL, formData).map((res: Response) => res.json()).subscribe(
                 //map the success function and alert the response
                 (success) => {
+                    console.log('yahoooooo')
                     alert(success._body);
                 },
                 (error) => alert(error))

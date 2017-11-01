@@ -115,7 +115,7 @@ export class signupComponent implements OnInit {
         alert('SingUp correctly');
         console.log(data)
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
 
       },
       error => {

@@ -4,9 +4,9 @@ import { Http, Response, Headers } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'clothes',
-  templateUrl: './clothes.html',
-  styleUrls: ['./clothes.scss'],
+  selector: 'profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
   animations: [
 /**********************************************************************************************************/
 /*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
@@ -47,7 +47,7 @@ import { HttpHeaders } from '@angular/common/http';
 /**********************************************************************************************************/
 /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
 /**********************************************************************************************************/
-export class ClothesComponent {
+export class ProfileComponent {
 
   constructor(public http: Http) { }
 
@@ -55,19 +55,7 @@ export class ClothesComponent {
   arrlog=[];
 
   ngOnInit() {
-    
-
-    this.http.get('http://localhost:4500/clothes')
-      .map(res => res.json())
-      .subscribe(
-      data => {
-        this.item = data;
-         console.log("aaaaaaaya",data)
-      },
-      err => console.log(err),
-      () => console.log("here is the item ")
-      );
-      /*************************************** */
+          /*************************************** */
 this.http.get('http://localhost:4500/prof')
 .map(res => res.json())
 .subscribe(
@@ -81,31 +69,23 @@ data => {
 err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
 () => console.log("here is the item ")
 );
+
+    this.http.get('http://localhost:4500/profiler')
+      .map(res => res.json())
+      .subscribe(
+      data => {
+        this.item = data;
+         console.log("aaaaaaaya",data)
+      },
+      err => console.log(err),
+      () => console.log("here is the item ")
+      );
+
   }
   /*************************** */
 
   
-rent(i){
-console.log(i)
-  const that = this;
-  console.log(that)
-  this.http.post('http://localhost:4500/renter', {
-    item_id:i,
-    renter:that.arrlog[0].user_id,
-    renter_name:that.arrlog[0].username
-      })
-     
-      .subscribe(
-      data => {
-          alert('ok');
-          console.log(data)
-      },
-      error => {
-          console.log(error, "erooooooooooooooooooe");
-      }
-      )
-}
-/******************************* */
+
 
   }
 
