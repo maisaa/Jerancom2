@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import { HttpHeaders } from '@angular/common/http';
 //import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+import { Router } from '@angular/router';
 //import { FileSelectDirective } from 'ng2-file-upload';
 const URL = ' http://localhost:4500/upload';
 
@@ -26,7 +28,7 @@ item=[];
 owner:number;
 //latitude: number;
 longitude: number;
-constructor(private http: Http, private el: ElementRef) {}
+constructor(private http: Http, private el: ElementRef,private router: Router) {}
     
     ngOnInit() {
        
@@ -113,6 +115,7 @@ console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner)
             .subscribe(
             data => {
                 alert('ok');
+                this.router.navigate(['/home']);
                 console.log(data)
             },
             error => {
