@@ -10,6 +10,8 @@ import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
 import { ItemComponent } from './components/item/item.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -22,8 +24,10 @@ const routes: Routes = [
   { path: 'fernuture', component: FernutureComponent },
   { path: 'maintenance', component: MaintenanceComponent },
   { path: 'item', component: ItemComponent },
-  {path:'profiler',component:ProfileComponent}
-
+  {path:'profiler',component:ProfileComponent},
+  
+  {path:'about',component:AboutComponent}
+  
 ];
 
 
@@ -34,4 +38,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent, ItemComponent];
+export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent, ItemComponent,ProfileComponent,AboutComponent];

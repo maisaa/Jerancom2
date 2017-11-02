@@ -24,6 +24,8 @@ import { ClothesComponent } from './components/clothes/clothes';
 import{chatRoomComponent} from './components/chat/chatRoom.component';
 
 import{ProfileComponent} from './components/profile/profile.component';
+import{AboutComponent} from './components/about/about';
+
 /*****************************************************************************************************/
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import{ProfileComponent} from './components/profile/profile.component';
     FernutureComponent,
     ClothesComponent,
     chatRoomComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
