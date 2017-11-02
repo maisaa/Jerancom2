@@ -12,7 +12,7 @@ const URL = ' http://localhost:4500/upload';
 @Component({
     selector: 'item',
     templateUrl: './item.component.html',
-    styleUrls: ['./item.component.css']
+    styleUrls: ['./item.component.scss']
 })
 export class ItemComponent {
     // filesToUpload: Array<File>;
@@ -102,6 +102,7 @@ console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner)
             itemtype: that.type,
             picture:that.picture,
             owner:that.owner,
+            owner_name:this.item[0].owner_name,
             longitude:that.longitude,
             latitude:that.item[0].latitude
             })

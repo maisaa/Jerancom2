@@ -8,9 +8,9 @@ import { HttpHeaders } from '@angular/common/http';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   animations: [
-/**********************************************************************************************************/
-/*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
-/**********************************************************************************************************/
+    /**********************************************************************************************************/
+    /*******                    ANIMATION TO RENDER THE ITEMS FROM DATABASE                             *******/
+    /**********************************************************************************************************/
     trigger('listAnimation', [
       transition('* => *', [
 
@@ -52,41 +52,52 @@ export class ProfileComponent {
   constructor(public http: Http) { }
 
   item = [];
-  arrlog=[];
-
+  arrlog = [];
+  rents = []
   ngOnInit() {
-          /*************************************** */
-this.http.get('http://localhost:4500/prof')
-.map(res => res.json())
-.subscribe(
-data => {
-  this.arrlog = data;
-  // this.renter=data[0].user_id;
-  console.log("here is the .............................",data)
-  console.log("username ",data[0].username);
 
-},
-err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
-() => console.log("here is the item ")
-);
+    this.http.get('http://localhost:4500/prof')
+      .map(res => res.json())
+      .subscribe(
+      data => {
+        this.arrlog = data;
+        // this.renter=data[0].user_id;
+        console.log("here is the .............................", data)
+        console.log("username ", data[0].username);
 
+      },
+      err => console.log("eeeeeeeeeeeeeeeerrrrrrrror", err),
+      () => console.log("here is the item ")
+      );
+    /****************************************************************************/
     this.http.get('http://localhost:4500/profiler')
       .map(res => res.json())
       .subscribe(
       data => {
         this.item = data;
-         console.log("aaaaaaaya",data)
+        console.log("aaaaaaaya", data)
       },
       err => console.log(err),
       () => console.log("here is the item ")
       );
+    /***************************************************************************/
+    this.http.get('http://localhost:4500/getrents')
+    .map(res => res.json())
+    .subscribe(
+    data => {
+      this.rents = data;
+      console.log("rented item ", data)
+    },
+    err => console.log(err),
+    () => console.log("here is the item ")
+    );
 
   }
-  /*************************** */
-
-  
 
 
-  }
+
+
+
+}
 
 
