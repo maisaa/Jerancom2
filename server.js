@@ -19,7 +19,7 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
@@ -109,6 +109,45 @@ app.get('/profiler', (req, res, next) => {
   
 });
 ///////////////////////////////////////////////////////////////////////////////
+
+app.get('/getrents', (req, res, next) => {
+  console.log(' helo babey',ccc);
+  // console.log(req.body)
+  const results = [];
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err });
+    }
+    // SQL Query > Select Data
+    console.log("user loged in = ", ccc)
+    const query = client.query('SELECT * FROM items inner join users on users.user_id =items.renter WHERE users.username=($1)', [ccc]);
+  
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      
+      
+      results.push(row);
+      console.log("reeeeeeeees on",results)
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      // console.log('$$$$---->>>>>>>>>> ',result);
+      console.log("reeeeeeeees end",results)
+      
+      return res.json(results);
+      
+      
+    });
+  });
+  
+});
+
+
 /***************************************SAVE LOCATION IN DATABASE***************************************************/
 
 app.post('/loc', urlencodedParser, (req, res, next) => {
@@ -412,7 +451,7 @@ app.post('/item', urlencodedParser, (req, res, next) => {
   });
   const results = [];
   // Grab data from http request
-  const data = {longitude:req.body.longitude,latitude:req.body.latitude, owner:req.body.owner,itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
+  const data = {owner_name:req.body.owner_name,longitude:req.body.longitude,latitude:req.body.latitude, owner:req.body.owner,itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
@@ -422,8 +461,8 @@ app.post('/item', urlencodedParser, (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Insert Data
-    client.query('INSERT INTO items(longitude,latitude,owner,itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5,$6,$7,$8)',
-      [data.longitude,data.latitude,data.owner,data.itemname, data.itemtype, data.info, data.price,data.picture]);
+    client.query('INSERT INTO items(owner_name,longitude,latitude,owner,itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5,$6,$7,$8,$9)',
+      [data.owner_name,data.longitude,data.latitude,data.owner,data.itemname, data.itemtype, data.info, data.price,data.picture]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items ');
     // Stream results back one row at a time

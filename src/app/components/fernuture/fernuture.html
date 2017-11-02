@@ -8,25 +8,24 @@
     <nav>
       <ul>
         <li class='current'>
-          <a> Home</a>
+          <a href="item">Add Item </a>
         </li>
         <li>
-          <a href="about.html"> About</a>
+          <a href="home"> Home</a>
         </li>
         <li>
-          <a>Profile</a>
+          <a href="about"> About</a>
         </li>
-
         <li>
-          <a href="/logout">Logout</a>
+          <a href="profiler">Profile</a>
         </li>
-
+        <li>
+          <a href="login">Logout</a>
+        </li>
       </ul>
-
     </nav>
   </div>
 </header>
-
 
 <div>
   <div class="col-sm-2" style="background:black;height:500px"></div>
@@ -47,9 +46,9 @@
               category:{{item.itemtype}}
             </div>
             <div>
-                
-                                <button style="float:right "  (click)="rent(item.item_id)">rent</button>
-                              </div>
+
+              <button style="float:right " (click)="rent(item.item_id)">rent</button>
+            </div>
           </div>
         </div>
       </div>

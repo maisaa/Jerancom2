@@ -60,6 +60,8 @@ export class OthersComponent {
       .subscribe(
       data => {
         this.item = data;
+
+        console.log("here is the others",data)
       },
       err => console.log(err),
       () => console.log("here is the item ")
