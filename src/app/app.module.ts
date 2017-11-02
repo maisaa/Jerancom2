@@ -15,10 +15,10 @@ import { ItemComponent } from './components/item/item.component';
 import { signupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home';
 import { MapComponent } from './components/map/map.components';
+import { LoginComponent } from './components/login/login.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance';
 import { OthersComponent } from './components/others/others';
 import { ToolsComponent } from './components/tools/tools'
-import { LoginComponent } from './components/login/login.component';
 import { FernutureComponent } from './components/fernuture/fernuture';
 import { ClothesComponent } from './components/clothes/clothes';
 import{chatRoomComponent} from './components/chat/chatRoom.component';

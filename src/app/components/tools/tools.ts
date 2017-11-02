@@ -63,6 +63,7 @@ export class ToolsComponent {
 
   // renter:number;
   ngOnInit() {
+    this.arrlog
     let that = this;
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     /************************bring inormation for user who logged in now*************** */
@@ -172,4 +173,5 @@ console.log('kkkkkkkkkkkkk',this.result);
     return arr;
 
   };
+  
 }

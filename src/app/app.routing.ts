@@ -34,4 +34,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent, ItemComponent];
+export const routingComponents = [LoginComponent, signupComponent, HomeComponent, ClothesComponent, FernutureComponent, OthersComponent, MaintenanceComponent, ToolsComponent, ItemComponent,ProfileComponent];
