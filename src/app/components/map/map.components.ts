@@ -20,10 +20,10 @@ import { HttpHeaders } from '@angular/common/http';
   `],
   template: `
     <div class="container">
-      <h1>Angular 2 + Google Maps Places Autocomplete</h1>
-      <div class="form-group">
+    
+      <!---<div class="form-group">
         <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-      </div>
+      </div>---->
       <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
       </agm-map>
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     //set google maps defaults
-    this.zoom = 4;
+    this.zoom = 10;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
@@ -79,7 +79,7 @@ export class MapComponent implements OnInit {
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
-          this.zoom = 4;
+          this.zoom = 10;
           console.log(this.latitude)
           console.log(this.longitude)
 
@@ -94,7 +94,7 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 4;
+        this.zoom = 10;
         console.log(this.longitude);
         console.log(this.latitude);
       });

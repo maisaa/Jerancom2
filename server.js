@@ -19,7 +19,7 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
@@ -429,7 +429,7 @@ app.post('/renter', urlencodedParser, (req, res, next) => {
 
 /***************************************POST ITEM IN DATABASE***************************************************/
 app.post('/item', urlencodedParser, (req, res, next) => {
-  console.log("----------------------------",req.body.renter)
+  console.log("----------------------------",req.body.owner_name)
    const transport = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
