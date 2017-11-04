@@ -37,7 +37,7 @@
           <div style=" margin-left:44%;margin-top: 50px " >
             <div >
               <!-- when you click on the image in will popup with details -->
-              <img style="width: 155px ;height: 200px;border: solid;border-color:#8cff66" src="../../../{{item.picture}}" class="btn btn-secondary" data-toggle="modal" alt= {{item.itemname}}
+              <img style="width: 155px ;height: 200px;border: solid;border-color:#8cff66" src="{{item.picture}}" class="btn btn-secondary" data-toggle="modal" alt= {{item.itemname}}
                 data-target="#item-info"(click)="changeItem(item)" />
             </div>
             <div>
@@ -69,7 +69,7 @@
                 <div class="row content">
   
                   <div class="col-sm-5 sidenav">
-                    <img src="../../../{{this.activeItem.picture}}" style=" width:200px;height:250px ;margin-top:20px ;" />
+                    <img src="{{this.activeItem.picture}}" style=" width:200px;height:250px ;margin-top:20px ;" />
   
                   </div>
                   <div class="col-sm-7 sidenav" style="margin-top:20px ">

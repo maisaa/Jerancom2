@@ -89,7 +89,7 @@
         </div>
       </div>
       <!-- <div class="form-group"> -->
-      <!-- <label class="control-label col-lg-2  col-sm-offset-2">picture: </label>
+<!-- <label class="control-label col-lg-2  col-sm-offset-2">picture: </label>
                 <div class=" col-sm-5">
                 <div class="input-group">
                 <div class="input-group-addon"><div class="glyphicon glyphicon-earphone"></div></div> 
@@ -104,61 +104,64 @@
   </div>
 </div> -->
 
- 
+
 <div id='app'>
-    <div class="container1">
-      <form class="modal-content animate">
-        <div class="imgcontainer">
-          <!-- <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-          <h3 style="color: black">Add Item </h3>
-        </div>
-  
-        <div class="container" style="width:100%">
-         <div class=" col-sm-11">
-            <div>
-                <!-- <label style="color: black">
+  <div class="container1">
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <!-- <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+        <h3 style="color: black">Add Item </h3>
+      </div>
+
+      <div class="container" style="width:100%">
+        <div class=" col-sm-11">
+          <div>
+            <!-- <label style="color: black">
                   <b>Username</b>
                 </label> -->
-                <input type="text" placeholder="item Name" class="form-control" name="user" [(ngModel)]="name">
-              </div>
-              <div>
-                <!-- <label style="color: black">
+            <input type="text" placeholder="item Name" class="form-control" name="user" [(ngModel)]="name">
+          </div>
+          <div>
+            <!-- <label style="color: black">
                   <b>Password</b>
                 </label> -->
-                <select name="type" [(ngModel)]="type">
-                    <option value="Tools">Tools</option>
-                    <option value="Clothes">Clothes</option>
-                    <option value="Fernuture">Fernuture</option>
-                    <option value="Maintenance">Maintenance</option>
-                    <option value="Others">Others</option>
-                  </select>
-              </div>
-              <div>
-                <!-- <label style="color: black">
+            <select name="type" [(ngModel)]="type">
+              <option value="Tools">Tools</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Fernuture">Fernuture</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div>
+            <!-- <label style="color: black">
                   <b>Phone  </b>
                 </label> -->
-                <input type="number" placeholder="Price" class="form-control" name="price" [(ngModel)]="price">
-              </div>
-              <div>
-                <!-- <label style="color: black">
+            <input type="number" placeholder="Price" class="form-control" name="price" [(ngModel)]="price">
+          </div>
+          <div>
+            <!-- <label style="color: black">
                   <b>E-mail  </b>
                 </label> -->
-                <div>
-                <input type="text" placeholder="info" class="form-control" name="info" [(ngModel)]="info">
-              </div>
-              <input type="file" ng2FileSelect [uploader]="uploader" name="photo" placeholder="Upload file..." />
-              <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload</button></div>
-         </div>
-         <!-- <div class=" col-sm-4">
+            <div>
+              <input type="text" placeholder="info" class="form-control" name="info" [(ngModel)]="info">
+            </div>
+            <!-- <input type="file" ng2FileSelect [uploader]="uploader" name="photo" placeholder="Upload file..." />
+              <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload</button>-->
+            <input type="file" (change)='getFile($event)' name="photo" placeholder="Upload file..." />
+            <button type="button" (click)="upload()">Upload</button>
+          </div>
+        </div>
+        <!-- <div class=" col-sm-4">
            <map></map>
          </div> -->
-      
-        </div>
-  
-        <div class="container" style="background-color:#35424a ; width:100%">
-  
-            <button type="submit" class="btn btn-danger" (click)="submit()">Submit</button>
-        </div>
-      </form>
-    </div>
+
+      </div>
+
+      <div class="container" style="background-color:#35424a ; width:100%">
+
+        <button type="submit" class="btn btn-danger" (click)="submit()">Submit</button>
+      </div>
+    </form>
   </div>
+</div>
