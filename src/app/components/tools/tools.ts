@@ -117,9 +117,14 @@ export class ToolsComponent {
       err => console.log(err),
       () => console.log("here is the item ")
       );
-console.log('kkkkkkkkkkkkk',this.result);
+// console.log('kkkkkkkkkkkkk',this.result);
 
   }
+  activeItem={};
+  changeItem (index){
+   this.activeItem=index;
+ }
+
   rent(i) {
     console.log(i)
     const that = this;

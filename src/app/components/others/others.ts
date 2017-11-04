@@ -85,7 +85,10 @@ err => console.log("eeeeeeeeeeeeeeeerrrrrrrror",err),
   }
   /*************************** */
 
-  
+  activeItem={};
+  changeItem (index){
+   this.activeItem=index;
+ }
 rent(i){
 console.log('hiiiiiiiiiiiiiiiiiiiiimeeeezzzzzzz',i)
   const that = this;

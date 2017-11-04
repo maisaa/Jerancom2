@@ -1,16 +1,10 @@
 
 
-.container {
-    padding: 16px;
-   
-}
 
-img{
-  width: 10%;  
-}
 .containerg{
     padding-top:5%;
     padding-left: 20%;
+    width: 100%;
 }
 
 body{
@@ -27,8 +21,8 @@ body{
     width: 100%;
     margin: auto;
     overflow: hidden;
-  
-
+    position: relative;
+    padding: 16px;
     }
 
     ul{
@@ -59,9 +53,9 @@ body{
         padding: 0 20px 0 20px ;  /*(top right bottom left)*/
     }
 
-    header #branding {
-        float: left;
-    }
+    // header #branding {
+    //     float: left;
+    // }
 
     header #branding h1{
         margin: 0;
@@ -81,8 +75,43 @@ header a:hover{
     color: #cccccc;
     font-weight: bold;
 }
-thumbnail{
-    border-radius: 25px;
+.thumbnail{
+       border-radius: 25px;
 }
 
 
+/*************************/
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 260px;
+  height: 260px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 40px;
+}

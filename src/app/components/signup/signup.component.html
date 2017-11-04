@@ -1,4 +1,22 @@
-<form class="form-horizontal">
+<header>
+  <div class="container">
+    <div id="branding">
+      <h1>
+        <span class='highlight'>JeranCom</span>
+      </h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="login">login</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<!-- <form class="form-horizontal">
   <div class="form-group">
     <label for="Firstname" class="control-label col-md-2 col-sm-offset-2">User Name</label>
     <div class=" col-sm-5">
@@ -43,8 +61,57 @@
       <map></map>
     </div>
   </div>
-</form>
+</form> -->
+<div id='app'>
+  <div class="container1">
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <!-- <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+        <h3 style="color: black">Sign up</h3>
+      </div>
 
+      <div class="container" style="width:100%">
+       <div class=" col-sm-8">
+          <div>
+              <!-- <label style="color: black">
+                <b>Username</b>
+              </label> -->
+              <input type="text" placeholder="Enter Username" name="user" [(ngModel)]="name" class="form-control mr-sm-2" required style="width:90%">
+            </div>
+            <div>
+              <!-- <label style="color: black">
+                <b>Password</b>
+              </label> -->
+              <input type="password" placeholder="Enter Password" name="password" [(ngModel)]="password" class="form-control mr-sm-2" required
+                style="width:90%">
+            </div>
+            <div>
+              <!-- <label style="color: black">
+                <b>Phone  </b>
+              </label> -->
+              <input type="number" placeholder="Enter Phone" name="phone" [(ngModel)]="phone" class="form-control mr-sm-2" required style="width:90%">
+            </div>
+            <div>
+              <!-- <label style="color: black">
+                <b>E-mail  </b>
+              </label> -->
+              <input type="email" placeholder="Enter E-mail" name="email" class="form-control mr-sm-2" required style="width:90%">
+            </div>
+       </div>
+       <div class=" col-sm-4">
+         <map></map>
+       </div>
+    
+      </div>
+
+      <div class="container" style="background-color:#35424a ; width:100%">
+
+        <button type="submit" style="margin-right:50px;float: left;" class="submitbtn" (click)="submit()">Sign Up</button>
+        <a href="login" style="color: #8cff66">Login to your account </a>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -67,7 +134,7 @@
           <!-- <button type="button" class="btn btn-success" (click)="sendloc()">Save your location</button> -->
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" >
         <button type="button" class="btn btn-default">send</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>

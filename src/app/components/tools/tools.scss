@@ -9,12 +9,13 @@
     }
 
     button {
+        float: right;
         border:none;
         margin-bottom:20px;
         padding:10px;
         background: blueviolet;
         color: #fff;
-        width: 25%;
+        width: 100%;
     }
 
     .col {
@@ -103,3 +104,42 @@ header a:hover{
 
 
 
+.containerimg {
+    position: relative;
+    width: 100%;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #8cff66;
+    opacity: 0.9;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    transition: .5s ease;
+  }
+  
+  .containerimg:hover .overlay {
+    width: 100%;
+  }
+  
+  .text {
+    white-space: nowrap; 
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }

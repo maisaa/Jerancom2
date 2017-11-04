@@ -26,6 +26,7 @@ export class ItemComponent {
 picture:String;
 item=[];
 owner:number;
+owner_name:String;
 //latitude: number;
 longitude: number;
 constructor(private http: Http, private el: ElementRef,private router: Router) {}
@@ -47,6 +48,7 @@ constructor(private http: Http, private el: ElementRef,private router: Router) {
         .subscribe(
         data => {
           this.item = data;
+          this.owner_name= data[0].username
           this.owner=data[0].user_id;
           this.longitude=data[0].longitude;
           //this.latitude=data[0].latitude;
@@ -94,7 +96,8 @@ constructor(private http: Http, private el: ElementRef,private router: Router) {
     info: String;
     
     submit() {
-console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner)
+
+console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner_name)
         const that = this;
         console.log(that)
         this.http.post('http://localhost:4500/item', {
@@ -104,7 +107,7 @@ console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner)
             itemtype: that.type,
             picture:that.picture,
             owner:that.owner,
-            owner_name:this.item[0].owner_name,
+            owner_name:that.owner_name,
             longitude:that.longitude,
             latitude:that.item[0].latitude
             })
