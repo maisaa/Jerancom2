@@ -26,7 +26,7 @@ var ccc ;
 
 /*****************************************************************************************/
 
-app.use(express.static(path.join(__dirname, "./src")));
+app.use(express.static(path.join(__dirname, "./dist")));
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded())
 app.use(morgan('dev'));
