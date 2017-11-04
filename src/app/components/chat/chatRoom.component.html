@@ -10,13 +10,19 @@
 
 
 
+<div>
+  
+  <h1 style="text-align:center;color:darkorange">
+      &#9787; Let's chat &#9787;
+  </h1>
+ 
+ </div>
 
-
-<div id="messages" *ngFor="let chat of chats">
+<div  *ngFor="let chat of chats">
     <div>
-      {{x}}
+   
       <pre><font [style.color]="x">
-{{chat.text[0]}}</font>     {{chat.text[1]}} </pre>
+{{chat.session}}</font>     {{chat.text[0]}} </pre>
     </div>
 </div>
   
@@ -24,8 +30,8 @@
      
 <form action="" style="bottom:10px;position:fixed;"> 
     <input [(ngModel)]="chat" [ngModelOptions]="{standalone: true}" />
-    <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
-    
+    <!-- <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+     -->
     
     <button (click)="send()">Send</button>
   </form>
