@@ -433,13 +433,13 @@ app.post('/item', urlencodedParser, (req, res, next) => {
    const transport = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-          user: 'ayaalbakri89@gmail.com',
-          pass: 'ayaghaleb89',
+          user: 'jerancomrbk@gmail.com',
+          pass: 'jeran123',
       },
   });
   const mailOptions = {
-      from: 'ayaalbakri89@gmail.com',
-      to:   'ayaalbakri89@gmail.com',
+      from: 'jerancomrbk@gmail.com',
+      to:   'mazen.alchalah@gmail.com',
       subject: 'new Items',
       html: 'new items added in the website check',
   };
@@ -447,7 +447,7 @@ app.post('/item', urlencodedParser, (req, res, next) => {
       if (error) {
           console.log("erooooooooooooooooooor////////",error);
       }
-      console.log("Message sent:",info );
+      console.log("Message sent: ayaaaaaaaaa",info );
   });
   const results = [];
   // Grab data from http request
@@ -766,7 +766,7 @@ io.on('connection', (socket) => {
    socket.on('giveChat', (message) => {
      console.log("msg not send",message)
 
-    io.emit('newChat', {type:'new-message', text: message});   
+    io.emit('newChat', {type:'new-message', text: message , session : ccc });   
   });
 });
 

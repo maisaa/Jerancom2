@@ -5,7 +5,7 @@ import { AppRoutingModule, routingComponents } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Http, Headers } from '@angular/http';
-import { FileSelectDirective } from 'ng2-file-upload';
+// import { FileSelectDirective } from 'ng2-file-upload';
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -38,7 +38,6 @@ import{AboutComponent} from './components/about/about';
     ToolsComponent,
     MaintenanceComponent,
     OthersComponent,
-    FileSelectDirective,
     routingComponents,
     FernutureComponent,
     ClothesComponent,
