@@ -72,6 +72,10 @@ app.use(function (req, res, next) {
 
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
 
+app.get("/",(req, res)=>{
+  res.send("./index.html")
+})
+
 app.get('/profiler', (req, res, next) => {
   console.log(' helo babey',ccc);
   // console.log(req.body)
