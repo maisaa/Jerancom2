@@ -69,10 +69,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + './');
+// app.get('/', (req, res, next) => {
+//   res.sendFile(__dirname + './');
   
-});
+// });
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
 
 app.get('/profiler', (req, res, next) => {
