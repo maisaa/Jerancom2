@@ -1928,19 +1928,6 @@ var ToolsComponent = (function () {
         this.obj = { item: Object, distance: Number };
         this.result = [];
         this.activeItem = {};
-        this.bubbleSort = function (arr) {
-            for (var i = 0; i < arr.length; i++) {
-                for (var j = 0; j < arr.length; j++) {
-                    if (arr[i] < arr[j]) {
-                        var x = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = x;
-                    }
-                }
-            }
-            //console.log(arr);
-            return arr;
-        };
     }
     // renter:number;
     ToolsComponent.prototype.ngOnInit = function () {
@@ -1960,6 +1947,7 @@ var ToolsComponent = (function () {
             .subscribe(function (data) {
             console.log(data);
             _this.item = data;
+            console.log("kllllllllllllllllllllllllllllllllb" + _this.item);
             _this.lat = _this.arrlog[0].latitude;
             _this.lon = _this.arrlog[0].longitude;
             // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 

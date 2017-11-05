@@ -87,6 +87,7 @@ export class ToolsComponent {
       data => {
         console.log(data)
         this.item = data;
+        console.log("kllllllllllllllllllllllllllllllllb"+this.item);
         this.lat = this.arrlog[0].latitude;
         this.lon = this.arrlog[0].longitude;
         // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
@@ -164,19 +165,19 @@ export class ToolsComponent {
   deg2rad(deg) {
     return deg * (Math.PI / 180)
   }
-  bubbleSort = function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      for (var j = 0; j < arr.length; j++) {
-        if (arr[i] < arr[j]) {
-          var x = arr[i];
-          arr[i] = arr[j];
-          arr[j] = x;
-        }
-      }
-    }
-    //console.log(arr);
-    return arr;
+  // bubbleSort = function (arr) {
+  //   for (var i = 0; i < arr.length; i++) {
+  //     for (var j = 0; j < arr.length; j++) {
+  //       if (arr[i] < arr[j]) {
+  //         var x = arr[i];
+  //         arr[i] = arr[j];
+  //         arr[j] = x;
+  //       }
+  //     }
+  //   }
+  //   //console.log(arr);
+  //   return arr;
 
-  };
+  // };
   
 }
