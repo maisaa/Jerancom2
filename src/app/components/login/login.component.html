@@ -8,7 +8,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="signup">Sign Up</a>
+                    <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
                 </li>
             </ul>
         </nav>
@@ -57,7 +57,8 @@
             <div class="container" style="background-color:#35424a ; width:100%">
                 
                         <button type="submit" style="margin-right:50px;float: left;" class="submitbtn" name="login" (click)="login()">Login</button>
-                        <a href="signup" style="color: #8cff66">Create anew Account </a>
+                        <a  routerLink="/signup" routerLinkActive="active"
+                         style="color: #8cff66">Create anew Account </a>
             </div>
         </form>
     </div>
