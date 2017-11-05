@@ -70,7 +70,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + './dist/index.html');
+  res.sendFile(__dirname + './index.html');
   
 });
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
