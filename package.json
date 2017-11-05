@@ -32,12 +32,17 @@
     "knex": "^0.13.0",
     "morgan": "^1.9.0",
     "multer": "^1.3.0",
+    "ng2-socket-io": "^0.1.7",
     "nodemailer": "^4.3.1",
     "path": "^0.12.7",
     "pg": "^6.1.0",
     "psql": "0.0.1",
     "rxjs": "^5.4.2",
+<<<<<<< HEAD
     "socket.io": "^2.0.4",
+=======
+    "serve-static": "^1.13.1",
+>>>>>>> 39f422e93ad13c6177f384edd9fde0ea3d9e690c
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

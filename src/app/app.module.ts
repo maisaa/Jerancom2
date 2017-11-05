@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Component, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router'
+//import { routes } from './app.routing';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -26,6 +28,23 @@ import{chatRoomComponent} from './components/chat/chatRoom.component';
 import{ProfileComponent} from './components/profile/profile.component';
 import{AboutComponent} from './components/about/about';
 
+
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: signupComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'tools', component: ToolsComponent },
+  { path: 'clothes', component: ClothesComponent },
+  { path: 'others', component: OthersComponent },
+  { path: 'fernuture', component: FernutureComponent },
+  { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'item', component: ItemComponent },
+  {path:'profiler',component:ProfileComponent},
+  {path:'chatRoom',component:chatRoomComponent},
+  {path:'about',component:AboutComponent}
+  
+];
 /*****************************************************************************************************/
 @NgModule({
   declarations: [
@@ -52,6 +71,8 @@ import{AboutComponent} from './components/about/about';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    [RouterModule.forRoot(routes,{enableTracing: true})],
+    
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyAaprvcVNVDbJGy7YTZ3OUVCl4c0KvrhTc",
       libraries: ["places"]

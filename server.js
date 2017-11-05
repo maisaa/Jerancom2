@@ -12,6 +12,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var bodyparser = require('body-parser')
 var multer = require('multer')
+var serveStatic = require('serve-static');
 var upload = multer({
   dest: './src/assets/uploads/'
 }).single('photo');
@@ -19,14 +20,18 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
+<<<<<<< HEAD
 const connectionString = process.env.DATABASE_URL || 'postgres://postgres:123456@localhost:5432/jerancomdb';
+=======
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
+>>>>>>> 39f422e93ad13c6177f384edd9fde0ea3d9e690c
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
 
 /*****************************************************************************************/
 
-app.use(express.static(path.join(__dirname, "./src")));
+app.use(express.static(path.join(__dirname, "./dist")));
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded())
 app.use(morgan('dev'));
@@ -70,6 +75,15 @@ app.use(function (req, res, next) {
 });
 
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
+
+//app.get("/",(req, res)=>{
+  //res.sendFile('./index.html')
+ // res.sendFile(__dirname + './index.html');
+ app.get('/', function(req, res){
+//	res.sendFile(path.join(__dirname + './index.html')) // to send the user the file in the path that is created by joinging __dirname and the path of the index.html in the folders.
+res.send("hiiiiiiiiiii")
+})
+//})
 
 app.get('/profiler', (req, res, next) => {
   console.log(' helo babey',ccc);
@@ -147,7 +161,16 @@ app.get('/getrents', (req, res, next) => {
   
 });
 
-
+////////////////////////////////////////////////////
+app.get('/chatRoom',(req, res) => {
+  console.log ('app.get(/)');
+  ///app.use('/chatRoom', serveStatic('/src/app/components/chat/chatRoom.component.html'));
+     //res.path('./app/components/chat');
+     res.sendFile(__dirname + '/src/app/components/chat/chatRoom.component.html');
+  //res.redirect('/src/app/components/chat/chatRoom.component.html'); // check if this path right or not
+  // window.location= '/src/app/components/chat/chatRoom.component.html'
+});
+/////////////////////////////////////
 /***************************************SAVE LOCATION IN DATABASE***************************************************/
 
 app.post('/loc', urlencodedParser, (req, res, next) => {
