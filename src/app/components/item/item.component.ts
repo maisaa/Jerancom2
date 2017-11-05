@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { Router } from '@angular/router';
 //import { FileSelectDirective } from 'ng2-file-upload';
-const URL = ' http://localhost:4500/upload';
+const URL = ' https://jerancoma.herokuapp.com/upload';
 
 @Component({
     selector: 'item',
@@ -43,7 +43,7 @@ constructor(private http: Http, private el: ElementRef,private router: Router) {
         //     this.picture=response;
         // };
 
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
         .map(res => res.json())
         .subscribe(
         data => {
@@ -109,7 +109,7 @@ console.log("oooooooooooooooooooooooooooooooowwwwwwwwwww",this.owner_name)
         console.log(that)
         console.log(that.picture);
        
-        this.http.post('http://localhost:4500/item', {
+        this.http.post('https://jerancoma.herokuapp.com/item', {
             itemname: that.name,
             price: that.price,
             info: that.info,

@@ -100,7 +100,7 @@ export class signupComponent implements OnInit {
   submit() {
     const that = this;
     console.log(that)
-    this.http.post('http://localhost:4500/user', {
+    this.http.post('https://jerancoma.herokuapp.com/user', {
       username: that.name,
       password: that.password,
       phone: that.phone,

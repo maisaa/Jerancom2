@@ -56,7 +56,7 @@ export class FernutureComponent {
   arrlog=[];
   ngOnInit() {
 
-    this.http.get('http://localhost:4500/fernuture')
+    this.http.get('https://jerancoma.herokuapp.com/fernuture')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -67,7 +67,7 @@ export class FernutureComponent {
       () => console.log("here is the item ")
       );
       /*************************************** */
-this.http.get('http://localhost:4500/prof')
+this.http.get('https://jerancoma.herokuapp.com/prof')
 .map(res => res.json())
 .subscribe(
 data => {
@@ -91,7 +91,7 @@ rent(i){
 console.log(i)
   const that = this;
   console.log(that)
-  this.http.post('http://localhost:4500/renter', {
+  this.http.post('https://jerancoma.herokuapp.com/renter', {
     item_id:i,
     renter:that.arrlog[0].user_id
       })

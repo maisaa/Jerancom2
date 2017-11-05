@@ -56,7 +56,7 @@ export class ProfileComponent {
   rents = []
   ngOnInit() {
 
-    this.http.get('http://localhost:4500/prof')
+    this.http.get('https://jerancoma.herokuapp.com/prof')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -70,7 +70,7 @@ export class ProfileComponent {
       () => console.log("here is the item ")
       );
     /****************************************************************************/
-    this.http.get('http://localhost:4500/profiler')
+    this.http.get('https://jerancoma.herokuapp.com/profiler')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -81,7 +81,7 @@ export class ProfileComponent {
       () => console.log("here is the item ")
       );
     /***************************************************************************/
-    this.http.get('http://localhost:4500/getrents')
+    this.http.get('https://jerancoma.herokuapp.com/getrents')
     .map(res => res.json())
     .subscribe(
     data => {

@@ -3,7 +3,7 @@ var config = require('../knexfile')[env];
 var knex = require('knex')({
 
     connection: {
-      host : '127.0.0.1',
+      host : 'https://jerancoma.herokuapp.com',
       user : 'postgres',
       password : '123456',
       database : 'jer2'

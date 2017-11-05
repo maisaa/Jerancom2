@@ -10,7 +10,7 @@ import { Http, Response, Headers } from '@angular/http';
 export class ChatRoomService {
   constructor(private http: Http) {}
  // Our localhost address that we set in our server code
- private url = 'http://localhost:4500';
+ private url = 'https://jerancoma.herokuapp.com' ;
  socket;
  //chats = [];
 //ses;

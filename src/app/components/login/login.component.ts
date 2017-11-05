@@ -42,7 +42,7 @@ export class LoginComponent {
 
     console.log(this.name);
 
-    this.http.post('http://localhost:4500/login', {
+    this.http.post('https://jerancoma.herokuapp.com/login', {
       username: that.name,
       password: that.password
     })

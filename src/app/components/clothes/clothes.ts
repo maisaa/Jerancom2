@@ -57,7 +57,7 @@ export class ClothesComponent {
   ngOnInit() {
     
 
-    this.http.get('http://localhost:4500/clothes')
+    this.http.get('https://jerancoma.herokuapp.com/clothes')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -68,7 +68,7 @@ export class ClothesComponent {
       () => console.log("here is the item ")
       );
       /*************************************** */
-this.http.get('http://localhost:4500/prof')
+this.http.get('https://jerancoma.herokuapp.com/prof')
 .map(res => res.json())
 .subscribe(
 data => {
@@ -92,7 +92,7 @@ rent(i){
 console.log(i)
   const that = this;
   console.log(that)
-  this.http.post('http://localhost:4500/renter', {
+  this.http.post('https://jerancoma.herokuapp.com/renter', {
     item_id:i,
     renter:that.arrlog[0].user_id,
     renter_name:that.arrlog[0].username

@@ -28,7 +28,7 @@ export class AppComponent {
   send() {
     const that = this;
     console.log(that)
-    this.http.post('http://localhost:4500/app', {
+    this.http.post('https://jerancoma.herokuapp.com/app', {
       username: that.name,
       password: that.password
     })

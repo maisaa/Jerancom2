@@ -69,7 +69,7 @@ var AppComponent = (function () {
     AppComponent.prototype.send = function () {
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/app', {
+        this.http.post('https://jerancoma.herokuapp.com/app', {
             username: that.name,
             password: that.password
         })
@@ -455,7 +455,7 @@ var chatRoomComponent = (function () {
     };
     chatRoomComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             //  this.item = data;
@@ -540,7 +540,7 @@ var ChatRoomService = (function () {
     function ChatRoomService(http) {
         this.http = http;
         // Our localhost address that we set in our server code
-        this.url = 'http://localhost:4500';
+        this.url = 'https://jerancoma.herokuapp.com';
     }
     //chats = [];
     //ses;
@@ -631,14 +631,14 @@ var ClothesComponent = (function () {
     }
     ClothesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/clothes')
+        this.http.get('https://jerancoma.herokuapp.com/clothes')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
             console.log("aaaaaaaya", data);
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
         /*************************************** */
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
@@ -654,7 +654,7 @@ var ClothesComponent = (function () {
         console.log(i);
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/renter', {
+        this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
             renter: that.arrlog[0].user_id,
             renter_name: that.arrlog[0].username
@@ -773,14 +773,14 @@ var FernutureComponent = (function () {
     }
     FernutureComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/fernuture')
+        this.http.get('https://jerancoma.herokuapp.com/fernuture')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
             // console.log(data[0].renter)
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
         /*************************************** */
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
@@ -796,7 +796,7 @@ var FernutureComponent = (function () {
         console.log(i);
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/renter', {
+        this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
             renter: that.arrlog[0].user_id
         })
@@ -990,7 +990,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 //import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 //import { FileSelectDirective } from 'ng2-file-upload';
-var URL = ' http://localhost:4500/upload';
+var URL = ' https://jerancoma.herokuapp.com/upload';
 var ItemComponent = (function () {
     function ItemComponent(http, el, router) {
         this.http = http;
@@ -1008,7 +1008,7 @@ var ItemComponent = (function () {
         //     this.picture=response;
         // };
         var _this = this;
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
@@ -1053,7 +1053,7 @@ var ItemComponent = (function () {
         var that = this;
         console.log(that);
         console.log(that.picture);
-        this.http.post('http://localhost:4500/item', {
+        this.http.post('https://jerancoma.herokuapp.com/item', {
             itemname: that.name,
             price: that.price,
             info: that.info,
@@ -1147,7 +1147,7 @@ var LoginComponent = (function () {
         var _this = this;
         var that = this;
         console.log(this.name);
-        this.http.post('http://localhost:4500/login', {
+        this.http.post('https://jerancoma.herokuapp.com/login', {
             username: that.name,
             password: that.password
         })
@@ -1262,13 +1262,13 @@ var MaintenanceComponent = (function () {
     }
     MaintenanceComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/maintenance')
+        this.http.get('https://jerancoma.herokuapp.com/maintenance')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
         /*************************************** */
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
@@ -1284,7 +1284,7 @@ var MaintenanceComponent = (function () {
         console.log(i);
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/renter', {
+        this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
             renter: that.arrlog[0].user_id
         })
@@ -1424,7 +1424,7 @@ var MapComponent = (function () {
     MapComponent.prototype.sendloc = function () {
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/loc', {
+        this.http.post('https://jerancoma.herokuapp.com/loc', {
             longitude: that.longitude,
             latitude: that.latitude
         })
@@ -1510,14 +1510,14 @@ var OthersComponent = (function () {
     }
     OthersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/others')
+        this.http.get('https://jerancoma.herokuapp.com/others')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
             console.log("here is the others", data);
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
         /*************************************** */
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
@@ -1533,7 +1533,7 @@ var OthersComponent = (function () {
         console.log('hiiiiiiiiiiiiiiiiiiiiimeeeezzzzzzz', i);
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/renter', {
+        this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
             renter: that.arrlog[0].user_id
         })
@@ -1650,7 +1650,7 @@ var ProfileComponent = (function () {
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
@@ -1659,14 +1659,14 @@ var ProfileComponent = (function () {
             console.log("username ", data[0].username);
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
         /****************************************************************************/
-        this.http.get('http://localhost:4500/profiler')
+        this.http.get('https://jerancoma.herokuapp.com/profiler')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.item = data;
             console.log("aaaaaaaya", data);
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
         /***************************************************************************/
-        this.http.get('http://localhost:4500/getrents')
+        this.http.get('https://jerancoma.herokuapp.com/getrents')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.rents = data;
@@ -1837,7 +1837,7 @@ var signupComponent = (function () {
         var _this = this;
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/user', {
+        this.http.post('https://jerancoma.herokuapp.com/user', {
             username: that.name,
             password: that.password,
             phone: that.phone,
@@ -1936,13 +1936,13 @@ var ToolsComponent = (function () {
         var that = this;
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         /************************bring inormation for user who logged in now*************** */
-        this.http.get('http://localhost:4500/prof')
+        this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
         /***************get tools information************ */
-        this.http.get('http://localhost:4500/tools')
+        this.http.get('https://jerancoma.herokuapp.com/tools')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             console.log(data);
@@ -1979,7 +1979,7 @@ var ToolsComponent = (function () {
         console.log(i);
         var that = this;
         console.log(that);
-        this.http.post('http://localhost:4500/renter', {
+        this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
             renter: that.arrlog[0].user_id,
             renter_name: that.arrlog[0].username

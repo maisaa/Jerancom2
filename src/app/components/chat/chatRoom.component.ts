@@ -53,7 +53,7 @@ export class chatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:4500/prof')
+    this.http.get('https://jerancoma.herokuapp.com/prof')
     .map(res => res.json())
     .subscribe(
     data => {

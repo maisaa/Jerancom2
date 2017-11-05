@@ -67,7 +67,7 @@ export class ToolsComponent {
     let that = this;
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     /************************bring inormation for user who logged in now*************** */
-    this.http.get('http://localhost:4500/prof')
+    this.http.get('https://jerancoma.herokuapp.com/prof')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -81,7 +81,7 @@ export class ToolsComponent {
 
     /***************get tools information************ */
 
-    this.http.get('http://localhost:4500/tools')
+    this.http.get('https://jerancoma.herokuapp.com/tools')
       .map(res => res.json())
       .subscribe(
       data => {
@@ -130,7 +130,7 @@ export class ToolsComponent {
     console.log(i)
     const that = this;
     console.log(that)
-    this.http.post('http://localhost:4500/renter', {
+    this.http.post('https://jerancoma.herokuapp.com/renter', {
       item_id: i,
       renter: that.arrlog[0].user_id,
       renter_name:that.arrlog[0].username
