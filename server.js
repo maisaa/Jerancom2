@@ -1,6 +1,5 @@
 const express = require('express');
 // const router = express.Router();
-
 const app = express()
 const pg = require('pg');
 let http = require('http').Server(app);
@@ -273,7 +272,10 @@ app.post('/login', (req, res, next) => {
 
   });
 });
+app.get('/signup',(req,res)=>{
+       res.sendFile(__dirname + '/src/app/components/signup/signup.html');
 
+})
 
 /////////////////////////////////////
 
