@@ -73,7 +73,7 @@ app.use(function (req, res, next) {
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
 
 app.get("/",(req, res)=>{
-  res.send("./index.html")
+  res.sendFile('./index.html')
 })
 
 app.get('/profiler', (req, res, next) => {
