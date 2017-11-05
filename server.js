@@ -12,6 +12,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var bodyparser = require('body-parser')
 var multer = require('multer')
+var serveStatic = require('serve-static');
 var upload = multer({
   dest: './src/assets/uploads/'
 }).single('photo');
@@ -19,14 +20,14 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5433/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
 
 /*****************************************************************************************/
 
-app.use(express.static(path.join(__dirname, "./src")));
+app.use(express.static(path.join(__dirname, "./dist")));
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded())
 app.use(morgan('dev'));
@@ -147,7 +148,16 @@ app.get('/getrents', (req, res, next) => {
   
 });
 
-
+////////////////////////////////////////////////////
+app.get('/chatRoom',(req, res) => {
+  console.log ('app.get(/)');
+  ///app.use('/chatRoom', serveStatic('/src/app/components/chat/chatRoom.component.html'));
+     //res.path('./app/components/chat');
+     res.sendFile(__dirname + '/src/app/components/chat/chatRoom.component.html');
+  //res.redirect('/src/app/components/chat/chatRoom.component.html'); // check if this path right or not
+  // window.location= '/src/app/components/chat/chatRoom.component.html'
+});
+/////////////////////////////////////
 /***************************************SAVE LOCATION IN DATABASE***************************************************/
 
 app.post('/loc', urlencodedParser, (req, res, next) => {
