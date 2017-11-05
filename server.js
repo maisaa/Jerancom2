@@ -75,9 +75,9 @@ app.use(function (req, res, next) {
 //app.get("/",(req, res)=>{
   //res.sendFile('./index.html')
  // res.sendFile(__dirname + './index.html');
- app.get('*', function(req, res){
-	res.sendFile(path.join(__dirname + './index.html')) // to send the user the file in the path that is created by joinging __dirname and the path of the index.html in the folders.
-
+ app.get('/', function(req, res){
+//	res.sendFile(path.join(__dirname + './index.html')) // to send the user the file in the path that is created by joinging __dirname and the path of the index.html in the folders.
+res.send("hiiiiiiiiiii")
 })
 //})
 
