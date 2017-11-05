@@ -16,7 +16,7 @@ module.exports = {
         password: '123456'
     },
     debug: true
-}
+},
 
   // staging: {
   //   client: 'postgresql',
@@ -34,13 +34,12 @@ module.exports = {
   //   }
   // },
 
-  // production: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
+  production: {
+    client: 'postgresql',
+    connection: process.env.DATABASE_URL 
+     
+    }
+  // ,
   //   pool: {
   //     min: 2,
   //     max: 10
