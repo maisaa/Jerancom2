@@ -42,9 +42,9 @@ module.exports = {
       
     //   database: "postgres://xrvqvqxfzlnhzu:e42ad7b1221d8458f567c92678c8a8efcf79029b8c849012b4bd35c10fcefb2e@ec2-54-235-240-92.compute-1.amazonaws.com:5432/d5083pjotv7qfs",
       
-  },  
+  } 
   
-  }
+  
   // ,
   //   pool: {
   //     min: 2,
