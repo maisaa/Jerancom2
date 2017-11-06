@@ -328,7 +328,7 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   //console.log(req.body)
   const results = [];
   // Grab data from http request
-  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude };
+  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone,  email: req.body.email,longitude: req.body.longitude, latitude: req.body.latitude };
   // Get a Postgres client from the connection pool
   //  var salt = bcrypt.genSaltSync(10);
   //  var hash = bcrypt.hashSync(req.body.password,salt);
@@ -345,8 +345,8 @@ app.post('/user', urlencodedParser, (req, res, next) => {
     //  bcrypt.hash( data.password, saltRounds, function(err, hash) {
     // Store hash in your password DB.
 
-    client.query('INSERT INTO users(username, password,phone,longitude,latitude) values($1,$2,$3,$4,$5)',
-      [data.username, data.password, data.phone, data.longitude, data.latitude]);
+    client.query('INSERT INTO users(username, password,phone,email,longitude,latitude) values($1,$2,$3,$4,$5,$6)',
+      [data.username, data.password, data.phone,data.email ,data.longitude, data.latitude]);
 
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM users ');

@@ -106,7 +106,7 @@ export class signupComponent implements OnInit {
       phone: that.phone,
       longitude: that.longitude,
       latitude: that.latitude,
-        email:that.email
+      email:that.email
 
     })
      
