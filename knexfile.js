@@ -11,7 +11,7 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-        database: 'jer2',
+        database: 'jerancomdb',
         user: 'postgres',
         password: '123456'
     },
