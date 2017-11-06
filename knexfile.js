@@ -36,9 +36,15 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL 
-     
-    }
+    //connection: process.env.DATABASE_URL 
+    //connection: "postgres://xrvqvqxfzlnhzu:e42ad7b1221d8458f567c92678c8a8efcf79029b8c849012b4bd35c10fcefb2e@ec2-54-235-240-92.compute-1.amazonaws.com:5432/d5083pjotv7qfs"
+    connection: {
+      database: "postgres://xrvqvqxfzlnhzu:e42ad7b1221d8458f567c92678c8a8efcf79029b8c849012b4bd35c10fcefb2e@ec2-54-235-240-92.compute-1.amazonaws.com:5432/d5083pjotv7qfs",
+      user: 'postgres',
+      password: '123456'
+  },  
+  
+  }
   // ,
   //   pool: {
   //     min: 2,
