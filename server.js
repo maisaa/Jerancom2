@@ -75,6 +75,18 @@ app.use(function (req, res, next) {
 // });
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
 
+// //app.get("/",(req, res)=>{
+//   //res.sendFile('./index.html')
+//  //res.sendFile(__dirname + './index.html');
+ 
+//	//res.sendFile(path.join(__dirname + './index.html')) // to send the user the file in the path that is created by joinging __dirname and the path of the index.html in the folders.
+
+//////////////////////////////////********?????????*??*?*?*?*??????////////////////////// */
+// app.get('*', function(req, res){
+// res.sendFile(__dirname + '/dist/index.html');
+// })
+
+
 app.get('/profiler', (req, res, next) => {
   console.log(' helo babey',ccc);
   // console.log(req.body)
@@ -251,7 +263,7 @@ app.post('/login', (req, res, next) => {
     //console.log("hiiiii login password")
     else {
       // SQL Query > Select Data
-      var query = client.query('SELECT username  FROM users WHERE username=($1) ', [data.username]);
+      var query = client.query('SELECT *  FROM users WHERE username=($1) ', [data.username]);
 
       //console.log(data.username);
 
@@ -267,19 +279,19 @@ app.post('/login', (req, res, next) => {
         req.session.username = row.username;
        //------------------------
         ccc = req.session.username
-      //    bool = bcrypt.compareSync(req.body.password, row.password);
+          bool = bcrypt.compareSync(req.body.password, row.password);
       // console.log(bool);
 
       });
       // After all data is returned, close connection and return results
       query.on('end', () => {
         done();
-        //  if(bool){
+          if(bool){
         res.sendFile(__dirname + './src/app/components/home/home.html');
         return res.send(results);    
-      // }else{
-      //   return res.json("not correct password man");
-      // }
+       }else{
+         return res.json("not correct password man");
+     }
       });
       //});
     }
@@ -327,10 +339,10 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   // Grab data from http request
   const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude };
   // Get a Postgres client from the connection pool
-  //  var salt = bcrypt.genSaltSync(10);
-  //  var hash = bcrypt.hashSync(req.body.password,salt);
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(req.body.password,salt);
   // console.log(hash);
-  // data.password= hash;
+   data.password= hash;
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if (err) {
@@ -342,8 +354,8 @@ app.post('/user', urlencodedParser, (req, res, next) => {
     //  bcrypt.hash( data.password, saltRounds, function(err, hash) {
     // Store hash in your password DB.
 
-    client.query('INSERT INTO users(username, password,phone,longitude,latitude) values($1,$2,$3,$4,$5)',
-      [data.username, data.password, data.phone, data.longitude, data.latitude]);
+    client.query('INSERT INTO users(username, password,phone,longitude,latitude,email) values($1,$2,$3,$4,$5,$6)',
+      [data.username, data.password, data.phone, data.longitude, data.latitude,data.email]);
 
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM users ');
@@ -446,25 +458,7 @@ app.post('/renter', urlencodedParser, (req, res, next) => {
 /***************************************POST ITEM IN DATABASE***************************************************/
 app.post('/item', urlencodedParser, (req, res, next) => {
   console.log("----------------------------",req.body.owner_name)
-   const transport = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-          user: 'jerancomrbk@gmail.com',
-          pass: 'jeran123',
-      },
-  });
-  const mailOptions = {
-      from: 'jerancomrbk@gmail.com',
-      to:   'mazen.alchalah@gmail.com',
-      subject: 'new Items',
-      html: 'new items added in the website check',
-  };
-  transport.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          console.log("erooooooooooooooooooor////////",error);
-      }
-      console.log("Message sent: ayaaaaaaaaa",info );
-  });
+  
   const results = [];
   // Grab data from http request
   const data = {owner_name:req.body.owner_name,longitude:req.body.longitude,latitude:req.body.latitude, owner:req.body.owner,itemname: req.body.itemname, itemtype: req.body.itemtype, info: req.body.info, price: req.body.price,picture:req.body.picture };
@@ -480,19 +474,49 @@ app.post('/item', urlencodedParser, (req, res, next) => {
     client.query('INSERT INTO items(owner_name,longitude,latitude,owner,itemname, itemtype,info,price,picture) values($1,$2,$3,$4,$5,$6,$7,$8,$9)',
       [data.owner_name,data.longitude,data.latitude,data.owner,data.itemname, data.itemtype, data.info, data.price,data.picture]);
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items ');
+    const query = client.query('SELECT email from users ');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
+    console.log("emmmm",results)
+    
     });
     // After all data is returned, close connection and return results
     query.on('end', () => {
-
-      return res.json(results);
+      const transport = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'jerancomrbk@gmail.com',
+            pass: 'jeran123',
+        },
+    });
+    //results[results.length-1].email
+    const mailOptions = {
+        from: 'jerancomrbk@gmail.com',
+        to:  
+        function aya(){
+          var str = "";
+          for(i=0;i<results.length;i++){
+            if(results[i].email !== null){
+            str = str + results[i].email +","
+          }
+        }
+        return str;
+        }(),
+        subject: 'new Items added in the websit',
+        html: '<h1> hi customer because we care about you</h1> <p>We send this massege for you to tell you thier is new item added in our websit(jerancom website)  </p> <h2>thanx u :)</h2>',
+    };
+    transport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log("erooooooooooooooooooor////////",error);
+        }
+        console.log("Message sent:",info );
+    });
+      return res.send(results);
     });
   });
-});
-
+ });
+ 
 /***************************************UPLOUDE IMAGE IN DATABASE***************************************************/
 
 app.post('/upload', function (req, res, next) {

@@ -72,6 +72,7 @@ export class ToolsComponent {
       .subscribe(
       data => {
         this.arrlog = data;
+        console.log("yayayayayayayaya"+data[0].username);
       },
       err => console.log("eeeeeeeeeeeeeeeerrrrrrrror", err),
       () => console.log("here is the item ")
