@@ -78,7 +78,7 @@ constructor(private http: Http, private el: ElementRef,private router: Router) {
         this.http.post('https://api.imgur.com/3/image',body,options)
         .subscribe(
             data => {
-                alert('whyyyyy');
+                alert('done');
                 console.log(data.json().data.link,"thiiiiiis////////////////******")
                 that.picture = data.json().data.link;
             },
