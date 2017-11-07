@@ -1986,7 +1986,7 @@ var ToolsComponent = (function () {
             }
             // for(var j=0;j<this.arr.length;j++){
             //   this.obj['distance']=this.arr[j];
-            // }
+            // }//////////////
             // this.result.push(this.obj);
             console.log('kkkkkkkkkkkkklllll2222', _this.result);
         }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });

@@ -112,7 +112,7 @@ export class ToolsComponent {
         }
         // for(var j=0;j<this.arr.length;j++){
         //   this.obj['distance']=this.arr[j];
-        // }
+        // }//////////////
         // this.result.push(this.obj);
         console.log('kkkkkkkkkkkkklllll2222',this.result);
         
