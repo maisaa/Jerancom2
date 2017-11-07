@@ -11,9 +11,7 @@
           <a routerLink="/item" routerLinkActive="active">Add Item </a>
         </li>
         <li>
-          <a 
-          routerLink="/home" routerLinkActive="active"
-          > Home</a>
+          <a routerLink="/home" routerLinkActive="active"> Home</a>
         </li>
         <li>
           <a routerLink="/about" routerLinkActive="active"> About</a>
@@ -22,42 +20,42 @@
           <a routerLink="/profiler" routerLinkActive="active">Profile</a>
         </li>
         <li>
-          <a  routerLink="/login" routerLinkActive="active">Logout</a>
+          <a routerLink="/chatRoom" routerLinkActive="active">chatRoom</a>
+
         </li>
         <li>
-          <a routerLink="/chatRoom" routerLinkActive="active"
-          >chatRoom</a>
-
+          <a routerLink="/login" routerLinkActive="active">Logout</a>
         </li>
       </ul>
     </nav>
   </div>
 </header>
 
+
 <div>
-  <div class="col-sm-2" ></div>
-  
-  <div class="col-sm-8">
-    <div class="col-sm-4" *ngFor="let item of item">
-      <div *ngFor="let aya of arr">
-      <div style='float:center;' >
-        <div style=" margin-left:44%;margin-top: 50px " >
-          <div >
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-8" [@listAnimation]="this.result.length">
+    <div class="col-sm-4" *ngFor="let item of result">
+      <div style='float:center;'>
+        <div style=" margin-left:44%;margin-top: 50px " *ngIf="visible">
+          <div>
             <!-- when you click on the image in will popup with details -->
-            <img style="width: 155px ;height: 200px;border: solid;border-color:#8cff66" src="{{item.picture}}" class="btn btn-secondary" data-toggle="modal" alt= {{item.itemname}}
-              data-target="#item-info"(click)="changeItem(item)" />
+            <img style="width: 155px ;height: 200px;border: solid;border-color:#8cff66" src="{{item.item.picture}}" class="btn btn-secondary"
+              data-toggle="modal" alt={{item.item.itemname}} data-target="#item-info" (click)="changeItem(item)" />
           </div>
           <div>
             <div style="margin-top: 20px;font-weight:800 ;font-family: tahoma">
-              Item Name: {{item.itemname}}
+              Item Name: {{item.item.itemname}}
             </div>
             <div style="margin-top: 20px;font-weight:700 ;font-family: tahoma ">
-              Price: {{item.price}}
-              dist :{{aya}}
+              Price: {{item.item.price}}
+            </div>
+            <div style="margin-top: 20px;font-weight:700 ;font-family: tahoma ">
+              distance:{{item.distance}}
             </div>
             <div style="margin-top: 20px ;color: black">
               <button (click)="rent(item.item_id)">rent</button>
-
             </div>
 
           </div>
@@ -66,7 +64,7 @@
       </div>
     </div>
     <!-- modal for item detail -->
-    <div class="modal fade" id="item-info" role="dialog" >
+    <div class="modal fade" id="item-info" role="dialog">
       <div class="modal-dialog" style="width :50%;border: solid;border-color:#8cff66">
         <div class="modal-content" style="width :100%">
           <div class="modal-header" style="background:#35424a;color:#8cff66">
@@ -96,7 +94,7 @@
                   </div>
                 </div>
               </div>
-             
+
             </div>
           </div>
           <div class="modal-footer">
@@ -106,5 +104,4 @@
       </div>
     </div>
   </div>
-</div>
-<button (click)="GetAddress()">location</button>
+

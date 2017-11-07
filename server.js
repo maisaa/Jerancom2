@@ -1,6 +1,5 @@
 const express = require('express');
 // const router = express.Router();
-
 const app = express()
 const pg = require('pg');
 let http = require('http').Server(app);
@@ -20,7 +19,7 @@ var port = process.env.PORT||4500;
 //var upload = multer({dest: DIR}).single('photo');
 // var upload = multer({ storage: storage });
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
-const connectionString = process.env.DATABASE_URL || 'postgres://postgres:123456@localhost:5432/jerancomdb';
+const connectionString = process.env.DATABASE_URL || 'postgres://jerano:123456@localhost:5434/jerancomdb';
 
 var ccc ;
 /***************************************GET USERS FROM DATABASE***************************************************/
@@ -70,6 +69,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+// app.get('/', (req, res, next) => {
+//   res.sendFile(__dirname + './');
+  
+// });
 ///////////////////////my profile  with my item and who rent item from me///////////////////////////////////////////////////////
 
 // //app.get("/",(req, res)=>{
@@ -295,7 +298,10 @@ app.post('/login', (req, res, next) => {
 
   });
 });
+app.get('/signup',(req,res)=>{
+       res.sendFile(__dirname + '/src/app/components/signup/signup.html');
 
+})
 
 /////////////////////////////////////
 
@@ -331,7 +337,7 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   //console.log(req.body)
   const results = [];
   // Grab data from http request
-  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude };
+  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude ,email:req.body.email};
   // Get a Postgres client from the connection pool
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password,salt);
