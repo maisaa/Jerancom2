@@ -279,24 +279,24 @@ app.post('/login', (req, res, next) => {
         req.session.username = row.username;
        //------------------------
         ccc = req.session.username
-          var bool = bcrypt.compareSync(req.body.password, row.password);
+       //   var bool = bcrypt.compareSync(req.body.password, row.password);
       // console.log(bool);
 
       });
       // After all data is returned, close connection and return results
       query.on('end', () => {
         done();
-          if(bool){
+       //   if(bool){
        // res.sendFile(__dirname + './src/app/components/home/home.html');
         return res.send(results);    
-       }else{
-         return res.json("not correct password man");
-     }
-      });
+     //  }else{
+       ////  return res.json("not correct password man");
+     //}
+     // });
       //});
-    }
+   // }
 
-  });
+ //// });
 });
 app.get('/signup',(req,res)=>{
        res.sendFile(__dirname + '/src/app/components/signup/signup.html');
@@ -339,10 +339,10 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   // Grab data from http request
   const data = { username: req.body.username, password: req.body.password, phone: req.body.phone,  email: req.body.email,longitude: req.body.longitude, latitude: req.body.latitude };
   // Get a Postgres client from the connection pool
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.password,salt);
+   // var salt = bcrypt.genSaltSync(10);
+    //var hash = bcrypt.hashSync(req.body.password,salt);
   // console.log(hash);
-   data.password= hash;
+  // data.password= hash;
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if (err) {
