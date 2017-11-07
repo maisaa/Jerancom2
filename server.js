@@ -279,7 +279,7 @@ app.post('/login', (req, res, next) => {
         req.session.username = row.username;
        //------------------------
         ccc = req.session.username
-          bool = bcrypt.compareSync(req.body.password, row.password);
+          var bool = bcrypt.compareSync(req.body.password, row.password);
       // console.log(bool);
 
       });
