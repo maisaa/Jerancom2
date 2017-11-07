@@ -287,7 +287,7 @@ app.post('/login', (req, res, next) => {
       query.on('end', () => {
         done();
           if(bool){
-        res.sendFile(__dirname + './src/app/components/home/home.html');
+       // res.sendFile(__dirname + './src/app/components/home/home.html');
         return res.send(results);    
        }else{
          return res.json("not correct password man");
