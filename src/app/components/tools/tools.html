@@ -39,6 +39,7 @@
   
   <div class="col-sm-8">
     <div class="col-sm-4" *ngFor="let item of item">
+      <div *ngFor="let aya of arr">
       <div style='float:center;' >
         <div style=" margin-left:44%;margin-top: 50px " >
           <div >
@@ -52,6 +53,7 @@
             </div>
             <div style="margin-top: 20px;font-weight:700 ;font-family: tahoma ">
               Price: {{item.price}}
+              dist :{{aya}}
             </div>
             <div style="margin-top: 20px ;color: black">
               <button (click)="rent(item.item_id)">rent</button>
@@ -60,6 +62,7 @@
 
           </div>
         </div>
+      </div>
       </div>
     </div>
     <!-- modal for item detail -->
@@ -104,3 +107,4 @@
     </div>
   </div>
 </div>
+<button (click)="GetAddress()">location</button>

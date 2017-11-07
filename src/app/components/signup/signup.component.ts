@@ -26,6 +26,7 @@ export class signupComponent implements OnInit {
   name: String;
   password: String;
   phone: Number;
+  email:String
 
   public latitude: number;
   public longitude: number;
@@ -105,7 +106,8 @@ export class signupComponent implements OnInit {
       password: that.password,
       phone: that.phone,
       longitude: that.longitude,
-      latitude: that.latitude
+      latitude: that.latitude,
+      email:that.email
 
 
     })
