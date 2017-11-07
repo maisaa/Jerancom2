@@ -7,8 +7,8 @@
     </div>
     <nav>
       <ul>
-        <li class='current'>
-          <a href="item">Add Item </a>
+        <li >
+          <a routerLink="/item" routerLinkActive="active">Add Item </a>
         </li>
         <li>
           <a 
@@ -18,18 +18,22 @@
         <li>
           <a routerLink="/about" routerLinkActive="active"> About</a>
         </li>
-        <li>
-          <a  routerLink="/login" routerLinkActive="active">Logout</a>
+        <li class='current'>
+          <a routerLink="/profiler" routerLinkActive="active">Profile</a>
         </li>
         <li>
           <a routerLink="/chatRoom" routerLinkActive="active"
           >chatRoom</a>
 
         </li>
+          <li>
+          <a  routerLink="/login" routerLinkActive="active">Logout</a>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
+
       
 <div class="col-sm-6" style="background:#8cff66">
   <div style="color:black;font-weight: 900;font-size:16px; margin-top:5%;margin-left:10%">  My Item </div>

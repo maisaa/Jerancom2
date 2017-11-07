@@ -22,17 +22,19 @@
           <a routerLink="/profiler" routerLinkActive="active">Profile</a>
         </li>
         <li>
-          <a  routerLink="/login" routerLinkActive="active">Logout</a>
-        </li>
-        <li>
           <a routerLink="/chatRoom" routerLinkActive="active"
           >chatRoom</a>
 
+        </li>
+          <li>
+          <a  routerLink="/login" routerLinkActive="active">Logout</a>
         </li>
       </ul>
     </nav>
   </div>
 </header>
+
+
 
 <!-- 
 <div class="container">
@@ -140,6 +142,10 @@
               <option value="Others">Others</option>
             </select>
           </div>
+          <select name="status" [(ngModel)]="status">
+            <option value="Rent">Rent</option>
+            <option value="Buy">Buy</option>
+            </select>
           <div>
             <!-- <label style="color: black">
                   <b>Phone  </b>
