@@ -259,6 +259,8 @@ app.post('/login', (req, res, next) => {
       {res.send('No username specified');}
     //console.log(data.username);
 
+//kjghlkjh;kj
+    //lkh;lkhlk
     // bcrypt.hash(data.password, saltRounds, function (err, hash) {
     //console.log("hiiiii login password")
     else {
