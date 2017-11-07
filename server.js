@@ -337,7 +337,7 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   //console.log(req.body)
   const results = [];
   // Grab data from http request
-  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude };
+  const data = { username: req.body.username, password: req.body.password, phone: req.body.phone, longitude: req.body.longitude, latitude: req.body.latitude ,email:req.body.email};
   // Get a Postgres client from the connection pool
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password,salt);
