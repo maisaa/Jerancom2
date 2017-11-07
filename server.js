@@ -256,7 +256,7 @@ app.post('/login', (req, res, next) => {
 
 
     if (data.username === undefined || data.username === '')
-      res.send('No username specified');
+      {res.send('No username specified');}
     //console.log(data.username);
 
     // bcrypt.hash(data.password, saltRounds, function (err, hash) {
@@ -291,18 +291,19 @@ app.post('/login', (req, res, next) => {
         return res.send(results);    
      //  }else{
        ////  return res.json("not correct password man");
-     //}
-     // });
-      //});
-   // }
+     });
+     };
+      });
+  });
 
- //// });
-});
+//  });
+// });
+////////////////////////////////////
 app.get('/signup',(req,res)=>{
        res.sendFile(__dirname + '/src/app/components/signup/signup.html');
 
 })
-
+    
 /////////////////////////////////////
 
 // app.get('/',(req, res) => {
