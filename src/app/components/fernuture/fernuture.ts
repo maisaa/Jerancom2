@@ -143,7 +143,7 @@ export class FernutureComponent {
       data => {
         alert('ok');
         console.log(data)
-       
+        this.router.navigate(['/profiler']);
         
       },
       error => {

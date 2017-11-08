@@ -142,7 +142,7 @@ export class ToolsComponent {
       data => {
         alert('ok');
         console.log(data)
-       
+        this.router.navigate(['/profiler']);
         
       },
       error => {
