@@ -281,18 +281,18 @@ app.post('/login', (req, res, next) => {
         req.session.username = row.username;
        //------------------------
         ccc = req.session.username
-       //   var bool = bcrypt.compareSync(req.body.password, row.password);
-      // console.log(bool);
+         var bool = bcrypt.compareSync(req.body.password, row.password);
+      console.log(bool);
 
       });
       // After all data is returned, close connection and return results
       query.on('end', () => {
         done();
-       //   if(bool){
-       // res.sendFile(__dirname + './src/app/components/home/home.html');
+         if(bool){
+       //res.sendFile(__dirname + './src/app/components/home/home.html');
         return res.send(results);    
-     //  }else{
-       ////  return res.json("not correct password man");
+       }else{
+         return res.json("not correct password man");}
      });
      };
       });
@@ -305,33 +305,6 @@ app.get('/signup',(req,res)=>{
        res.sendFile(__dirname + '/src/app/components/signup/signup.html');
 
 })
-    
-/////////////////////////////////////
-
-// app.get('/',(req, res) => {
-//    console.log ('app.get(/)');
-//    if( !!req.session.username ){
-//       res.sendFile(__dirname + './index.html');
-//    }else{
-//     res.redirect('/index.html'); // check if this path right or not
-//    }
-// });
-
-// app.get('/home',(req, res) =>{
-//   console.log('req.session---->',req.session);
-//   if( !!req.session.username){
-//      res.redirect('/app/app.component.html')
-//   }
-// })
-
-// app.get('/logout', (req, res) => {
-//   res.sendFile(__dirname + './src/app/components/login/login.component.html'); // check if this path right or not
-//   res.send("get login");
-// })
-
-
-//....................................................
-
 
 
 /***************************************SIGN UP***************************************************/
@@ -342,10 +315,10 @@ app.post('/user', urlencodedParser, (req, res, next) => {
   // Grab data from http request
   const data = { username: req.body.username, password: req.body.password, phone: req.body.phone,  email: req.body.email,longitude: req.body.longitude, latitude: req.body.latitude };
   // Get a Postgres client from the connection pool
-   // var salt = bcrypt.genSaltSync(10);
-    //var hash = bcrypt.hashSync(req.body.password,salt);
+   var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(req.body.password,salt);
   // console.log(hash);
-  // data.password= hash;
+     data.password= hash;
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if (err) {
@@ -381,41 +354,8 @@ app.post('/user', urlencodedParser, (req, res, next) => {
 });
 // });
 ///////////////////////////////////////////////////////////////////////////
-// app.post('/loginn', (req, res, next) => {
-//   const results = [];
 
-//   // Grab data from the URL parameters
-//   // Get a Postgres client from the connection pool
-//   pg.connect(connectionString, (err, client, done) => {
-//     // Handle connection errors
-//     if (err) {
-//       done();
-//       console.log(err);
-//       return res.status(500).json({ success: false, data: err });
-//     }
-//     const data = { username: req.body.username, password: req.body.password };
-//     console.log(data.username);
-//     // SQL Query > Delete Data
-//     client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
-//     // SQL Query > Select Data
 
-//     var query = client.query('SELECT * FROM users WHERE username=($1) AND password=($2)', [data.username, data.password]);
-//     //console.log(query);
-//     // Stream results back one row at a time
-//     //console.log("my result--------",results)
-//     query.on('row', (row) => {
-
-//       results.push(row);
-//       // console.log("console.log(results);",results);
-//       //console.log('results.length ----',results.length);
-//     });
-//     query.on('end', () => {
-//       done();
-//       return res.json(results);
-//     });
-//   });
-// });
-// /////
 
 app.post('/renter', urlencodedParser, (req, res, next) => {
   //console.log(req.body)
@@ -538,35 +478,7 @@ app.post('/upload', function (req, res, next) {
      return res.send(newpath); 
  });
   });
-  // const results = [];
-  // // Grab data from http request
-  // const data = {picture: path};
-  // console.log("paaaaaaaaaaath" , data.picture)
-  // // Get a Postgres client from the connection pool
-  // pg.connect(connectionString, (err, client, done) => {
-  //   // Handle connection errors
-  //   if(err) {
-  //     done();
-  //     console.log(err , "------------------------rtete");
-  //     return res.status(500).json({success: false, data: err});
-  //   }
-  //   // SQL Query > Insert Data
-  //   client.query('INSERT INTO items(picture) values($1)',
-  //   [data.picture ]);
-  //   // SQL Query > Select Data
-  //   const query = client.query('SELECT * FROM items ');
-  //   // Stream results back one row at a time
-  //   query.on('row', (row) => {
-  //     results.push(row);
-  //   });
-  //   // After all data is returned, close connection and return results
-  //   query.on('end', () => {
-
-  //     return res.json(results);
-  //   });
-  // }); 
-//......................................................................
-
+  
 /***************************************GET USERS FROM DATABASE***************************************************/
 app.get('/user', (req, res, next) => {
   console.log('hiiiiiiiii')
