@@ -608,7 +608,7 @@ app.get('/tools', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Tools']);
+    const query = client.query('SELECT * FROM items where itemtype=($1) and renter_name IS null' ,['Tools']);
     // Stream results back one row at a time
     query.on('row', (row) => {
       console.log("reeeeeeeees",results)
