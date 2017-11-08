@@ -1908,6 +1908,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1920,9 +1921,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ToolsComponent = (function () {
-    function ToolsComponent(http) {
+    function ToolsComponent(http, router) {
         this.http = http;
+        this.router = router;
         this.visible = true;
         this.item = [];
         this.arr = [];
@@ -2008,6 +2011,7 @@ var ToolsComponent = (function () {
             alert('ok');
             console.log(data);
             _this.visible = !_this.visible;
+            _this.router.navigate(['/prof']);
         }, function (error) {
             console.log(error, "erooooooooooooooooooe");
         });
@@ -2072,10 +2076,10 @@ ToolsComponent = __decorate([
     /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
     /**********************************************************************************************************/
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], ToolsComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=tools.js.map
 
 /***/ }),

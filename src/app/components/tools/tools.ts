@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { Http, Response, Headers } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
-
+import {Router}  from '@angular/router';
 @Component({
   selector: 'tools',
   templateUrl: './tools.html',
@@ -49,7 +49,7 @@ import { HttpHeaders } from '@angular/common/http';
 /**********************************************************************************************************/
 export class ToolsComponent {
 
-  constructor(public http: Http) { }
+  constructor(public http: Http ,private router: Router) { }
   visible= true;
   item = [];
   latitude: number;
@@ -142,7 +142,8 @@ export class ToolsComponent {
       data => {
         alert('ok');
         console.log(data)
-        this.visible=!this.visible
+        this.visible=!this.visible;
+        this.router.navigate(['/prof']);
         
       },
       error => {
