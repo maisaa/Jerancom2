@@ -579,7 +579,7 @@ var _a;
 /***/ "../../../../../src/app/components/clothes/clothes.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<header>\n    <div class=\"container\">\n      <div id=\"branding\">\n        <h1>\n          <span class='highlight'>JeranCom</span>\n        </h1>\n      </div>\n      <nav>\n        <ul>\n          <li class='current'>\n            <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n          </li>\n          <li>\n            <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n          </li>\n          <li>\n            <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n          </li>\n          <li>\n            <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n          </li>\n          <li>\n            <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n  \n          </li>\n          <li>\n            <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </header>\n  \n  \n  <div>\n    <div class=\"col-sm-2\"></div>\n  \n    <div class=\"col-sm-8\" [@listAnimation]=\"this.result.length\">\n      <div *ngFor=\"let item of result\">\n        <div style=\"margin-top:40px\">\n          <div>\n            <!-- <div>\n              <-- when you click on the image in will popup with details \n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n                data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n            </div> -->\n            <div>\n              <div class=\"row content\" style=\"margin-top:20px\">\n  \n                <div class=\"col-sm-4 sidenav\">\n                  <img src=\"{{item.item.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\"class=\"btn btn-secondary\"\n                  data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item.item)\" />\n  \n                </div>\n                <div class=\"col-sm-8 sidenav\" style=\"margin-top:50px\">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{item.item.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{item.item.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{item.item.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n  \n                      <span style=\"font-weight:900\"> distance: </span> {{item.distance}} KM</p>\n  \n                  </div>\n                </div>\n              </div>\n              <div style=\"margin-top: 20px ;color: black ; margin-bottom:40px\">\n                <button (click)=\"rent(item.item_id)\" style=\"float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\">rent</button>\n                <button (click)=\"comment1()\" style=\"float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\"> submit</button>\n                <input type=\"text\" placeholder=\"Enter comment\" name=\"comment\" [(ngModel)]=\"comment\" class=\"form-control mr-sm-2\" required\n                  style=\"width:70%; border-radius: 25px; border: #8c928a 1px solid \">\n              </div>\n               <div style=\"height:10px;background:#35424a;margin-bottom:40px\"></div>\n  \n  \n  \n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- modal for item detail -->\n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n  \n                <div class=\"col-sm-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                </div>\n                <div class=\"col-sm-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n  \n                  </div>\n                </div>\n              </div>\n  \n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a \n          routerLink=\"/home\" routerLinkActive=\"active\"\n          > Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\"\n          >chatRoom</a>\n\n        </li>\n          <li>\n          <a  routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n<div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\" ></div>\n    \n    <div class=\"col-sm-8 col-md-8 col-xs-8\">\n      <div class=\"col-sm-4 col-md-4 col-xs-4\" *ngFor=\"let item of item\">\n        <div style='float:center;' >\n          <div style=\" margin-left:44%;margin-top: 50px \" >\n            <div >\n              <!-- when you click on the image in will popup with details //////////////////\n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.picture}}\" class=\"btn btn-secondary\" data-toggle=\"modal\" alt= {{item.itemname}}\n                data-target=\"#item-info\"(click)=\"changeItem(item)\" />\n            </div>\n            <div>\n              <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n                Item Name: {{item.itemname}}\n              </div>\n              <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n                Price: {{item.price}}\n              </div>\n              <div style=\"margin-top: 20px ;color: black\">\n                <button (click)=\"rent(item.item_id)\">rent</button>\n  \n              </div>\n  \n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- modal for item detai/////////////////\n      <div class=\"modal fade\" id=\"item-info\" role=\"dialog\" >\n        <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n          <div class=\"modal-content\" style=\"width :100%\">\n            <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              <h3>{{this.activeItem.itemname}}</h3>\n            </div>\n            <div class=\"modal-body\">\n              <div class=\"container-fluid\">\n                <div class=\"row content\">\n  \n                  <div class=\"col-sm-5 sidenav col-md-7 col-xs-7\">\n                    <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                  </div>\n                  <div class=\"col-sm-7 col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                    <div class=\"container-fluid\">\n                      <p>\n                        <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                      <p>\n                        <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                        <br> {{this.activeItem.info}}</p>\n  \n                    </div>\n                  </div>\n                </div>\n               \n              </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n\n"
+module.exports = "<header>\n    <div class=\"container\">\n      <div id=\"branding\">\n        <h1>\n          <span class='highlight'>JeranCom</span>\n        </h1>\n      </div>\n      <nav>\n        <ul>\n          <li class='current'>\n            <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n          </li>\n          <li>\n            <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n          </li>\n          <li>\n            <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n          </li>\n          <li>\n            <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n          </li>\n          <li>\n            <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n  \n          </li>\n          <li>\n            <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </header>\n  \n  \n  <div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\"></div>\n  \n    <div class=\"col-sm-8 col-md-8 col-xs-8\" [@listAnimation]=\"this.result.length\">\n      <div *ngFor=\"let item of result\">\n        <div style=\"margin-top:40px\">\n          <div>\n            <!-- <div>\n              <-- when you click on the image in will popup with details \n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n                data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n            </div> -->\n            <div>\n              <div class=\"row content\" style=\"margin-top:20px\">\n  \n                <div class=\"col-sm-4 col-md-4 col-xs-4 sidenav\">\n                  <img src=\"{{item.item.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\"class=\"btn btn-secondary\"\n                  data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item.item)\" />\n  \n                </div>\n                <div class=\"col-sm-8 col-md-8 col-xs-8 sidenav\" style=\"margin-top:50px\">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{item.item.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{item.item.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{item.item.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n  \n                      <span style=\"font-weight:900\"> distance: </span> {{item.distance}} KM</p>\n  \n                  </div>\n                </div>\n              </div>\n              <div style=\"margin-top: 20px ;color: black ; margin-bottom:40px\">\n                <button (click)=\"rent(item.item.item_id)\" style=\"float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\">rent</button>\n                <button (click)=\"comment1()\" style=\"float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\"> submit</button>\n                <input type=\"text\" placeholder=\"Enter comment\" name=\"comment\" [(ngModel)]=\"comment\" class=\"form-control mr-sm-2\" required\n                  style=\"width:70%; border-radius: 25px; border: #8c928a 1px solid \">\n              </div>\n               <div style=\"height:10px;background:#35424a;margin-bottom:40px\"></div>\n  \n  \n  \n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- modal for item detail -->\n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n  \n                <div class=\"col-sm-5 col-md-5 col-xs-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                </div>\n                <div class=\"col-sm-7  col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n  \n                  </div>\n                </div>\n              </div>\n  \n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <header>//////////////////////////////////////.......................................................\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n  <div class=\"col-sm-2\"></div>\n\n  <div class=\"col-sm-8\" [@listAnimation]=\"this.result.length\">\n    <div class=\"col-sm-4\" *ngFor=\"let item of result\">\n      <div style='float:center;'>\n        <div style=\" margin-left:44%;margin-top: 50px \" *ngIf=\"visible\">\n          <div>\n            <!-- //////////////////////when you click on the image in will popup with details \n            <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n              data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n          </div>\n          <div>\n            <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n              Item Name: {{item.item.itemname}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              Price: {{item.item.price}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              distance:{{item.distance}}\n            </div>\n            <div style=\"margin-top: 20px ;color: black\">\n              <button (click)=\"rent(item.item_id)\">rent</button>\n            </div>\n\n          </div>\n        </div>\n      </div>\n      </div>\n    </div>\n    <!--////////////////////////////////modal for item detail \n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n\n                <div class=\"col-sm-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n\n                </div>\n                <div class=\"col-sm-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p>\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p>\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n\n                  </div>\n                </div>\n              </div>\n\n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n -->\n"
 
 /***/ }),
 
@@ -609,6 +609,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -621,31 +622,78 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ClothesComponent = (function () {
-    function ClothesComponent(http) {
+    function ClothesComponent(http, router) {
         this.http = http;
+        this.router = router;
+        this.visible = true;
         this.item = [];
+        this.arr = [];
         this.arrlog = [];
-        /*************************** */
+        // obj={item:Object,distance:Number};
+        this.result = [];
+        this.newArray = [];
         this.activeItem = {};
+        this.bubbleSort = function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length; j++) {
+                    if (arr[i] < arr[j]) {
+                        var x = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = x;
+                    }
+                }
+            }
+            //console.log(arr);
+            return arr;
+        };
     }
+    // renter:number;
     ClothesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('https://jerancoma.herokuapp.com/clothes')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (data) {
-            _this.item = data;
-            console.log("aaaaaaaya", data);
-        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
-        /*************************************** */
+        this.arrlog;
+        var that = this;
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        /************************bring inormation for user who logged in now*************** */
         this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
-            // this.renter=data[0].user_id;
-            console.log("here is the .............................", data);
-            console.log("username ", data[0].username);
+            console.log("yayayayayayayaya" + data[0].username);
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
+        /***************get tools information************ */
+        this.http.get('https://jerancoma.herokuapp.com/clothes')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            console.log(data);
+            _this.item = data;
+            _this.lat = _this.arrlog[0].latitude;
+            _this.lon = _this.arrlog[0].longitude;
+            // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+            var obj1 = { item: Object, distance: Number };
+            // const  result =[]
+            for (var i = 0; i < _this.item.length; i++) {
+                // console.log('hhhhhh000hhhhhhhhhh');
+                // debugger;
+                var obj1_1 = { item: Object, distance: Number };
+                _this.latitude = _this.item[i].latitude;
+                _this.longitude = _this.item[i].longitude;
+                _this.getDistanceFromLatLonInKm(_this.latitude, _this.longitude, _this.lat, _this.lon);
+                //console.log(this.item[i].longitude, this.item[i].latitude)
+                obj1_1['item'] = _this.item[i];
+                obj1_1['distance'] = _this.arr[i];
+                // console.log("Ahmad", this.arr)
+                _this.result.push(obj1_1);
+                // console.log('at the end of loop ',this.arr[i]);
+                //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
+            }
+            // for(var j=0;j<this.arr.length;j++){
+            //   this.obj['distance']=this.arr[j];
+            // }//////////////
+            // this.result.push(this.obj);
+            console.log('kkkkkkkkkkkkklllll2222', _this.result);
+        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
     };
     ClothesComponent.prototype.changeItem = function (index) {
         this.activeItem = index;
@@ -665,6 +713,22 @@ var ClothesComponent = (function () {
         }, function (error) {
             console.log(error, "erooooooooooooooooooe");
         });
+    };
+    /******************************* */
+    ClothesComponent.prototype.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+        var dLon = this.deg2rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        this.arr.push(d);
+        return d;
+    };
+    ClothesComponent.prototype.deg2rad = function (deg) {
+        return deg * (Math.PI / 180);
     };
     return ClothesComponent;
 }());
@@ -710,10 +774,10 @@ ClothesComponent = __decorate([
     /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
     /**********************************************************************************************************/
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], ClothesComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=clothes.js.map
 
 /***/ }),
@@ -721,7 +785,7 @@ var _a;
 /***/ "../../../../../src/app/components/fernuture/fernuture.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a \n          routerLink=\"/home\" routerLinkActive=\"active\"\n          > Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\"\n          >chatRoom</a>\n\n        </li>\n          <li>\n          <a  routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n<div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\" ></div>\n    \n    <div class=\"col-sm-8 col-md-8 col-xs-8\">\n      <div class=\"col-sm-4 col-md-4 col-xs-4\" *ngFor=\"let item of item\">\n        <div style='float:center;' >\n          <div style=\" margin-left:44%;margin-top: 50px \" >\n            <div >\n              <!-- when you click on the image in will popup with details -->\n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.picture}}\" class=\"btn btn-secondary\" data-toggle=\"modal\" alt= {{item.itemname}}\n                data-target=\"#item-info\"(click)=\"changeItem(item)\" />\n            </div>\n            <div>\n              <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n                Item Name: {{item.itemname}}\n              </div>\n              <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n                Price: {{item.price}}\n              </div>\n              <div style=\"margin-top: 20px ;color: black\">\n                <button (click)=\"rent(item.item_id)\">rent</button>\n  \n              </div>\n  \n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- modal for item detail -->\n      <div class=\"modal fade\" id=\"item-info\" role=\"dialog\" >\n        <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n          <div class=\"modal-content\" style=\"width :100%\">\n            <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              <h3>{{this.activeItem.itemname}}</h3>\n            </div>\n            <div class=\"modal-body\">\n              <div class=\"container-fluid\">\n                <div class=\"row content\">\n  \n                  <div class=\"col-sm-5 col-md-5 col-xs-5 sidenav\">\n                    <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                  </div>\n                  <div class=\"col-sm-7 col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                    <div class=\"container-fluid\">\n                      <p>\n                        <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                      <p>\n                        <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                        <br> {{this.activeItem.info}}</p>\n  \n                    </div>\n                  </div>\n                </div>\n               \n              </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<header>\n    <div class=\"container\">\n      <div id=\"branding\">\n        <h1>\n          <span class='highlight'>JeranCom</span>\n        </h1>\n      </div>\n      <nav>\n        <ul>\n          <li class='current'>\n            <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n          </li>\n          <li>\n            <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n          </li>\n          <li>\n            <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n          </li>\n          <li>\n            <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n          </li>\n          <li>\n            <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n  \n          </li>\n          <li>\n            <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </header>\n  \n  \n  <div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\"></div>\n  \n    <div class=\"col-sm-8 col-md-8 col-xs-8\" [@listAnimation]=\"this.result.length\">\n      <div *ngFor=\"let item of result\">\n        <div style=\"margin-top:40px\">\n          <div>\n            <!-- <div>\n              <-- when you click on the image in will popup with details \n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n                data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n            </div> -->\n            <div>\n              <div class=\"row content\" style=\"margin-top:20px\">\n  \n                <div class=\"col-sm-4 col-md-4 col-xs-4 sidenav\">\n                  <img src=\"{{item.item.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\"class=\"btn btn-secondary\"\n                  data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item.item)\" />\n  \n                </div>\n                <div class=\"col-sm-8 col-md-8 col-xs-8 sidenav\" style=\"margin-top:50px\">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{item.item.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{item.item.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{item.item.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n  \n                      <span style=\"font-weight:900\"> distance: </span> {{item.distance}} KM</p>\n  \n                  </div>\n                </div>\n              </div>\n              <div style=\"margin-top: 20px ;color: black ; margin-bottom:40px\">\n                <button (click)=\"rent(item.item.item_id)\" style=\"float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\">rent</button>\n                <button (click)=\"comment1()\" style=\"float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\"> submit</button>\n                <input type=\"text\" placeholder=\"Enter comment\" name=\"comment\" [(ngModel)]=\"comment\" class=\"form-control mr-sm-2\" required\n                  style=\"width:70%; border-radius: 25px; border: #8c928a 1px solid \">\n              </div>\n               <div style=\"height:10px;background:#35424a;margin-bottom:40px\"></div>\n  \n  \n  \n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- modal for item detail -->\n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n  \n                <div class=\"col-sm-5 col-md-5 col-xs-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                </div>\n                <div class=\"col-sm-7  col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n  \n                  </div>\n                </div>\n              </div>\n  \n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <header>//////////////////////////////////////.......................................................\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n  <div class=\"col-sm-2\"></div>\n\n  <div class=\"col-sm-8\" [@listAnimation]=\"this.result.length\">\n    <div class=\"col-sm-4\" *ngFor=\"let item of result\">\n      <div style='float:center;'>\n        <div style=\" margin-left:44%;margin-top: 50px \" *ngIf=\"visible\">\n          <div>\n            <!-- //////////////////////when you click on the image in will popup with details \n            <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n              data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n          </div>\n          <div>\n            <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n              Item Name: {{item.item.itemname}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              Price: {{item.item.price}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              distance:{{item.distance}}\n            </div>\n            <div style=\"margin-top: 20px ;color: black\">\n              <button (click)=\"rent(item.item_id)\">rent</button>\n            </div>\n\n          </div>\n        </div>\n      </div>\n      </div>\n    </div>\n    <!--////////////////////////////////modal for item detail \n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n\n                <div class=\"col-sm-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n\n                </div>\n                <div class=\"col-sm-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p>\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p>\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n\n                  </div>\n                </div>\n              </div>\n\n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n -->\n"
 
 /***/ }),
 
@@ -751,6 +815,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -763,31 +828,78 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var FernutureComponent = (function () {
-    function FernutureComponent(http) {
+    function FernutureComponent(http, router) {
         this.http = http;
+        this.router = router;
+        this.visible = true;
         this.item = [];
+        this.arr = [];
         this.arrlog = [];
-        /*************************** */
+        // obj={item:Object,distance:Number};
+        this.result = [];
+        this.newArray = [];
         this.activeItem = {};
+        this.bubbleSort = function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length; j++) {
+                    if (arr[i] < arr[j]) {
+                        var x = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = x;
+                    }
+                }
+            }
+            //console.log(arr);
+            return arr;
+        };
     }
+    // renter:number;
     FernutureComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('https://jerancoma.herokuapp.com/fernuture')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (data) {
-            _this.item = data;
-            // console.log(data[0].renter)
-        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
-        /*************************************** */
+        this.arrlog;
+        var that = this;
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        /************************bring inormation for user who logged in now*************** */
         this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
-            // this.renter=data[0].user_id;
-            console.log("here is the .............................", data);
-            console.log("username ", data[0].username);
+            console.log("yayayayayayayaya" + data[0].username);
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
+        /***************get tools information************ */
+        this.http.get('https://jerancoma.herokuapp.com/fernuture')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            console.log(data);
+            _this.item = data;
+            _this.lat = _this.arrlog[0].latitude;
+            _this.lon = _this.arrlog[0].longitude;
+            // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+            var obj1 = { item: Object, distance: Number };
+            // const  result =[]
+            for (var i = 0; i < _this.item.length; i++) {
+                // console.log('hhhhhh000hhhhhhhhhh');
+                // debugger;
+                var obj1_1 = { item: Object, distance: Number };
+                _this.latitude = _this.item[i].latitude;
+                _this.longitude = _this.item[i].longitude;
+                _this.getDistanceFromLatLonInKm(_this.latitude, _this.longitude, _this.lat, _this.lon);
+                //console.log(this.item[i].longitude, this.item[i].latitude)
+                obj1_1['item'] = _this.item[i];
+                obj1_1['distance'] = _this.arr[i];
+                // console.log("Ahmad", this.arr)
+                _this.result.push(obj1_1);
+                // console.log('at the end of loop ',this.arr[i]);
+                //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
+            }
+            // for(var j=0;j<this.arr.length;j++){
+            //   this.obj['distance']=this.arr[j];
+            // }//////////////
+            // this.result.push(this.obj);
+            console.log('kkkkkkkkkkkkklllll2222', _this.result);
+        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
     };
     FernutureComponent.prototype.changeItem = function (index) {
         this.activeItem = index;
@@ -798,7 +910,8 @@ var FernutureComponent = (function () {
         console.log(that);
         this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
-            renter: that.arrlog[0].user_id
+            renter: that.arrlog[0].user_id,
+            renter_name: that.arrlog[0].username
         })
             .subscribe(function (data) {
             alert('ok');
@@ -806,6 +919,22 @@ var FernutureComponent = (function () {
         }, function (error) {
             console.log(error, "erooooooooooooooooooe");
         });
+    };
+    /******************************* */
+    FernutureComponent.prototype.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+        var dLon = this.deg2rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        this.arr.push(d);
+        return d;
+    };
+    FernutureComponent.prototype.deg2rad = function (deg) {
+        return deg * (Math.PI / 180);
     };
     return FernutureComponent;
 }());
@@ -851,10 +980,10 @@ FernutureComponent = __decorate([
     /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
     /**********************************************************************************************************/
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], FernutureComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=fernuture.js.map
 
 /***/ }),
@@ -1210,7 +1339,7 @@ var _a, _b;
 /***/ "../../../../../src/app/components/maintenance/maintenance.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a \n          routerLink=\"/home\" routerLinkActive=\"active\"\n          > Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a  routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\"\n          >chatRoom</a>\n\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n  \n  \n<div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\" ></div>\n    \n    <div class=\"col-sm-8 col-md-8 col-xs-8\">\n      <div class=\"col-sm-4 col-md-4 col-xs-4\" *ngFor=\"let item of item\">\n        <div style='float:center;' >\n          <div style=\" margin-left:44%;margin-top: 50px \" >\n            <div >\n              <!-- when you click on the image in will popup with details -->\n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.picture}}\" class=\"btn btn-secondary\" data-toggle=\"modal\" alt= {{item.itemname}}\n                data-target=\"#item-info\"(click)=\"changeItem(item)\" />\n            </div>\n            <div>\n              <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n                Item Name: {{item.itemname}}\n              </div>\n              <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n                Price: {{item.price}}\n              </div>\n              <div style=\"margin-top: 20px ;color: black\">\n                <button (click)=\"rent(item.item_id)\">rent</button>\n  \n              </div>\n  \n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- modal for item detail -->\n      <div class=\"modal fade\" id=\"item-info\" role=\"dialog\" >\n        <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n          <div class=\"modal-content\" style=\"width :100%\">\n            <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              <h3>{{this.activeItem.itemname}}</h3>\n            </div>\n            <div class=\"modal-body\">\n              <div class=\"container-fluid\">\n                <div class=\"row content\">\n  \n                  <div class=\"col-sm-5 sidenav\">\n                    <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                  </div>\n                  <div class=\"col-sm-7 sidenav col-md-7 col-xs-7\" style=\"margin-top:20px \">\n                    <div class=\"container-fluid\">\n                      <p>\n                        <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                      <p>\n                        <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                        <br> {{this.activeItem.info}}</p>\n  \n                    </div>\n                  </div>\n                </div>\n               \n              </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<header>\n    <div class=\"container\">\n      <div id=\"branding\">\n        <h1>\n          <span class='highlight'>JeranCom</span>\n        </h1>\n      </div>\n      <nav>\n        <ul>\n          <li class='current'>\n            <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n          </li>\n          <li>\n            <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n          </li>\n          <li>\n            <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n          </li>\n          <li>\n            <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n          </li>\n          <li>\n            <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n  \n          </li>\n          <li>\n            <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </header>\n  \n  \n  <div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\"></div>\n  \n    <div class=\"col-sm-8 col-md-8 col-xs-8\" [@listAnimation]=\"this.result.length\">\n      <div *ngFor=\"let item of result\">\n        <div style=\"margin-top:40px\">\n          <div>\n            <!-- <div>\n              <-- when you click on the image in will popup with details \n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n                data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n            </div> -->\n            <div>\n              <div class=\"row content\" style=\"margin-top:20px\">\n  \n                <div class=\"col-sm-4 col-md-4 col-xs-4 sidenav\">\n                  <img src=\"{{item.item.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\"class=\"btn btn-secondary\"\n                  data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item.item)\" />\n  \n                </div>\n                <div class=\"col-sm-8 col-md-8 col-xs-8 sidenav\" style=\"margin-top:50px\">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{item.item.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{item.item.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{item.item.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n  \n                      <span style=\"font-weight:900\"> distance: </span> {{item.distance}} KM</p>\n  \n                  </div>\n                </div>\n              </div>\n              <div style=\"margin-top: 20px ;color: black ; margin-bottom:40px\">\n                <button (click)=\"rent(item.item.item_id)\" style=\"float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\">rent</button>\n                <button (click)=\"comment1()\" style=\"float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\"> submit</button>\n                <input type=\"text\" placeholder=\"Enter comment\" name=\"comment\" [(ngModel)]=\"comment\" class=\"form-control mr-sm-2\" required\n                  style=\"width:70%; border-radius: 25px; border: #8c928a 1px solid \">\n              </div>\n               <div style=\"height:10px;background:#35424a;margin-bottom:40px\"></div>\n  \n  \n  \n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- modal for item detail -->\n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n  \n                <div class=\"col-sm-5 col-md-5 col-xs-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                </div>\n                <div class=\"col-sm-7  col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n  \n                  </div>\n                </div>\n              </div>\n  \n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <header>//////////////////////////////////////.......................................................\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n  <div class=\"col-sm-2\"></div>\n\n  <div class=\"col-sm-8\" [@listAnimation]=\"this.result.length\">\n    <div class=\"col-sm-4\" *ngFor=\"let item of result\">\n      <div style='float:center;'>\n        <div style=\" margin-left:44%;margin-top: 50px \" *ngIf=\"visible\">\n          <div>\n            <!-- //////////////////////when you click on the image in will popup with details \n            <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n              data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n          </div>\n          <div>\n            <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n              Item Name: {{item.item.itemname}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              Price: {{item.item.price}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              distance:{{item.distance}}\n            </div>\n            <div style=\"margin-top: 20px ;color: black\">\n              <button (click)=\"rent(item.item_id)\">rent</button>\n            </div>\n\n          </div>\n        </div>\n      </div>\n      </div>\n    </div>\n    <!--////////////////////////////////modal for item detail \n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n\n                <div class=\"col-sm-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n\n                </div>\n                <div class=\"col-sm-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p>\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p>\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n\n                  </div>\n                </div>\n              </div>\n\n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n -->\n"
 
 /***/ }),
 
@@ -1240,6 +1369,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1252,30 +1382,78 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MaintenanceComponent = (function () {
-    function MaintenanceComponent(http) {
+    function MaintenanceComponent(http, router) {
         this.http = http;
+        this.router = router;
+        this.visible = true;
         this.item = [];
+        this.arr = [];
         this.arrlog = [];
-        /*************************** */
+        // obj={item:Object,distance:Number};
+        this.result = [];
+        this.newArray = [];
         this.activeItem = {};
+        this.bubbleSort = function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length; j++) {
+                    if (arr[i] < arr[j]) {
+                        var x = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = x;
+                    }
+                }
+            }
+            //console.log(arr);
+            return arr;
+        };
     }
+    // renter:number;
     MaintenanceComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('https://jerancoma.herokuapp.com/maintenance')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (data) {
-            _this.item = data;
-        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
-        /*************************************** */
+        this.arrlog;
+        var that = this;
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        /************************bring inormation for user who logged in now*************** */
         this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
-            // this.renter=data[0].user_id;
-            console.log("here is the .............................", data);
-            console.log("username ", data[0].username);
+            console.log("yayayayayayayaya" + data[0].username);
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
+        /***************get tools information************ */
+        this.http.get('https://jerancoma.herokuapp.com/maintenance')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            console.log(data);
+            _this.item = data;
+            _this.lat = _this.arrlog[0].latitude;
+            _this.lon = _this.arrlog[0].longitude;
+            // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+            var obj1 = { item: Object, distance: Number };
+            // const  result =[]
+            for (var i = 0; i < _this.item.length; i++) {
+                // console.log('hhhhhh000hhhhhhhhhh');
+                // debugger;
+                var obj1_1 = { item: Object, distance: Number };
+                _this.latitude = _this.item[i].latitude;
+                _this.longitude = _this.item[i].longitude;
+                _this.getDistanceFromLatLonInKm(_this.latitude, _this.longitude, _this.lat, _this.lon);
+                //console.log(this.item[i].longitude, this.item[i].latitude)
+                obj1_1['item'] = _this.item[i];
+                obj1_1['distance'] = _this.arr[i];
+                // console.log("Ahmad", this.arr)
+                _this.result.push(obj1_1);
+                // console.log('at the end of loop ',this.arr[i]);
+                //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
+            }
+            // for(var j=0;j<this.arr.length;j++){
+            //   this.obj['distance']=this.arr[j];
+            // }//////////////
+            // this.result.push(this.obj);
+            console.log('kkkkkkkkkkkkklllll2222', _this.result);
+        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
     };
     MaintenanceComponent.prototype.changeItem = function (index) {
         this.activeItem = index;
@@ -1286,7 +1464,8 @@ var MaintenanceComponent = (function () {
         console.log(that);
         this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
-            renter: that.arrlog[0].user_id
+            renter: that.arrlog[0].user_id,
+            renter_name: that.arrlog[0].username
         })
             .subscribe(function (data) {
             alert('ok');
@@ -1294,6 +1473,22 @@ var MaintenanceComponent = (function () {
         }, function (error) {
             console.log(error, "erooooooooooooooooooe");
         });
+    };
+    /******************************* */
+    MaintenanceComponent.prototype.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+        var dLon = this.deg2rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        this.arr.push(d);
+        return d;
+    };
+    MaintenanceComponent.prototype.deg2rad = function (deg) {
+        return deg * (Math.PI / 180);
     };
     return MaintenanceComponent;
 }());
@@ -1339,10 +1534,10 @@ MaintenanceComponent = __decorate([
     /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
     /**********************************************************************************************************/
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], MaintenanceComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=maintenance.js.map
 
 /***/ }),
@@ -1458,7 +1653,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/others/others.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a \n          routerLink=\"/home\" routerLinkActive=\"active\"\n          > Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\"\n          >chatRoom</a>\n\n        </li>\n          <li>\n          <a  routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\" ></div>\n    \n    <div class=\"col-sm-8 col-md-8 col-xs-8\">\n      <div class=\"col-sm-4\" *ngFor=\"let item of item\">\n        <div style='float:center;' >\n          <div style=\" margin-left:44%;margin-top: 50px \" >\n            <div >\n              <!-- when you click on the image in will popup with details -->\n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.picture}}\" class=\"btn btn-secondary\" data-toggle=\"modal\" alt= {{item.itemname}}\n                data-target=\"#item-info\"(click)=\"changeItem(item)\" />\n            </div>\n            <div>\n              <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n                Item Name: {{item.itemname}}\n              </div>\n              <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n                Price: {{item.price}}\n              </div>\n              <div style=\"margin-top: 20px ;color: black\">\n                <button (click)=\"rent(item.item_id)\">rent</button>\n  \n              </div>\n  \n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- modal for item detail -->\n      <div class=\"modal fade\" id=\"item-info\" role=\"dialog\" >\n        <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n          <div class=\"modal-content\" style=\"width :100%\">\n            <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              <h3>{{this.activeItem.itemname}}</h3>\n            </div>\n            <div class=\"modal-body\">\n              <div class=\"container-fluid\">\n                <div class=\"row content\">\n  \n                  <div class=\"col-sm-5 sidenav\">\n                    <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                  </div>\n                  <div class=\"col-sm-7 col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                    <div class=\"container-fluid\">\n                      <p>\n                        <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                      <p>\n                        <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                      <p>\n                        <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                        <br> {{this.activeItem.info}}</p>\n  \n                    </div>\n                  </div>\n                </div>\n               \n              </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<header>\n    <div class=\"container\">\n      <div id=\"branding\">\n        <h1>\n          <span class='highlight'>JeranCom</span>\n        </h1>\n      </div>\n      <nav>\n        <ul>\n          <li class='current'>\n            <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n          </li>\n          <li>\n            <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n          </li>\n          <li>\n            <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n          </li>\n          <li>\n            <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n          </li>\n          <li>\n            <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n  \n          </li>\n          <li>\n            <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </header>\n  \n  \n  <div>\n    <div class=\"col-sm-2 col-md-2 col-xs-2\"></div>\n  \n    <div class=\"col-sm-8 col-md-8 col-xs-8\" [@listAnimation]=\"this.result.length\">\n      <div *ngFor=\"let item of result\">\n        <div style=\"margin-top:40px\">\n          <div>\n            <!-- <div>\n              <-- when you click on the image in will popup with details \n              <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n                data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n            </div> -->\n            <div>\n              <div class=\"row content\" style=\"margin-top:20px\">\n  \n                <div class=\"col-sm-4 col-md-4 col-xs-4 sidenav\">\n                  <img src=\"{{item.item.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\"class=\"btn btn-secondary\"\n                  data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item.item)\" />\n  \n                </div>\n                <div class=\"col-sm-8 col-md-8 col-xs-8 sidenav\" style=\"margin-top:50px\">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{item.item.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{item.item.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{item.item.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n  \n                      <span style=\"font-weight:900\"> distance: </span> {{item.distance}} KM</p>\n  \n                  </div>\n                </div>\n              </div>\n              <div style=\"margin-top: 20px ;color: black ; margin-bottom:40px\">\n                <button (click)=\"rent(item.item.item_id)\" style=\"float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\">rent</button>\n                <button (click)=\"comment1()\" style=\"float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px\"> submit</button>\n                <input type=\"text\" placeholder=\"Enter comment\" name=\"comment\" [(ngModel)]=\"comment\" class=\"form-control mr-sm-2\" required\n                  style=\"width:70%; border-radius: 25px; border: #8c928a 1px solid \">\n              </div>\n               <div style=\"height:10px;background:#35424a;margin-bottom:40px\"></div>\n  \n  \n  \n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- modal for item detail -->\n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n  \n                <div class=\"col-sm-5 col-md-5 col-xs-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n  \n                </div>\n                <div class=\"col-sm-7  col-md-7 col-xs-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p style=\"margin-top:20px\">\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n  \n                  </div>\n                </div>\n              </div>\n  \n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <header>//////////////////////////////////////.......................................................\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li class='current'>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n  <div class=\"col-sm-2\"></div>\n\n  <div class=\"col-sm-8\" [@listAnimation]=\"this.result.length\">\n    <div class=\"col-sm-4\" *ngFor=\"let item of result\">\n      <div style='float:center;'>\n        <div style=\" margin-left:44%;margin-top: 50px \" *ngIf=\"visible\">\n          <div>\n            <!-- //////////////////////when you click on the image in will popup with details \n            <img style=\"width: 155px ;height: 200px;border: solid;border-color:#8cff66\" src=\"{{item.item.picture}}\" class=\"btn btn-secondary\"\n              data-toggle=\"modal\" alt={{item.item.itemname}} data-target=\"#item-info\" (click)=\"changeItem(item)\" />\n          </div>\n          <div>\n            <div style=\"margin-top: 20px;font-weight:800 ;font-family: tahoma\">\n              Item Name: {{item.item.itemname}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              Price: {{item.item.price}}\n            </div>\n            <div style=\"margin-top: 20px;font-weight:700 ;font-family: tahoma \">\n              distance:{{item.distance}}\n            </div>\n            <div style=\"margin-top: 20px ;color: black\">\n              <button (click)=\"rent(item.item_id)\">rent</button>\n            </div>\n\n          </div>\n        </div>\n      </div>\n      </div>\n    </div>\n    <!--////////////////////////////////modal for item detail \n    <div class=\"modal fade\" id=\"item-info\" role=\"dialog\">\n      <div class=\"modal-dialog\" style=\"width :50%;border: solid;border-color:#8cff66\">\n        <div class=\"modal-content\" style=\"width :100%\">\n          <div class=\"modal-header\" style=\"background:#35424a;color:#8cff66\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            <h3>{{this.activeItem.itemname}}</h3>\n          </div>\n          <div class=\"modal-body\">\n            <div class=\"container-fluid\">\n              <div class=\"row content\">\n\n                <div class=\"col-sm-5 sidenav\">\n                  <img src=\"{{this.activeItem.picture}}\" style=\" width:200px;height:250px ;margin-top:20px ;\" />\n\n                </div>\n                <div class=\"col-sm-7 sidenav\" style=\"margin-top:20px \">\n                  <div class=\"container-fluid\">\n                    <p>\n                      <span style=\"font-weight:900\"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>\n                    <p>\n                      <span style=\"font-weight:900\">PRICE: </span> {{this.activeItem.price}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> TYPE : </span> {{this.activeItem.itemtype}}</p>\n                    <p>\n                      <span style=\"font-weight:900\"> DESCRIPTION : </span>\n                      <br> {{this.activeItem.info}}</p>\n\n                  </div>\n                </div>\n              </div>\n\n            </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" style=\"background:#8cff66;font-weight:700\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n -->\n"
 
 /***/ }),
 
@@ -1488,6 +1683,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1500,42 +1696,90 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OthersComponent = (function () {
-    function OthersComponent(http) {
+    function OthersComponent(http, router) {
         this.http = http;
+        this.router = router;
+        this.visible = true;
         this.item = [];
+        this.arr = [];
         this.arrlog = [];
-        /*************************** */
+        // obj={item:Object,distance:Number};
+        this.result = [];
+        this.newArray = [];
         this.activeItem = {};
+        this.bubbleSort = function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length; j++) {
+                    if (arr[i] < arr[j]) {
+                        var x = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = x;
+                    }
+                }
+            }
+            //console.log(arr);
+            return arr;
+        };
     }
+    // renter:number;
     OthersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('https://jerancoma.herokuapp.com/others')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (data) {
-            _this.item = data;
-            console.log("here is the others", data);
-        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
-        /*************************************** */
+        this.arrlog;
+        var that = this;
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        /************************bring inormation for user who logged in now*************** */
         this.http.get('https://jerancoma.herokuapp.com/prof')
             .map(function (res) { return res.json(); })
             .subscribe(function (data) {
             _this.arrlog = data;
-            // this.renter=data[0].user_id;
-            console.log("here is the .............................", data);
-            console.log("username ", data[0].username);
+            console.log("yayayayayayayaya" + data[0].username);
         }, function (err) { return console.log("eeeeeeeeeeeeeeeerrrrrrrror", err); }, function () { return console.log("here is the item "); });
+        /***************get tools information************ */
+        this.http.get('https://jerancoma.herokuapp.com/others')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            console.log(data);
+            _this.item = data;
+            _this.lat = _this.arrlog[0].latitude;
+            _this.lon = _this.arrlog[0].longitude;
+            // console.log('hhhhhhhhhhhhhhhhhhhhhhhh',this.arr,"tttt"); 
+            var obj1 = { item: Object, distance: Number };
+            // const  result =[]
+            for (var i = 0; i < _this.item.length; i++) {
+                // console.log('hhhhhh000hhhhhhhhhh');
+                // debugger;
+                var obj1_1 = { item: Object, distance: Number };
+                _this.latitude = _this.item[i].latitude;
+                _this.longitude = _this.item[i].longitude;
+                _this.getDistanceFromLatLonInKm(_this.latitude, _this.longitude, _this.lat, _this.lon);
+                //console.log(this.item[i].longitude, this.item[i].latitude)
+                obj1_1['item'] = _this.item[i];
+                obj1_1['distance'] = _this.arr[i];
+                // console.log("Ahmad", this.arr)
+                _this.result.push(obj1_1);
+                // console.log('at the end of loop ',this.arr[i]);
+                //console.log("hhhhhhhhhhhhh"+this.arrlog[0].latitude);     
+            }
+            // for(var j=0;j<this.arr.length;j++){
+            //   this.obj['distance']=this.arr[j];
+            // }//////////////
+            // this.result.push(this.obj);
+            console.log('kkkkkkkkkkkkklllll2222', _this.result);
+        }, function (err) { return console.log(err); }, function () { return console.log("here is the item "); });
     };
     OthersComponent.prototype.changeItem = function (index) {
         this.activeItem = index;
     };
     OthersComponent.prototype.rent = function (i) {
-        console.log('hiiiiiiiiiiiiiiiiiiiiimeeeezzzzzzz', i);
+        console.log(i);
         var that = this;
         console.log(that);
         this.http.post('https://jerancoma.herokuapp.com/renter', {
             item_id: i,
-            renter: that.arrlog[0].user_id
+            renter: that.arrlog[0].user_id,
+            renter_name: that.arrlog[0].username
         })
             .subscribe(function (data) {
             alert('ok');
@@ -1543,6 +1787,22 @@ var OthersComponent = (function () {
         }, function (error) {
             console.log(error, "erooooooooooooooooooe");
         });
+    };
+    /******************************* */
+    OthersComponent.prototype.getDistanceFromLatLonInKm = function (lat1, lon1, lat2, lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+        var dLon = this.deg2rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        this.arr.push(d);
+        return d;
+    };
+    OthersComponent.prototype.deg2rad = function (deg) {
+        return deg * (Math.PI / 180);
     };
     return OthersComponent;
 }());
@@ -1588,10 +1848,10 @@ OthersComponent = __decorate([
     /*******                    GET TOOLS FROM DATABASE AND RENDER IT IN THE PAGE                       *******/
     /**********************************************************************************************************/
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], OthersComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=others.js.map
 
 /***/ }),
