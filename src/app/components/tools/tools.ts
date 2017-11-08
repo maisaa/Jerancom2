@@ -142,8 +142,7 @@ export class ToolsComponent {
       data => {
         alert('ok');
         console.log(data)
-        this.visible=!this.visible;
-        this.router.navigate(['/prof']);
+       
         
       },
       error => {

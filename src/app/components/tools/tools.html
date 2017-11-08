@@ -33,9 +33,9 @@
   
   
   <div>
-    <div class="col-sm-2"></div>
+    <div class="col-sm-2 col-md-2 col-xs-2"></div>
   
-    <div class="col-sm-8" [@listAnimation]="this.result.length">
+    <div class="col-sm-8 col-md-8 col-xs-8" [@listAnimation]="this.result.length">
       <div *ngFor="let item of result">
         <div style="margin-top:40px">
           <div>
@@ -47,12 +47,12 @@
             <div>
               <div class="row content" style="margin-top:20px">
   
-                <div class="col-sm-4 sidenav">
+                <div class="col-sm-4 col-md-4 col-xs-4 sidenav">
                   <img src="{{item.item.picture}}" style=" width:200px;height:250px ;margin-top:20px ;"class="btn btn-secondary"
                   data-toggle="modal" alt={{item.item.itemname}} data-target="#item-info" (click)="changeItem(item.item)" />
   
                 </div>
-                <div class="col-sm-8 sidenav" style="margin-top:50px">
+                <div class="col-sm-8 col-md-8 col-xs-8 sidenav" style="margin-top:50px">
                   <div class="container-fluid">
                     <p style="margin-top:20px">
                       <span style="font-weight:900"> ITEM NAME :</span> {{item.item.itemname}}</p>
@@ -94,11 +94,11 @@
             <div class="container-fluid">
               <div class="row content">
   
-                <div class="col-sm-5 sidenav">
+                <div class="col-sm-5 col-md-5 col-xs-5 sidenav">
                   <img src="{{this.activeItem.picture}}" style=" width:200px;height:250px ;margin-top:20px ;" />
   
                 </div>
-                <div class="col-sm-7 sidenav" style="margin-top:20px ">
+                <div class="col-sm-7  col-md-7 col-xs-7 sidenav" style="margin-top:20px ">
                   <div class="container-fluid">
                     <p style="margin-top:20px">
                       <span style="font-weight:900"> ITEM NAME :</span> {{this.activeItem.itemname}}</p>
