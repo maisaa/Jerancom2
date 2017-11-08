@@ -129,7 +129,7 @@ export class ClothesComponent {
    this.activeItem=index;
  }
 
-  rent(i) {
+  rent(i,seeitem) {
     console.log(i)
     const that = this;
     console.log(that)
@@ -143,6 +143,7 @@ export class ClothesComponent {
       data => {
         alert('ok');
         console.log(data)
+        this.result.splice(this.result.indexOf(seeitem))
        
         
       },

@@ -68,7 +68,7 @@
                 </div>
               </div>
               <div style="margin-top: 20px ;color: black ; margin-bottom:40px">
-                <button (click)="rent(item.item.item_id)" style="float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px">rent</button>
+                <button (click)="rent(item.item.item_id, item.item)" style="float:right ; margin-left:3%; width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px">rent</button>
                 <button (click)="comment1()" style="float:right;width:12%;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold;height:30px"> submit</button>
                 <input type="text" placeholder="Enter comment" name="comment" [(ngModel)]="comment" class="form-control mr-sm-2" required
                   style="width:70%; border-radius: 25px; border: #8c928a 1px solid ">
