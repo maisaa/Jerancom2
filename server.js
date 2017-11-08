@@ -638,7 +638,9 @@ app.get('/clothes', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Clothes']);
+    //const query = client.query('SELECT * FROM items where itemtype=($1)', ['Clothes']);
+    const query = client.query('SELECT * FROM items where itemtype=($1) and renter_name IS null' ,['Clothes']);
+
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -666,7 +668,8 @@ app.get('/fernuture', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Fernuture']);
+    //const query = client.query('SELECT * FROM items where itemtype=($1)', ['Fernuture']);
+    const query = client.query('SELECT * FROM items where itemtype=($1) and renter_name IS null' ,['Fernuture']);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -694,7 +697,8 @@ app.get('/maintenance', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Maintenance']);
+    const query = client.query('SELECT * FROM items where itemtype=($1) and renter_name IS null', ['Maintenance']);
+    
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -722,7 +726,7 @@ app.get('/others', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items where itemtype=($1)', ['Others']);
+    const query = client.query('SELECT * FROM items where itemtype=($1) and renter_name IS null', ['Others']);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
