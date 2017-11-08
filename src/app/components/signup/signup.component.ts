@@ -1,18 +1,12 @@
 import { OnInit, Component } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-// import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-
 import { Router } from '@angular/router';
-// import{Component} from '@angular/core';
 import { ElementRef, NgZone, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-// import{Http,Response,Headers} from '@angular/http';
-// import { HttpHeaders } from '@angular/common/http';
-
 
 @Component({
   selector: 'signup',
@@ -23,6 +17,7 @@ import { MapsAPILoader } from '@agm/core';
 })
 //*********************************************************************************/
 export class signupComponent implements OnInit {
+
   name: String;
   password: String;
   phone: Number;
@@ -91,10 +86,6 @@ export class signupComponent implements OnInit {
     }
   }
 
-
-
-
-
   /*********** */
 
   submit() {
@@ -109,7 +100,7 @@ export class signupComponent implements OnInit {
       email:that.email
 
     })
-     
+ 
       .subscribe(
       data => {
         alert('SingUp correctly');

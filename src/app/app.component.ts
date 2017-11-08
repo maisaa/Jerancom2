@@ -32,10 +32,7 @@ export class AppComponent {
       username: that.name,
       password: that.password
     })
-      // JSON.stringify({
-      //   username: that.name,
-      //   password: that.password
-      // })
+   
       .subscribe(
       data => {
         alert('ok');
