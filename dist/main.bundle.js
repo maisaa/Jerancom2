@@ -389,7 +389,7 @@ AboutComponent = __decorate([
 /***/ "../../../../../src/app/components/chat/chatRoom.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n\n<head>\n  <style>\n    font {\n      color: x\n    }\n  </style>\n</head>\n\n</html>\n\n<header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li class='current'>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n\n  <h1 style=\"text-align:center;color:darkorange\">\n    &#9787; Let's chat &#9787;\n  </h1>\n\n</div>\n\n<div *ngFor=\"let chat of chats\">\n  <div>\n\n    <pre><font [style.color]=\"x\">\n{{chat.session}}</font>     {{chat.text[0]}} </pre>\n  </div>\n</div>\n\n\n\n<form action=\"\" style=\"bottom:10px;position:fixed;\">\n  <input [(ngModel)]=\"chat\" [ngModelOptions]=\"{standalone: true}\" />\n\n  <button (click)=\"send()\">Send</button>\n</form>"
+module.exports = "<!-- <html>\n\n<head>\n  <style>\n    font {\n      color: x\n    }\n  </style>\n</head>\n\n</html>\n\n<header>\n  <div class=\"container\">\n    <div id=\"branding\">\n      <h1>\n        <span class='highlight'>JeranCom</span>\n      </h1>\n    </div>\n    <nav>\n      <ul>\n        <li>\n          <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n        </li>\n        <li>\n          <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n        </li>\n        <li>\n          <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n        </li>\n        <li class='current'>\n          <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n\n        </li>\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</header>\n\n\n<div>\n\n  <h1 style=\"text-align:center;color:darkorange\">\n    &#9787; Let's chat &#9787;\n  </h1>\n\n</div>\n\n<div *ngFor=\"let chat of chats\">\n  <div>\n\n    <pre><font [style.color]=\"x\">\n{{chat.session}}</font>     {{chat.text[0]}} </pre>\n  </div>\n</div>\n\n\n\n<form action=\"\" style=\"bottom:10px;position:fixed;\">\n  <input [(ngModel)]=\"chat\" [ngModelOptions]=\"{standalone: true}\" />\n\n  <button (click)=\"send()\">Send</button>\n</form> -->\n\n<html>\n    \n    <head>\n      <style>\n        font {\n          color: x\n        }\n      </style>\n    </head>\n    \n    </html>\n    \n    <header>\n      <div class=\"container\">\n        <div id=\"branding\">\n          <h1>\n            <span class='highlight'>JeranCom</span>\n          </h1>\n        </div>\n        <nav>\n          <ul>\n            <li>\n              <a routerLink=\"/item\" routerLinkActive=\"active\">Add Item </a>\n            </li>\n            <li>\n              <a routerLink=\"/home\" routerLinkActive=\"active\"> Home</a>\n            </li>\n            <li>\n              <a routerLink=\"/about\" routerLinkActive=\"active\"> About</a>\n            </li>\n            <li>\n              <a routerLink=\"/profiler\" routerLinkActive=\"active\">Profile</a>\n            </li>\n            <li class='current'>\n              <a routerLink=\"/chatRoom\" routerLinkActive=\"active\">chatRoom</a>\n    \n            </li>\n            <li>\n              <a routerLink=\"/login\" routerLinkActive=\"active\">Logout</a>\n            </li>\n          </ul>\n        </nav>\n      </div>\n    </header>\n    \n    \n    <div>\n    \n      <h1 style=\"text-align:center;color:darkorange\">\n        &#9787; Let's chat &#9787;\n      </h1>\n    \n    </div>\n    \n    <div *ngFor=\"let chat of chats\">\n      <div>\n    \n        <pre>\n            <span style =\"font-weight:700 ;margin-left : 20px ; font-size:20px\"><font [style.color]=\"x\"> {{chat.session}}  </font> </span> <span  style =\"font-weight:600; font-size:20px\"> {{chat.text[0]}}    </span>\n          </pre>\n      </div>\n    </div>\n    \n    \n    \n    <form action=\"\" style=\"bottom:50px;position:fixed;margin-left:50px\">\n      <input [(ngModel)]=\"chat\" [ngModelOptions]=\"{standalone: true}\" style=\"width:800px; border-radius: 25px ; border: #2b2928 1px solid \"\n      />\n      <!-- <input [(ngModel)]=\"name\" [ngModelOptions]=\"{standalone: true}\" />\n         -->\n    \n      <button (click)=\"send()\" style=\"width:15%; border-radius: 25px ;margin-top:20px;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold\">Send</button>\n    </form>"
 
 /***/ }),
 
@@ -673,7 +673,7 @@ var ClothesComponent = (function () {
                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        this.arr.push(d);
+        this.arr.push(d.toFixed(2));
         return d;
     };
     ClothesComponent.prototype.deg2rad = function (deg) {
@@ -865,7 +865,7 @@ var FernutureComponent = (function () {
                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        this.arr.push(d);
+        this.arr.push(d.toFixed(2));
         return d;
     };
     FernutureComponent.prototype.deg2rad = function (deg) {
@@ -1384,7 +1384,7 @@ var MaintenanceComponent = (function () {
                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        this.arr.push(d);
+        this.arr.push(d.toFixed(2));
         return d;
     };
     MaintenanceComponent.prototype.deg2rad = function (deg) {
@@ -1682,7 +1682,7 @@ var OthersComponent = (function () {
                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        this.arr.push(d);
+        this.arr.push(d.toFixed(2));
         return d;
     };
     OthersComponent.prototype.deg2rad = function (deg) {
@@ -2147,7 +2147,7 @@ var ToolsComponent = (function () {
                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        this.arr.push(d);
+        this.arr.push(d.toFixed(2));
         return d;
     };
     ToolsComponent.prototype.deg2rad = function (deg) {

@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 
 <head>
   <style>
@@ -66,4 +66,78 @@
   <input [(ngModel)]="chat" [ngModelOptions]="{standalone: true}" />
 
   <button (click)="send()">Send</button>
-</form>
+</form> -->
+
+<html>
+    
+    <head>
+      <style>
+        font {
+          color: x
+        }
+      </style>
+    </head>
+    
+    </html>
+    
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1>
+            <span class='highlight'>JeranCom</span>
+          </h1>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a routerLink="/item" routerLinkActive="active">Add Item </a>
+            </li>
+            <li>
+              <a routerLink="/home" routerLinkActive="active"> Home</a>
+            </li>
+            <li>
+              <a routerLink="/about" routerLinkActive="active"> About</a>
+            </li>
+            <li>
+              <a routerLink="/profiler" routerLinkActive="active">Profile</a>
+            </li>
+            <li class='current'>
+              <a routerLink="/chatRoom" routerLinkActive="active">chatRoom</a>
+    
+            </li>
+            <li>
+              <a routerLink="/login" routerLinkActive="active">Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    
+    <div>
+    
+      <h1 style="text-align:center;color:darkorange">
+        &#9787; Let's chat &#9787;
+      </h1>
+    
+    </div>
+    
+    <div *ngFor="let chat of chats">
+      <div>
+    
+        <pre>
+            <span style ="font-weight:700 ;margin-left : 20px ; font-size:20px"><font [style.color]="x"> {{chat.session}}  </font> </span> <span  style ="font-weight:600; font-size:20px"> {{chat.text[0]}}    </span>
+          </pre>
+      </div>
+    </div>
+    
+    
+    
+    <form action="" style="bottom:50px;position:fixed;margin-left:50px">
+      <input [(ngModel)]="chat" [ngModelOptions]="{standalone: true}" style="width:800px; border-radius: 25px ; border: #2b2928 1px solid "
+      />
+      <!-- <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+         -->
+    
+      <button (click)="send()" style="width:15%; border-radius: 25px ;margin-top:20px;border-radius: 25px ;background:#35424a;color:#8cff66;font-weight:bold">Send</button>
+    </form>

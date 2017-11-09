@@ -148,7 +148,7 @@ export class OthersComponent {
       ;
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
-    this.arr.push(d);
+    this.arr.push(d.toFixed(2));
     return d;
   }
 
